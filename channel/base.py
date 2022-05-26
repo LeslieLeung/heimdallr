@@ -1,6 +1,6 @@
 class ChannelBase:
     """
-        Base class for all channels.
+    Base class for all channels.
     """
 
 

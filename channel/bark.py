@@ -1,9 +1,9 @@
-from .base import ChannelBase
 from exception import ParamException
+
+from .base import ChannelBase
 
 
 class Bark(ChannelBase):
-
     def __init__(self):
         self.base_url = ""
         self.key = ""

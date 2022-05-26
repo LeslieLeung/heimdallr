@@ -1,1 +1,1 @@
-from param_exception import ParamException
+from .param_exception import ParamException
