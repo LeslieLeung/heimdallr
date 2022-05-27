@@ -1,1 +1,1 @@
-from .bark import Bark
+from .bark import Bark, BarkMessage
