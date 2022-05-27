@@ -3,7 +3,8 @@ from fastapi import FastAPI
 from channel import Bark
 from env import Env
 
-env = Env().get_env()
+env = Env()
+env.get_env()
 
 app = FastAPI()
 
