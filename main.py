@@ -15,8 +15,9 @@ async def say_hello(name: str):
     return {"message": f"Hello {name}"}
 
 
+@app.get("/bark")
 @app.get("/bark/{title}/{body}")
-async def send_bark(title: str, body: str):
+async def send_bark(title: str = "", body: str = ""):
     message = BarkMessage(title, body)
     bark = Bark(message)
     rs, msg = bark.send()
