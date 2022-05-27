@@ -22,6 +22,14 @@ jobs:
       - docker push ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !PushRepository
+    name: Sync with GitHub
+    remoteUrl: https://github.com/LeslieLeung/notification-gateway-lite.git
+    userName: LeslieLeung
+    passwordSecret: github_access_token
+    withLfs: false
+    force: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
   - !BranchUpdateTrigger
     branches: main
