@@ -17,3 +17,4 @@ uvicorn==0.17.6
 watchgod==0.8.2
 websockets==10.3
 zipp==3.8.0
+requests~=2.27.1
