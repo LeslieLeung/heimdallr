@@ -13,6 +13,12 @@ class Channel:
         self.name = name
         self.message = message
 
+    def compose_message(self):
+        """
+        Compose the message to be sent.
+        """
+        pass
+
     def send(self):
         """
         Send a message to the channel.

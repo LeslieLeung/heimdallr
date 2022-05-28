@@ -1,26 +1,25 @@
 from fastapi import FastAPI
 
-from channel import Bark, BarkMessage
+from channel import Bark, BarkMessage, WecomApp, WecomMessage, WecomWebhook
 
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
-
-
-@app.get("/bark")
-@app.get("/bark/{title}/{body}")
-async def send_bark(title: str = "", body: str = ""):
-    message = BarkMessage(title, body)
-    bark = Bark(message)
-    rs, msg = bark.send()
+@app.get("/{channel}")
+@app.get("/{channel}/{title}/{body}")
+async def send(channel: str, title: str = "", body: str = ""):
+    if channel == "bark":
+        message = BarkMessage(title, body)
+        channel = Bark(message)
+    elif channel == "wecom-webhook":
+        message = WecomMessage(title, body)
+        channel = WecomWebhook(message)
+    elif channel == "wecom-app":
+        message = WecomMessage(title, body)
+        channel = WecomApp(message)
+    else:
+        return {"code": 2, "message": f"{channel} is not supported"}
+    rs, msg = channel.send()
     if rs:
         return {"code": 0, "message": msg}
-    return {"code": 1, "message": f"bark return {msg}"}
+    return {"code": 1, "message": f"{channel} return {msg}"}

@@ -1,10 +1,11 @@
 import json
 
-from exception import ParamException
 import requests
 
-from .base import Channel, Message
 from env import get_env
+from exception import ParamException
+
+from .base import Channel, Message
 
 
 class BarkMessage(Message):
