@@ -39,7 +39,7 @@ jobs:
   triggers:
   - !BranchUpdateTrigger
     branches: main
-  retryCondition: never
+  retryCondition: '"Log" contains "failed"'
   maxRetries: 3
   retryDelay: 30
   cpuRequirement: 250
