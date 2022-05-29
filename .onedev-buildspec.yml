@@ -9,7 +9,7 @@ jobs:
     withSubmodules: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !CommandStep
-    name: Build & Publish Dodker Image
+    name: Build & Publish Docker Image
     runInContainer: true
     image: docker:20.10.16-alpine3.16
     interpreter: !DefaultInterpreter
@@ -26,6 +26,11 @@ jobs:
       - docker tag ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
         registry.cn-shenzhen.aliyuncs.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
       - docker push registry.cn-shenzhen.aliyuncs.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
+      - docker tag ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@ leslieleung/notification-gateway-lite:v0.0.@build_number@
+      - docker tag leslieleung/notification-gateway-lite:v0.0.@build_number@ leslieleung/notification-gateway-lite:latest
+      - docker login -u @secret:dockerhub_username@ -p @secret:dockerhub_password@
+      - docker push leslieleung/notification-gateway-lite:v0.0.@build_number@
+      - docker push leslieleung/notification-gateway-lite:latest
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !PushRepository

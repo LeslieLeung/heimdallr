@@ -1,13 +1,17 @@
 from fastapi import FastAPI
 
 from channel import Bark, BarkMessage, WecomApp, WecomMessage, WecomWebhook
+from env import get_env
 
 app = FastAPI()
 
 
 @app.get("/{channel}")
-@app.get("/{channel}/{title}/{body}")
-async def send(channel: str, title: str = "", body: str = ""):
+@app.get("/{channel}/{title}/{body}/{key}")
+async def send(channel: str, title: str = "", body: str = "", key: str = ""):
+    env = get_env()
+    if env.key != "" and key != env.key:
+        return {"code": -1, "message": "key not authorized"}
     if channel == "bark":
         message = BarkMessage(title, body)
         channel = Bark(message)

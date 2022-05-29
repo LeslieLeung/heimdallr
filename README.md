@@ -37,3 +37,6 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 # 示例应用
 
 - [使用 notification-gateway-lite 接收群晖DSM推送](docs/example/DSM.md)
+
+# 微信交流群
+![](http://img.ameow.xyz/202205291706791.jpg)

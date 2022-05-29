@@ -10,6 +10,8 @@ ENV_WECOM_WEBHOOK_KEY = "WECOM_KEY"
 ENV_WECOM_CORP_ID = "WECOM_CORP_ID"
 ENV_WECOM_AGENT_ID = "WECOM_AGENT_ID"
 ENV_WECOM_SECRET = "WECOM_SECRET"
+# Access token for Docker deployment
+ENV_KEY = "KEY"
 
 
 class Env:
@@ -20,6 +22,7 @@ class Env:
         self.wecom_corp_id = os.environ.get(ENV_WECOM_CORP_ID)
         self.wecom_agent_id = os.environ.get(ENV_WECOM_AGENT_ID)
         self.wecom_secret = os.environ.get(ENV_WECOM_SECRET)
+        self.key = os.environ.get(ENV_KEY)
 
 
 def get_env():
