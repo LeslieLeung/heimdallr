@@ -27,6 +27,8 @@ class Bark(Channel):
         env = get_env()
         self.base_url = env.bark_url
         self.key = env.bark_key
+        if self.base_url == "" or self.key == "":
+            raise ParamException("bark url or key not set")
 
     def compose_message(self) -> str:
         msg_string = ""

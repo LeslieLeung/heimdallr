@@ -80,7 +80,11 @@ class WecomApp(Channel):
     def get_credential(self):
         env = get_env()
         self.agent_id = env.wecom_agent_id
+        if self.agent_id == "":
+            raise WecomException("agent id not set")
         corp_id, secret = env.wecom_corp_id, env.wecom_secret
+        if corp_id == "" or secret == "":
+            raise WecomException("corp id or secret not set")
         auth_url = f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corp_id}&corpsecret={secret}"
         rs = requests.get(auth_url)
         rs = json.loads(rs.text)

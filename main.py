@@ -1,12 +1,15 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 
 from channel import Bark, BarkMessage, WecomApp, WecomMessage, WecomWebhook
 from env import get_env
+from exception import ParamException, WecomException
 
 app = FastAPI()
 
 
 @app.get("/{channel}")
+@app.get("/{channel}/{title}/{body}")
 @app.get("/{channel}/{title}/{body}/{key}")
 async def send(channel: str, title: str = "", body: str = "", key: str = ""):
     env = get_env()
@@ -27,3 +30,9 @@ async def send(channel: str, title: str = "", body: str = "", key: str = ""):
     if rs:
         return {"code": 0, "message": msg}
     return {"code": 1, "message": f"{channel} return {msg}"}
+
+
+@app.exception_handler(ParamException)
+@app.exception_handler(WecomException)
+async def exception_handler(request, exc):
+    return JSONResponse({"code": 3, "message": exc.message})
