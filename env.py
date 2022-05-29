@@ -16,13 +16,13 @@ ENV_KEY = "KEY"
 
 class Env:
     def __init__(self):
-        self.bark_url = os.environ.get(ENV_BARK_URL)
-        self.bark_key = os.environ.get(ENV_BARK_KEY)
-        self.wecom_webhook_key = os.environ.get(ENV_WECOM_WEBHOOK_KEY)
-        self.wecom_corp_id = os.environ.get(ENV_WECOM_CORP_ID)
-        self.wecom_agent_id = os.environ.get(ENV_WECOM_AGENT_ID)
-        self.wecom_secret = os.environ.get(ENV_WECOM_SECRET)
-        self.key = os.environ.get(ENV_KEY)
+        self.bark_url = os.environ.get(ENV_BARK_URL, "")
+        self.bark_key = os.environ.get(ENV_BARK_KEY, "")
+        self.wecom_webhook_key = os.environ.get(ENV_WECOM_WEBHOOK_KEY, "")
+        self.wecom_corp_id = os.environ.get(ENV_WECOM_CORP_ID, "")
+        self.wecom_agent_id = os.environ.get(ENV_WECOM_AGENT_ID, "")
+        self.wecom_secret = os.environ.get(ENV_WECOM_SECRET, "")
+        self.key = os.environ.get(ENV_KEY, "")
 
 
 def get_env():
