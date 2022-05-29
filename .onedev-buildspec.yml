@@ -20,6 +20,12 @@ jobs:
         .
       - docker login -u @secret:registry_username@ -p @secret:registry_password@ ccr.ccs.tencentyun.com
       - docker push ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
+      - ''
+      - docker login -u @secret:aliyun_registry_username@ -p @secret:aliyun_registry_password@
+        registry.cn-shenzhen.aliyuncs.com
+      - docker tag ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
+        registry.cn-shenzhen.aliyuncs.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
+      - docker push registry.cn-shenzhen.aliyuncs.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !PushRepository
