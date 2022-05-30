@@ -11,7 +11,7 @@ jobs:
   - !CommandStep
     name: Build & Publish Docker Image
     runInContainer: true
-    image: docker:20.10.16-alpine3.16
+    image: leslieleung/docker-buildx:v0.0.1
     interpreter: !DefaultInterpreter
       commands:
       - set -e
@@ -26,9 +26,11 @@ jobs:
       - docker tag ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
         registry.cn-shenzhen.aliyuncs.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
       - docker push registry.cn-shenzhen.aliyuncs.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
-      - docker tag ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@ leslieleung/notification-gateway-lite:v0.0.@build_number@
-      - docker tag leslieleung/notification-gateway-lite:v0.0.@build_number@ leslieleung/notification-gateway-lite:latest
+      - ''
       - docker login -u @secret:dockerhub_username@ -p @secret:dockerhub_password@
+      - docker buildx build --platform linux/amd64,linux/arm64 -t leslieleung/notification-gateway-lite:v0.0.@build_number@
+        .
+      - docker tag leslieleung/notification-gateway-lite:v0.0.@build_number@ leslieleung/notification-gateway-lite:latest
       - docker push leslieleung/notification-gateway-lite:v0.0.@build_number@
       - docker push leslieleung/notification-gateway-lite:latest
     useTTY: false
