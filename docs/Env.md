@@ -14,6 +14,9 @@
 | `WECOM_CORP_ID`  | 企业微信                      | 企业微信应用的 corp_id，见 [企业微信应用消息](https://developer.work.weixin.qq.com/document/path/90236)    |
 | `WECOM_AGENT_ID` | 企业微信                      | 企业微信应用的 agent_id                                                                          |
 | `WECOM_SECRET`   | 企业微信                      | 企业微信应用的 secret                                                                            |
+| `PUSHOVER_TOKEN` | Pushover                  | Pushover 的 token，见 [Pushover API](https://pushover.net/api)                               |
+| `PUSHOVER_USER`  | Pushover                  | Pushover 的 user                                                                           |
+| `PUSHDEER_TOKEN` | PushDeer                  | PushDeer 的 token，见 [Pushdeer API](http://pushdeer.com)                                    |
 
 
 ## 腾讯云 Serverless 环境变量设置

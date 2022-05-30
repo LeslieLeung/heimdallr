@@ -15,6 +15,8 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 - [Bark](https://github.com/Finb/Bark)
 - [企业微信应用消息](https://developer.work.weixin.qq.com/document/path/90236)
 - [企业微信机器人webhook](https://developer.work.weixin.qq.com/document/path/91770)
+- [Pushover](https://pushover.net/api) [未测试]
+- [PushDeer](http://pushdeer.com) [未测试]
 
 ### 可能会支持的推送方式
 - [ ] 钉钉

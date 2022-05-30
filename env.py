@@ -10,6 +10,11 @@ ENV_WECOM_WEBHOOK_KEY = "WECOM_KEY"
 ENV_WECOM_CORP_ID = "WECOM_CORP_ID"
 ENV_WECOM_AGENT_ID = "WECOM_AGENT_ID"
 ENV_WECOM_SECRET = "WECOM_SECRET"
+# Pushover, see https://pushover.net/api
+ENV_PUSHOVER_TOKEN = "PUSHOVER_TOKEN"
+ENV_PUSHOVER_USER = "PUSHOVER_USER"
+# PushDeer, see http://pushdeer.com/
+ENV_PUSHDEER_TOKEN = "PUSHDEER_TOKEN"
 # Access token for Docker deployment
 ENV_KEY = "KEY"
 
@@ -22,6 +27,9 @@ class Env:
         self.wecom_corp_id = os.environ.get(ENV_WECOM_CORP_ID, "")
         self.wecom_agent_id = os.environ.get(ENV_WECOM_AGENT_ID, "")
         self.wecom_secret = os.environ.get(ENV_WECOM_SECRET, "")
+        self.pushover_token = os.environ.get(ENV_PUSHOVER_TOKEN, "")
+        self.pushover_user = os.environ.get(ENV_PUSHOVER_USER, "")
+        self.pushdeer_token = os.environ.get(ENV_PUSHDEER_TOKEN, "")
         self.key = os.environ.get(ENV_KEY, "")
 
 
