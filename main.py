@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
-from channel import Bark, BarkMessage, WecomApp, WecomMessage, WecomWebhook
+from channel import Bark, BarkMessage, WecomApp, WecomMessage, WecomWebhook, PushDeerMessage, PushDeer, PushoverMessage, Pushover
 from env import get_env
 from exception import ParamException, WecomException
 
@@ -24,6 +24,12 @@ async def send(channel: str, title: str = "", body: str = "", key: str = ""):
     elif channel == "wecom-app":
         message = WecomMessage(title, body)
         channel = WecomApp(message)
+    elif channel == "pushdeer":
+        message = PushDeerMessage(title, body)
+        channel = PushDeer(message)
+    elif channel == "pushover":
+        message = PushoverMessage(title, body)
+        channel = Pushover(message)
     else:
         return {"code": 2, "message": f"{channel} is not supported"}
     rs, msg = channel.send()
