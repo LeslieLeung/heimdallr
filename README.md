@@ -28,9 +28,9 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 
 # 部署方式
 
-- [腾讯云Serverless](docs/TencentcloudServerless.md)
-- [阿里云Serverless](docs/AliyunServerless.md)
-- [Docker](docs/Docker.md)
+- [腾讯云Serverless](docs/deploy/TencentcloudServerless.md)
+- [阿里云Serverless](docs/deploy/AliyunServerless.md)
+- [Docker](docs/deploy/Docker.md) （支持 `arm64`、`amd64`架构）
 
 # 接口文档
 

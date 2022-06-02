@@ -78,4 +78,4 @@ docker push ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION
 
 # 大功告成！
 
-至此，基于阿里云 Serverless 的部署已经完成。使用方式详见 [接口文档](Api.md)。
+至此，基于阿里云 Serverless 的部署已经完成。使用方式详见 [接口文档](../Api.md)。

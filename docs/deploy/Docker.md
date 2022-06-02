@@ -8,6 +8,8 @@
 
 需要通过 `-e` 配置对应的环境变量，详情见 [环境变量](/docs/Env.md) 。
 
+> 自 `v0.1.1` 起 Docker 镜像支持 `arm64` 架构。
+
 ```bash
 docker pull leslieleung/notification-gateway-lite:latest
 docker run -d --name=notification-gateway-lite -p 9000:9000 -e ENV=VAL leslieleung/notification-gateway-lite:latest

@@ -53,7 +53,7 @@ docker push ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION
 
 ![](http://img.ameow.xyz/202205290552175.png)
 
-点击展开高级配置，内存选择【64MB】，然后根据 [环境变量配置](Env.md) 进行配置。
+点击展开高级配置，内存选择【64MB】，然后根据 [环境变量配置](../Env.md) 进行配置。
 
 ![](http://img.ameow.xyz/202205290554815.png)
 
@@ -67,4 +67,4 @@ docker push ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION
 
 # 大功告成！
 
-至此，基于腾讯云 Serverless 的部署已经完成。使用方式详见 [接口文档](Api.md)。
+至此，基于腾讯云 Serverless 的部署已经完成。使用方式详见 [接口文档](../Api.md)。
