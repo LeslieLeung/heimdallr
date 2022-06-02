@@ -26,13 +26,6 @@ jobs:
       - docker tag ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
         registry.cn-shenzhen.aliyuncs.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
       - docker push registry.cn-shenzhen.aliyuncs.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
-      - ''
-      - docker login -u @secret:dockerhub_username@ -p @secret:dockerhub_password@
-      - docker tag ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
-        leslieleung/notification-gateway-lite:v0.0.@build_number@
-      - docker tag leslieleung/notification-gateway-lite:v0.0.@build_number@ leslieleung/notification-gateway-lite:latest
-      - docker push leslieleung/notification-gateway-lite:v0.0.@build_number@
-      - docker push leslieleung/notification-gateway-lite:latest
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !PushRepository

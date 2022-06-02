@@ -2,13 +2,21 @@ name: build-arm-image
 
 on:
   push:
-    branches:
-      - 'main'
+    tags:
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: leslieleung/notification-gateway-lite
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -25,6 +33,6 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          platforms: linux/arm/v7,linux/arm64/v8
+          platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
           push: true
-          tags: leslieleung/notification-gateway-lite:latest
+          tags: ${{ steps.meta.outputs.tags }}
