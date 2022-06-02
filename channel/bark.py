@@ -4,7 +4,7 @@ import requests
 
 from env import get_env
 from exception import ParamException
-from urllib.parse import urlencode
+from urllib.parse import quote_plus
 
 from .base import Channel, Message
 
@@ -33,15 +33,13 @@ class Bark(Channel):
 
     def compose_message(self) -> str:
         msg_string = ""
-        if self.message.category != "":
-            msg_string += f"/{self.message.category}"
         if self.message.title != "":
-            msg_string += f"/{self.message.title}"
+            msg_string += f"/{quote_plus(self.message.title)}"
         if self.message.body == "":
             raise ParamException("Message body cannot be empty.")
         else:
-            msg_string += f"/{self.message.body}"
-        return urlencode(msg_string)
+            msg_string += f"/{quote_plus(self.message.body)}"
+        return msg_string
 
     def send(self):
         """
