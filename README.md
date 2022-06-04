@@ -6,6 +6,7 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 
 # 特性
 
+- 等同于免费、开源、可自建的 [新版Server酱](https://sct.ftqq.com/)，没有任何限制，痛快推送
 - 支持各种常见的推送渠道，如Bark、企业微信等
 - 支持部署成腾讯云Serverless，几乎零成本运行
 - 解决因为群晖DSM奇怪的webhook设置方式而无法接入一些推送渠道的问题
@@ -23,7 +24,7 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 - [ ] pushplus
 - [ ] ...
 
-> 如果有需要的通知方式，请提交issue
+> 如果有需要的通知方式，请提交 [issue](https://github.com/LeslieLeung/notification-gateway-lite/issues/new?assignees=LeslieLeung&labels=enhancement&template=feature_request.md&title=)
 
 
 # 部署方式

@@ -17,6 +17,10 @@ docker run -d --name=notification-gateway-lite -p 9000:9000 -e ENV=VAL leslieleu
 
 # 更新
 
+> 最后一条 `run` 命令需要保持与第一次创建时一致，可以使用 `history | grep notification-gateway-lite` 查询。
+
+如果需要更新环境变量，请在 `run` 命令中更新。
+
 ```bash
 docker pull leslieleung/notification-gateway-lite:latest
 docker stop notification-gateway-lite

@@ -4,8 +4,9 @@
 
 本文章默认你已经理解并熟悉 git 和 Docker，并安装好相应的软件。
 
+# 安装
 
-# Step 1. 配置腾讯云镜像仓库
+## Step 1. 配置腾讯云镜像仓库
 
 由于腾讯云 Serverless 的限制，使用容器镜像来创建函数时，必须从自己的容器镜像服务选择镜像，所以必须自行构建 docker 镜像。
 
@@ -20,7 +21,7 @@
 ![](http://img.ameow.xyz/202205290540180.png)
 
 
-# Step 2. 构建镜像并推送至仓库
+## Step 2. 构建镜像并推送至仓库[buildImage]
 
 先克隆本项目至本地。
 
@@ -41,7 +42,7 @@ docker push ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION
 ![](http://img.ameow.xyz/202205290548858.png)
 
 
-# Step 3. 创建 Serverless 函数
+## Step 3. 创建 Serverless 函数
 
 进入 [腾讯云 Serverless](https://console.cloud.tencent.com/scf/list) ，选择新建。（此处如果是第一次使用 Serverless，可能会需要开通一些东西，跟随页面提示操作即可）。
 
@@ -65,6 +66,29 @@ docker push ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION
 
 ![](http://img.ameow.xyz/202205290556488.png)
 
-# 大功告成！
+## 大功告成！
 
 至此，基于腾讯云 Serverless 的部署已经完成。使用方式详见 [接口文档](../Api.md)。
+
+# 升级
+
+## Step 1. 构建新版镜像
+
+此处与首次安装时 [构建](#step-2-buildimage) 方法一致，注意版本号建议不要使用与之前相同的。
+
+```bash
+cd notification-gateway-lite
+git pull
+docker build -t ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION .
+docker push ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION
+```
+
+## Step 2. 部署新版镜像
+
+在函数服务中，进入对应函数的管理页面，点击【函数管理】-【函数代码】-【镜像配置】-【编辑】。
+
+点击【选择镜像】，选择仓库和镜像版本，点击提交，点击保存，待部署完成后即更新成功。
+
+## Step 3. （可选）更新环境变量
+
+新版本镜像可能支持了更多通知渠道，因此需要对应新增环境变量。在【函数配置】页面，点击编辑，新增环境变量后拉到最下面点击保存即可。
