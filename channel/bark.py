@@ -1,10 +1,10 @@
 import json
+from urllib.parse import quote_plus
 
 import requests
 
 from env import get_env
 from exception import ParamException
-from urllib.parse import quote_plus
 
 from .base import Channel, Message
 
