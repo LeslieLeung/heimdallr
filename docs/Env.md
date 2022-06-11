@@ -27,6 +27,6 @@
 
 ## Docker 环境变量设置
 
-> 阿里云 Serverless 的配置方法类似。
+> 阿里云 Serverless、华为云 Serverless 的配置方法类似。
 
 在使用 `docker run` 命令创建容器时，可以通过 `-e ENV=ENV_VAL` 的方式创建环境变量。

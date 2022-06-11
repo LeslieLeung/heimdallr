@@ -6,8 +6,8 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 
 > ## 更新
 > - v0.1.2
->  - 支持 `POST` 等更多接口，详见 [接口文档](docs/Api.md)
->  - 新增 [在线版接口文档](https://service-epwdrzxg-1255787947.gz.apigw.tencentcs.com/release/docs)
+>   - 支持 `POST` 等更多接口，详见 [接口文档](docs/Api.md)
+>   - 新增 [在线版接口文档](https://service-epwdrzxg-1255787947.gz.apigw.tencentcs.com/release/docs)
 
 # 特性
 
@@ -36,6 +36,7 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 
 - [腾讯云Serverless](docs/deploy/TencentcloudServerless.md)
 - [阿里云Serverless](docs/deploy/AliyunServerless.md)
+- [华为云Serverless（WIP)](docs/deploy/HuaweicloudServerless.md)
 - [Docker](docs/deploy/Docker.md) （支持 `arm64`、`amd64`架构）
 
 # 接口文档
