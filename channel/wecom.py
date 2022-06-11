@@ -39,7 +39,7 @@ class WecomWebhook(Channel):
         rs = json.loads(rs.text)
         if rs["errcode"] == 0:
             return True, rs["errmsg"]
-        return True, rs["errmsg"]
+        return False, rs["errmsg"]
 
     def get_credential(self):
         env = get_env()

@@ -49,27 +49,40 @@ def serve(channel: str, title: str = "", body: str = "", key: str = ""):
     env = get_env()
     if env.key != "" and key != env.key:
         return {"code": -1, "message": "key not authorized"}
-    if channel == "bark":
-        message = BarkMessage(title, body)
-        channel = Bark(message)
-    elif channel == "wecom-webhook":
-        message = WecomMessage(title, body)
-        channel = WecomWebhook(message)
-    elif channel == "wecom-app":
-        message = WecomMessage(title, body)
-        channel = WecomApp(message)
-    elif channel == "pushdeer":
-        message = PushDeerMessage(title, body)
-        channel = PushDeer(message)
-    elif channel == "pushover":
-        message = PushoverMessage(title, body)
-        channel = Pushover(message)
-    else:
-        return {"code": 2, "message": f"{channel} is not supported"}
-    rs, msg = channel.send()
-    if rs:
-        return {"code": 0, "message": msg}
-    return {"code": 1, "message": f"{channel} return {msg}"}
+    channels = channel.split("+")
+    senders = []
+    for chan in channels:
+        if chan == "bark":
+            message = BarkMessage(title, body)
+            sender = Bark(message)
+        elif chan == "wecom-webhook":
+            message = WecomMessage(title, body)
+            sender = WecomWebhook(message)
+        elif chan == "wecom-app":
+            message = WecomMessage(title, body)
+            sender = WecomApp(message)
+        elif chan == "pushdeer":
+            message = PushDeerMessage(title, body)
+            sender = PushDeer(message)
+        elif chan == "pushover":
+            message = PushoverMessage(title, body)
+            sender = Pushover(message)
+        else:
+            return {"code": 2, "message": f"{chan} is not supported"}
+        senders.append(sender)
+
+    errors = {}
+    for sender in senders:
+        rs, msg = sender.send()
+        if not rs:
+            errors[sender.get_name()] = msg
+
+    if len(errors) == 0:
+        return {"code": 0, "message": "success"}
+    err_msg = ""
+    for err in errors.items():
+        err_msg += f"{err[0]} return {err[1]}."
+    return {"code": 1, "message": err_msg}
 
 
 @app.exception_handler(ParamException)

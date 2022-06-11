@@ -5,6 +5,8 @@
 notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各种推送渠道，使用 Serverless 部署，几乎零成本运行。
 
 > ## 更新
+> - v0.1.3
+>   - 支持同时推送到多个渠道，见 [接口文档](docs/Api.md/#multi-channel)
 > - v0.1.2
 >   - 支持 `POST` 等更多接口，详见 [接口文档](docs/Api.md)
 >   - 新增 [在线版接口文档](https://service-epwdrzxg-1255787947.gz.apigw.tencentcs.com/release/docs)
