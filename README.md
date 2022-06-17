@@ -5,6 +5,8 @@
 notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各种推送渠道，使用 Serverless 部署，几乎零成本运行。
 
 > ## 更新
+> - v0.1.4
+>   - 新增 debug 模式，详见 [环境变量](docs/Env.md) 
 > - v0.1.3
 >   - 支持同时推送到多个渠道，见 [接口文档](docs/Api.md/#multi-channel)
 > - v0.1.2
@@ -50,4 +52,4 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 - [使用 notification-gateway-lite 接收群晖DSM推送](docs/example/DSM.md)
 
 # 微信交流群
-![](http://img.ameow.xyz/202206082322735.jpg)
+![](http://img.ameow.xyz/202206180147750.jpg)

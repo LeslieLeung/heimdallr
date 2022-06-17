@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 import json
+import logging
 
 import requests
 
@@ -31,11 +32,15 @@ class WecomWebhook(Channel):
     def send(self):
         super().send()
         url = f"{self.base_url}{self.key}"
+        logging.info(
+            f"WecomWebhook requested: {url}, with message: {self.compose_message()}"
+        )
         rs = requests.post(
             url,
             data=self.compose_message(),
             headers={"Content-Type": "application/json"},
         )
+        logging.info(f"WecomWebhook response: {rs.text}")
         rs = json.loads(rs.text)
         if rs["errcode"] == 0:
             return True, rs["errmsg"]
@@ -67,11 +72,13 @@ class WecomApp(Channel):
     def send(self):
         msg = self.compose_message()
         url = f"{self.base_url}{self.access_token}"
+        logging.info(f"WecomApp requested: {url}, with message: {msg}")
         rs = requests.post(
             url,
             data=msg,
             headers={"Content-Type": "application/json"},
         )
+        logging.info(f"WecomApp response: {rs.text}")
         rs = json.loads(rs.text)
         if rs["errcode"] == 0:
             return True, rs["errmsg"]

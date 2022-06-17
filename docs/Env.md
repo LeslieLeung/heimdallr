@@ -8,6 +8,7 @@
 | 变量名              | 通知渠道                      | 变量说明                                                                                      |
 |------------------|---------------------------|-------------------------------------------------------------------------------------------|
 | `KEY`            | notification-gateway-lite | 用于本服务鉴权的key，使用 Docker 部署时建议填写。                                                            |
+| `DEBUG`          | notification-gateway-lite | 用于表示是否进入 debug 模式，设置该变量并填入任意值即可（例如 `1` ），会在日志中打印出请求和返回参数，方便调试。                            |
 | `BARK_URL`       | Bark                      | Bark服务器地址，如`https://api.day.app`                                                          |
 | `BARK_KEY`       | Bark                      | Bark的推送 key，如 `qy7s8qnhjhphuNDHJNFxQE`                                                    |
 | `WECOM_KEY`      | 企业微信                      | 企业微信机器人的 key，见 [企业微信机器人webhook](https://developer.work.weixin.qq.com/document/path/91770) |

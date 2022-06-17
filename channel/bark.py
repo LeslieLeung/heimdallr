@@ -1,4 +1,5 @@
 import json
+import logging
 from urllib.parse import quote_plus
 
 import requests
@@ -46,7 +47,9 @@ class Bark(Channel):
         Send a message to bark server.
         """
         url = f"{self.base_url}/{self.key}{self.compose_message()}"
+        logging.info(f"Bark requested: {url}")
         rs = requests.get(url)
+        logging.info(f"Bark response: {rs.text}")
         rs = json.loads(rs.text)
         if rs["code"] == 200:
             return True, rs["message"]

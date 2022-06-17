@@ -1,13 +1,20 @@
+import logging
+
 from fastapi import FastAPI, Form
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from channel import (Bark, BarkMessage, PushDeer, PushDeerMessage, Pushover,
                      PushoverMessage, WecomApp, WecomMessage, WecomWebhook)
-from env import get_env
+from env import get_env, is_debug
 from exception import ParamException, WecomException
 
 app = FastAPI()
+
+if is_debug():
+    logging.basicConfig(level=logging.INFO)
+else:
+    logging.basicConfig(level=logging.ERROR)
 
 
 class PostRequest(BaseModel):

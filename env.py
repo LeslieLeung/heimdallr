@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 import os
 
+# debug mode
+ENV_DEBUG = "DEBUG"
 # Bark server url and key
 ENV_BARK_URL = "BARK_URL"
 ENV_BARK_KEY = "BARK_KEY"
@@ -21,6 +23,7 @@ ENV_KEY = "KEY"
 
 class Env:
     def __init__(self):
+        self.debug = os.environ.get("DEBUG", False)
         self.bark_url = os.environ.get(ENV_BARK_URL, "")
         self.bark_key = os.environ.get(ENV_BARK_KEY, "")
         self.wecom_webhook_key = os.environ.get(ENV_WECOM_WEBHOOK_KEY, "")
@@ -35,3 +38,7 @@ class Env:
 
 def get_env():
     return Env()
+
+
+def is_debug():
+    return get_env().debug
