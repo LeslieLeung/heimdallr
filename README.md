@@ -30,7 +30,6 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 
 ### 可能会支持的推送方式
 - [ ] 钉钉
-- [ ] ~~pushplus~~ （已停止运营）
 - [ ] ...
 
 > 如果有需要的通知方式，请提交 [issue](https://github.com/LeslieLeung/notification-gateway-lite/issues/new?assignees=LeslieLeung&labels=enhancement&template=feature_request.md&title=)
