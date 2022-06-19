@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
 
 import json
-from urllib.parse import urlencode
+import logging
+from urllib.parse import quote
 
 import requests
 
@@ -26,16 +27,18 @@ class PushDeer(Channel):
 
     def get_credential(self):
         env = get_env()
-        self.pushkey = env.pushdeer_pushkey
+        self.pushkey = env.pushdeer_token
         if self.pushkey == "":
             raise ParamException("pushdeer pushkey not set")
 
     def compose_message(self) -> str:
-        return urlencode(f"{self.message.title}\n{self.message.body}")
+        return quote(f"{self.message.title}\n{self.message.body}")
 
     def send(self):
         url = f"{self.base_url}pushkey={self.pushkey}&text={self.compose_message()}"
+        logging.info(f"PushDeer requested: {url}")
         rs = requests.post(url)
+        logging.info(f"PushDeer response: {rs.text}")
         rs = json.loads(rs.text)
         if rs["code"] == 0:
             return True, rs["content"]

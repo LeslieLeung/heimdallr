@@ -5,6 +5,8 @@
 notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各种推送渠道，使用 Serverless 部署，几乎零成本运行。
 
 > ## 更新
+> - v0.1.5
+>   - 修复 PushDeer 支持
 > - v0.1.4
 >   - 新增 debug 模式，详见 [环境变量](docs/Env.md) 
 > - v0.1.3
@@ -25,11 +27,12 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 - [Bark](https://github.com/Finb/Bark)
 - [企业微信应用消息](https://developer.work.weixin.qq.com/document/path/90236)
 - [企业微信机器人webhook](https://developer.work.weixin.qq.com/document/path/91770)
+- [PushDeer](http://pushdeer.com)
 - [Pushover](https://pushover.net/api) [未测试]
-- [PushDeer](http://pushdeer.com) [未测试]
 
 ### 可能会支持的推送方式
 - [ ] 钉钉
+- [ ] Chanify
 - [ ] ...
 
 > 如果有需要的通知方式，请提交 [issue](https://github.com/LeslieLeung/notification-gateway-lite/issues/new?assignees=LeslieLeung&labels=enhancement&template=feature_request.md&title=)
