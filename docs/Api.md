@@ -13,6 +13,7 @@
 - `wecom-webhook` - [企业微信机器人webhook](https://developer.work.weixin.qq.com/document/path/91770)
 - `pushover` - [Pushover](https://pushover.net/api)
 - `pushdeer` - [PushDeer](http://pushdeer.com)
+- `chanify` - [Chanify](https://github.com/chanify/chanify)
 
 ### <div id="multi-channel">推送到多个渠道</div>
 

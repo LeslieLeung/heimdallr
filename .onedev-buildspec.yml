@@ -16,25 +16,21 @@ jobs:
       commands:
       - set -e
       - ''
-      - docker build -t ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
+      - docker build -t ccr.ccs.tencentyun.com/ameow_projects/heimdallr:nightly.@build_number@
         .
       - docker login -u @secret:registry_username@ -p @secret:registry_password@ ccr.ccs.tencentyun.com
-      - docker push ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
+      - docker push ccr.ccs.tencentyun.com/ameow_projects/heimdallr:nightly.@build_number@
       - ''
       - docker login -u @secret:aliyun_registry_username@ -p @secret:aliyun_registry_password@
         registry.cn-shenzhen.aliyuncs.com
-      - docker tag ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
-        registry.cn-shenzhen.aliyuncs.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
-      - docker push registry.cn-shenzhen.aliyuncs.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@
-      - ''
-      - docker login -u cn-south-1@@@secret:huawei_ak@ -p @secret:huawei_secret@ swr.cn-south-1.myhuaweicloud.com
-      - docker tag ccr.ccs.tencentyun.com/ameow_projects/notification-gateway-lite:v0.0.@build_number@ swr.cn-south-1.myhuaweicloud.com/ameow/notification-gateway-lite:v0.0.@build_number@
-      - docker push swr.cn-south-1.myhuaweicloud.com/ameow/notification-gateway-lite:v0.0.@build_number@
+      - docker tag ccr.ccs.tencentyun.com/ameow_projects/heimdallr:nightly.@build_number@
+        registry.cn-shenzhen.aliyuncs.com/ameow_projects/heimdallr:nightly.@build_number@
+      - docker push registry.cn-shenzhen.aliyuncs.com/ameow_projects/heimdallr:nightly.@build_number@
     useTTY: false
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !PushRepository
     name: Sync with GitHub
-    remoteUrl: https://github.com/LeslieLeung/notification-gateway-lite.git
+    remoteUrl: https://github.com/LeslieLeung/heimdallr.git
     userName: LeslieLeung
     passwordSecret: github_access_token
     withLfs: false

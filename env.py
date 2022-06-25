@@ -17,6 +17,9 @@ ENV_PUSHOVER_TOKEN = "PUSHOVER_TOKEN"
 ENV_PUSHOVER_USER = "PUSHOVER_USER"
 # PushDeer, see http://pushdeer.com/
 ENV_PUSHDEER_TOKEN = "PUSHDEER_TOKEN"
+# Chanify, see https://github.com/chanify/chanify
+ENV_CHANIFY_ENDPOINT = "CHANIFY_ENDPOINT"
+ENV_CHANIFY_TOKEN = "CHANIFY_TOKEN"
 # Access token for Docker deployment
 ENV_KEY = "KEY"
 
@@ -33,6 +36,8 @@ class Env:
         self.pushover_token = os.environ.get(ENV_PUSHOVER_TOKEN, "")
         self.pushover_user = os.environ.get(ENV_PUSHOVER_USER, "")
         self.pushdeer_token = os.environ.get(ENV_PUSHDEER_TOKEN, "")
+        self.chanify_endpoint = os.environ.get(ENV_CHANIFY_ENDPOINT, "")
+        self.chanify_token = os.environ.get(ENV_CHANIFY_TOKEN, "")
         self.key = os.environ.get(ENV_KEY, "")
 
 

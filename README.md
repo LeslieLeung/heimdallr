@@ -1,10 +1,13 @@
-<h1>notification-gateway-lite</h1>
+<h1>Heimdallr</h1>
 
 # 简介
 
-notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各种推送渠道，使用 Serverless 部署，几乎零成本运行。
+Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道，使用 Serverless 部署，几乎零成本运行。
 
 > ## 更新
+> - v1.0.0
+>   - 项目正式更名为 Heimdallr， 其为北欧神话中彩虹桥的守护神，当诸神黄昏到来，海姆达尔将吹响号角，以便提醒众神。
+>   - 支持 Chanify 通知。
 > - v0.1.5
 >   - 修复 PushDeer 支持
 > - v0.1.4
@@ -28,11 +31,12 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 - [企业微信应用消息](https://developer.work.weixin.qq.com/document/path/90236)
 - [企业微信机器人webhook](https://developer.work.weixin.qq.com/document/path/91770)
 - [PushDeer](http://pushdeer.com)
+- [Chanify](https://github.com/chanify/chanify)
 - [Pushover](https://pushover.net/api) [未测试]
 
 ### 可能会支持的推送方式
 - [ ] 钉钉
-- [ ] Chanify
+- [x] Chanify
 - [ ] ...
 
 > 如果有需要的通知方式，请提交 [issue](https://github.com/LeslieLeung/notification-gateway-lite/issues/new?assignees=LeslieLeung&labels=enhancement&template=feature_request.md&title=)
@@ -42,7 +46,6 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 
 - [腾讯云Serverless](docs/deploy/TencentcloudServerless.md)
 - [阿里云Serverless](docs/deploy/AliyunServerless.md)
-- [华为云Serverless（WIP)](docs/deploy/HuaweicloudServerless.md)
 - [Docker](docs/deploy/Docker.md) （支持 `arm64`、`amd64`架构）
 
 # 接口文档
@@ -54,4 +57,4 @@ notification-gateway-lite 是一个非常轻量的通知网关，可以聚合各
 - [使用 notification-gateway-lite 接收群晖DSM推送](docs/example/DSM.md)
 
 # 微信交流群
-![](http://img.ameow.xyz/202206180147750.jpg)
+![](http://img.ameow.xyz/88095FBC-427A-4A5A-B599-40DC2AE2E5CE.jpeg)

@@ -16,7 +16,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: leslieleung/notification-gateway-lite
+          images: leslieleung/heimdallr
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
