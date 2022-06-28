@@ -20,6 +20,14 @@ ENV_PUSHDEER_TOKEN = "PUSHDEER_TOKEN"
 # Chanify, see https://github.com/chanify/chanify
 ENV_CHANIFY_ENDPOINT = "CHANIFY_ENDPOINT"
 ENV_CHANIFY_TOKEN = "CHANIFY_TOKEN"
+# SMTP mail
+ENV_EMAIL_HOST = "EMAIL_HOST"
+ENV_EMAIL_PORT = "EMAIL_PORT"
+ENV_EMAIL_USER = "EMAIL_USER"
+ENV_EMAIL_PASSWORD = "EMAIL_PASSWORD"
+ENV_EMAIL_SENDER = "EMAIL_SENDER"
+ENV_EMAIL_TO = "EMAIL_TO"
+ENV_EMAIL_STARTTLS = "EMAIL_STARTTLS"
 # Access token for Docker deployment
 ENV_KEY = "KEY"
 
@@ -38,6 +46,13 @@ class Env:
         self.pushdeer_token = os.environ.get(ENV_PUSHDEER_TOKEN, "")
         self.chanify_endpoint = os.environ.get(ENV_CHANIFY_ENDPOINT, "")
         self.chanify_token = os.environ.get(ENV_CHANIFY_TOKEN, "")
+        self.email_host = os.environ.get(ENV_EMAIL_HOST, "")
+        self.email_port = os.environ.get(ENV_EMAIL_PORT, "")
+        self.email_user = os.environ.get(ENV_EMAIL_USER, "")
+        self.email_password = os.environ.get(ENV_EMAIL_PASSWORD, "")
+        self.email_sender = os.environ.get(ENV_EMAIL_SENDER, "")
+        self.email_to = os.environ.get(ENV_EMAIL_TO, "")
+        self.email_starttls = os.environ.get(ENV_EMAIL_STARTTLS, "")
         self.key = os.environ.get(ENV_KEY, "")
 
 

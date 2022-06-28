@@ -22,6 +22,13 @@
 | `PUSHDEER_TOKEN`   | PushDeer  | PushDeer 的 token，见 [Pushdeer API](http://pushdeer.com)                                                                |
 | `CHANIFY_ENDPOINT` | Chanify   | Chanify 的 endpoint，见 [Chanify](https://github.com/chanify/chanify#as-sender-client)，可不填，默认为 `https://api.chanify.net` |
 | `CHANIFY_TOKEN`    | Chanify   | Chanify 的 token                                                                                                       |
+| `EMAIL_HOST`       | Email     | Email 服务器地址，如 `smtp.gmail.com`                                                                                        |
+| `EMAIL_PORT`       | Email     | Email 服务器端口，如 `465`                                                                                                   |
+| `EMAIL_USER`       | Email     | Email 用户名                                                                                                             |
+| `EMAIL_PASSWORD`   | Email     | Email 密码                                                                                                              |
+| `EMAIL_SENDER`     | Email     | Email 发件人名称                                                                                                           |
+| `EMAIL_TO`         | Email     | Email 收件人                                                                                                             |
+| `EMAIL_STARTTLS`   | Email     | Email 是否使用 TLS                                                                                                        |
 
 
 ## 腾讯云 Serverless 环境变量设置

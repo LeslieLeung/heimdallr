@@ -4,9 +4,21 @@ from fastapi import FastAPI, Form
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
-from channel import (Bark, BarkMessage, Chanify, ChanifyMessage, PushDeer,
-                     PushDeerMessage, Pushover, PushoverMessage, WecomApp,
-                     WecomMessage, WecomWebhook)
+from channel import (
+    Bark,
+    BarkMessage,
+    Chanify,
+    ChanifyMessage,
+    Email,
+    EmailMessage,
+    PushDeer,
+    PushDeerMessage,
+    Pushover,
+    PushoverMessage,
+    WecomApp,
+    WecomMessage,
+    WecomWebhook,
+)
 from env import get_env, is_debug
 from exception import ParamException, WecomException
 
@@ -78,6 +90,9 @@ def serve(channel: str, title: str = "", body: str = "", key: str = ""):
         elif chan == "chanify":
             message = ChanifyMessage(title, body)
             sender = Chanify(message)
+        elif chan == "email":
+            message = EmailMessage(title, body)
+            sender = Email(message)
         else:
             return {"code": 2, "message": f"{chan} is not supported"}
         senders.append(sender)
