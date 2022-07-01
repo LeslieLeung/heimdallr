@@ -14,7 +14,7 @@
 
 同时此处可能会提示给镜像服务设置一个密码，这个密码仅供镜像仓库使用且与腾讯云账号独立（可以认为是一个 docker 镜像私服的账号密码）。
 
-命名空间的名字可以随便取。然后进入 [镜像仓库](https://console.cloud.tencent.com/tcr/repository)，点击新建一个仓库，名称可以取 `notification-gateway-lite`，类型选择私有，命名空间选择刚才新建的，然后点击确认即可。
+命名空间的名字可以随便取。然后进入 [镜像仓库](https://console.cloud.tencent.com/tcr/repository)，点击新建一个仓库，名称可以取 `heimdallr`，类型选择私有，命名空间选择刚才新建的，然后点击确认即可。
 
 新仓库创建好后，点击快捷指令，复制登录的命令，在命令行中运行，根据提示输入刚才设置的镜像仓库密码，登录到镜像仓库。
 
@@ -26,8 +26,8 @@
 先克隆本项目至本地。
 
 ```bash
-git clone https://github.com/LeslieLeung/notification-gateway-lite.git
-cd notification-gateway-lite
+git clone https://github.com/LeslieLeung/heimdallr.git
+cd heimdallr
 ```
 
 记住之前创建的命名空间和仓库的名称，这里给镜像打 tag 需要用到。这里将 `YOUR_NAMESPACE` 替换成命名空间的名字，`YOUR_REPOSITORY` 替换成仓库的名字。`VERSION` 可以随便取，但建议使用递增的数字。
@@ -77,7 +77,7 @@ docker push ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION
 此处与首次安装时 [构建](#step-2-buildimage) 方法一致，注意版本号建议不要使用与之前相同的。
 
 ```bash
-cd notification-gateway-lite
+cd heimdallr
 git pull
 docker build -t ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION .
 docker push ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION

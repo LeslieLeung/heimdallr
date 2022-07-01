@@ -35,8 +35,8 @@ docker login --username=是你猫兄啊 registry.cn-shenzhen.aliyuncs.com
 先克隆本项目至本地。
 
 ```bash
-git clone https://github.com/LeslieLeung/notification-gateway-lite.git
-cd notification-gateway-lite
+git clone https://github.com/LeslieLeung/heimdallr.git
+cd heimdallr
 ```
 
 记住之前创建的命名空间和仓库的名称，这里给镜像打 tag 需要用到。这里将 `YOUR_NAMESPACE` 替换成命名空间的名字，`YOUR_REPOSITORY` 替换成仓库的名字。`VERSION` 可以随便取，但建议使用递增的数字。

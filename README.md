@@ -42,7 +42,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - [x] Email
 - [ ] ...
 
-> 如果有需要的通知方式，请提交 [issue](https://github.com/LeslieLeung/notification-gateway-lite/issues/new?assignees=LeslieLeung&labels=enhancement&template=feature_request.md&title=)
+> 如果有需要的通知方式，请提交 [issue](https://github.com/LeslieLeung/heimdallr/issues/new?assignees=LeslieLeung&labels=enhancement&template=feature_request.md&title=)
 
 
 # 部署方式
@@ -57,7 +57,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 
 # 示例应用
 
-- [使用 notification-gateway-lite 接收群晖DSM推送](docs/example/DSM.md)
+- [使用 Heimdallr 接收群晖DSM推送](docs/example/DSM.md)
 
 # 微信交流群
-![](http://img.ameow.xyz/88095FBC-427A-4A5A-B599-40DC2AE2E5CE.jpeg)
+![](http://img.ameow.xyz/20220701211743.png)

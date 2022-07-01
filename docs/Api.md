@@ -14,6 +14,7 @@
 - `pushover` - [Pushover](https://pushover.net/api)
 - `pushdeer` - [PushDeer](http://pushdeer.com)
 - `chanify` - [Chanify](https://github.com/chanify/chanify)
+- `email`- 邮件
 
 ### <div id="multi-channel">推送到多个渠道</div>
 

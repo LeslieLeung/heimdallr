@@ -1,4 +1,4 @@
-<h1>使用 notification-gateway-lite 接收群晖DSM推送</h1>
+<h1>使用 Heimdallr 接收群晖DSM推送</h1>
 
 进入【控制面板】-【通知设置】-【短信】，点击【新增短信服务提供商】。
 
