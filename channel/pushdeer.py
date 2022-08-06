@@ -6,10 +6,9 @@ from urllib.parse import quote
 
 import requests
 
+from channel.base import Channel, Message
 from env import get_env
 from exception import ParamException
-
-from .base import Channel, Message
 
 
 class PushDeerMessage(Message):

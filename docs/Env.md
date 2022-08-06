@@ -42,3 +42,17 @@
 > 阿里云 Serverless、华为云 Serverless 的配置方法类似。
 
 在使用 `docker run` 命令创建容器时，可以通过 `-e ENV=ENV_VAL` 的方式创建环境变量。
+
+## <div id="json">通过 json 配置</div>
+
+> `v1.1.0` 后支持通过 json 配置。
+
+配置文件模板见 [这里](../config/config.json.example) 。将配置文件重命名为 `config.json`，填入对应的环境变量。
+
+> 在 json 配置文件和环境变量同时存在时，会优先使用 json 中配置的参数。
+
+使用 Docker 部署时，通过增加以下参数将你的配置文件挂载到容器中。
+
+`-v your-config-path:/app/config`
+
+使用 Serverless 部署时，可以将你自己的配置文件同时打包进镜像中。这种方法不需要修改任何打包的过程。

@@ -4,21 +4,9 @@ from fastapi import FastAPI, Form
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
-from channel import (
-    Bark,
-    BarkMessage,
-    Chanify,
-    ChanifyMessage,
-    Email,
-    EmailMessage,
-    PushDeer,
-    PushDeerMessage,
-    Pushover,
-    PushoverMessage,
-    WecomApp,
-    WecomMessage,
-    WecomWebhook,
-)
+from channel import (Bark, BarkMessage, Chanify, ChanifyMessage, Email,
+                     EmailMessage, PushDeer, PushDeerMessage, Pushover,
+                     PushoverMessage, WecomApp, WecomMessage, WecomWebhook)
 from env import get_env, is_debug
 from exception import ParamException, WecomException
 

@@ -1,2 +1,3 @@
 .idea
 venv
+config/config.json

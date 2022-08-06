@@ -4,10 +4,9 @@ import logging
 
 import requests
 
+from channel.base import Channel, Message
 from env import get_env
 from exception import WecomException
-
-from .base import Channel, Message
 
 
 class WecomMessage(Message):
