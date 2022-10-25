@@ -73,6 +73,15 @@
 - `body` 为推送的内容，可以是任意字符串。
 - `key` 为环境变量中设置的key，当设置了环境变量时必填。
 
+## Echo
+
+`/echo/{channel}`
+
+> `POST`
+
+- `channel` 为推送的渠道，可以是 `bark`、`wecom-webhook`、`wecom-app` 等。
+- POST 请求的 body 会原样返回。
+
 # 返回示例
 
 ## 成功

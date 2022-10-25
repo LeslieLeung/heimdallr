@@ -1,6 +1,6 @@
 import logging
 
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, Form, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
@@ -53,6 +53,13 @@ async def send_by_post_form(
     return serve(channel, title, body, key)
 
 
+@app.post("/echo/{channel}")
+async def echo(channel: str, request: Request):
+    title = f"FROM [{request.url}]"
+    body = await request.body()
+    return serve(channel, title, body.decode("utf-8"))
+
+
 def serve(channel: str, title: str = "", body: str = "", key: str = ""):
     env = get_env()
     if env.key != "" and key != env.key:
@@ -60,29 +67,30 @@ def serve(channel: str, title: str = "", body: str = "", key: str = ""):
     channels = channel.split("+")
     senders = []
     for chan in channels:
-        if chan == "bark":
-            message = BarkMessage(title, body)
-            sender = Bark(message)
-        elif chan == "wecom-webhook":
-            message = WecomMessage(title, body)
-            sender = WecomWebhook(message)
-        elif chan == "wecom-app":
-            message = WecomMessage(title, body)
-            sender = WecomApp(message)
-        elif chan == "pushdeer":
-            message = PushDeerMessage(title, body)
-            sender = PushDeer(message)
-        elif chan == "pushover":
-            message = PushoverMessage(title, body)
-            sender = Pushover(message)
-        elif chan == "chanify":
-            message = ChanifyMessage(title, body)
-            sender = Chanify(message)
-        elif chan == "email":
-            message = EmailMessage(title, body)
-            sender = Email(message)
-        else:
-            return {"code": 2, "message": f"{chan} is not supported"}
+        match chan:
+            case "bark":
+                message = BarkMessage(title, body)
+                sender = Bark(message)
+            case "wecom-webhook":
+                message = WecomMessage(title, body)
+                sender = WecomWebhook(message)
+            case "wecom-app":
+                message = WecomMessage(title, body)
+                sender = WecomApp(message)
+            case "pushdeer":
+                message = PushDeerMessage(title, body)
+                sender = PushDeer(message)
+            case "pushover":
+                message = PushoverMessage(title, body)
+                sender = Pushover(message)
+            case "chanify":
+                message = ChanifyMessage(title, body)
+                sender = Chanify(message)
+            case "email":
+                message = EmailMessage(title, body)
+                sender = Email(message)
+            case _:
+                return {"code": 2, "message": f"{chan} is not supported"}
         senders.append(sender)
 
     errors = {}
