@@ -19,10 +19,11 @@ else:
 
 
 class PostRequest(BaseModel):
-    channel: str
+    channel: str = ""
     title: str = ""
     body: str = ""
     key: str = ""
+    msg_type: str = "text"
 
 
 @app.get("/{channel}")
@@ -31,7 +32,7 @@ class PostRequest(BaseModel):
 @app.get("/{channel}/{title}/{body}/{key}")
 @app.post("/{channel}/{title}/{body}/{key}")
 async def send_by_path_and_param(
-    channel: str, title: str = "", body: str = "", key: str = ""
+        channel: str, title: str = "", body: str = "", key: str = ""
 ):
     return serve(channel, title, body, key)
 
@@ -43,10 +44,10 @@ async def send_by_post_json(request: PostRequest):
 
 @app.post("/sendForm")
 async def send_by_post_form(
-    channel: str = Form(),
-    title: str = Form(),
-    body: str = Form(),
-    key: str = Form(default=""),
+        channel: str = Form(),
+        title: str = Form(),
+        body: str = Form(),
+        key: str = Form(default=""),
 ):
     if channel == "":
         return {"code": -1, "message": "channel cannot be empty"}
@@ -58,6 +59,23 @@ async def echo(channel: str, request: Request):
     title = f"FROM [{request.url}]"
     body = await request.body()
     return serve(channel, title, body.decode("utf-8"))
+
+
+@app.post("/wecom-app")
+@app.post("/wecom-webhook")
+async def send_wecom(request: Request, req: PostRequest):
+    message = WecomMessage(req.title, req.body, req.msg_type)
+    match request.url.path:
+        case "/wecom-app":
+            sender = WecomApp(message)
+        case "/wecom-webhook":
+            sender = WecomWebhook(message)
+        case _:
+            return {"code": 2, "message": f"channel {request.url.path[1:]} not supported"}
+    rs, msg = sender.send()
+    if not rs:
+        raise WecomException(msg)
+    return {"code": 0, "message": "success"}
 
 
 def serve(channel: str, title: str = "", body: str = "", key: str = ""):

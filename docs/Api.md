@@ -82,6 +82,24 @@
 - `channel` 为推送的渠道，可以是 `bark`、`wecom-webhook`、`wecom-app` 等。
 - POST 请求的 body 会原样返回。
 
+## Wecom
+
+`/wecom-app` `/wecom-webhook`
+
+> `POST`
+
+请求参数
+
+```json
+{
+  "title": "",
+  "body": "",
+  "msg_type": "text"
+}
+```
+
+- `msg_type` 取值可以是 `text` 或 `markdown`，默认为 `text` 。使用`markdown` 时，`body` 可以传入 Markdown 格式的文本。
+
 # 返回示例
 
 ## 成功

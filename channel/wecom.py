@@ -10,8 +10,9 @@ from exception import WecomException
 
 
 class WecomMessage(Message):
-    def __init__(self, title: str, body: str):
+    def __init__(self, title: str, body: str, msg_type: str = 'text'):
         super().__init__(title, body)
+        self.msg_type = msg_type
 
 
 class WecomWebhook(Channel):
@@ -22,10 +23,22 @@ class WecomWebhook(Channel):
         self.get_credential()
 
     def compose_message(self) -> str:
-        msg = {
-            "msgtype": "text",
-            "text": {"content": f"{self.message.title}\n{self.message.body}"},
-        }
+        assert isinstance(self.message, WecomMessage), "message type error"
+        match self.message.msg_type:
+            case "text":
+                msg = {
+                    "msgtype": "text",
+                    "text": {"content": f"{self.message.title}\n{self.message.body}"},
+                }
+            case "markdown":
+                msg = {
+                    "msgtype": "markdown",
+                    "markdown": {
+                        "content": f"### {self.message.title}\n> {self.message.body}"
+                    },
+                }
+            case _:
+                raise WecomException("Unsupported message type")
         return json.dumps(msg)
 
     def send(self):
@@ -59,13 +72,28 @@ class WecomApp(Channel):
         self.get_credential()
 
     def compose_message(self) -> str:
-        msg = {
-            "touser": "@all",
-            "msgtype": "text",
-            "agentid": self.agent_id,
-            "text": {"content": f"{self.message.title}\n{self.message.body}"},
-            "safe": 0,
-        }
+        assert isinstance(self.message, WecomMessage), "message type error"
+        match self.message.msg_type:
+            case "text":
+                msg = {
+                    "touser": "@all",
+                    "msgtype": "text",
+                    "agentid": self.agent_id,
+                    "text": {"content": f"{self.message.title}\n{self.message.body}"},
+                    "safe": 0,
+                }
+            case "markdown":
+                msg = {
+                    "touser": "@all",
+                    "msgtype": "markdown",
+                    "agentid": self.agent_id,
+                    "markdown": {
+                        "content": f"### {self.message.title}\n> {self.message.body}"
+                    },
+                    "safe": 0,
+                }
+            case _:
+                raise WecomException("Unsupported message type")
         return json.dumps(msg)
 
     def send(self):
