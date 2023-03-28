@@ -34,7 +34,7 @@ async def github_star(channel: str, req: Request):
     body = await req.body()
     webhook = GithubStarWebhook(json.loads(body))
     title, body, jump_url = webhook.parse()
-    return serve(channel, title, body, jump_url)
+    return serve(channel, title, body, jump_url=jump_url)
 
 
 @app.get("/{channel}")
