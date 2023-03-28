@@ -5,9 +5,9 @@ from urllib.parse import urlencode
 
 import requests
 
-from channel.base import Channel, Message
 from env import get_env
-from exception import ParamException
+from heimdallr.channel.base import Channel, Message
+from heimdallr.exception import ParamException
 
 
 class PushoverMessage(Message):

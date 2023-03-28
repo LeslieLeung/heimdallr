@@ -4,13 +4,13 @@ import logging
 
 import requests
 
-from channel.base import Channel, Message
 from env import get_env
-from exception import WecomException
+from heimdallr.channel.base import Channel, Message
+from heimdallr.exception import WecomException
 
 
 class WecomMessage(Message):
-    def __init__(self, title: str, body: str, msg_type: str = 'text'):
+    def __init__(self, title: str, body: str, msg_type: str = "text"):
         super().__init__(title, body)
         self.msg_type = msg_type
 

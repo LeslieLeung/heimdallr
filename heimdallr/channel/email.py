@@ -4,9 +4,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from typing import Union
 
-from channel.base import Channel, Message
 from env import get_env
-from exception import ParamException, SMTPException
+from heimdallr.channel.base import Channel, Message
+from heimdallr.exception import ParamException, SMTPException
 
 
 class EmailMessage(Message):

@@ -1,14 +1,17 @@
+import json
 import logging
 
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
-from channel import (Bark, BarkMessage, Chanify, ChanifyMessage, Email,
-                     EmailMessage, PushDeer, PushDeerMessage, Pushover,
-                     PushoverMessage, WecomApp, WecomMessage, WecomWebhook)
 from env import get_env, is_debug
-from exception import ParamException, WecomException
+from heimdallr.channel import (Bark, BarkMessage, Chanify, ChanifyMessage,
+                               Email, EmailMessage, PushDeer, PushDeerMessage,
+                               Pushover, PushoverMessage, WecomApp,
+                               WecomMessage, WecomWebhook)
+from heimdallr.exception import ParamException, WecomException
+from heimdallr.webhook.github_star import GithubStarWebhook
 
 app = FastAPI()
 
@@ -32,7 +35,7 @@ class PostRequest(BaseModel):
 @app.get("/{channel}/{title}/{body}/{key}")
 @app.post("/{channel}/{title}/{body}/{key}")
 async def send_by_path_and_param(
-        channel: str, title: str = "", body: str = "", key: str = ""
+    channel: str, title: str = "", body: str = "", key: str = ""
 ):
     return serve(channel, title, body, key)
 
@@ -44,10 +47,10 @@ async def send_by_post_json(request: PostRequest):
 
 @app.post("/sendForm")
 async def send_by_post_form(
-        channel: str = Form(),
-        title: str = Form(),
-        body: str = Form(),
-        key: str = Form(default=""),
+    channel: str = Form(),
+    title: str = Form(),
+    body: str = Form(),
+    key: str = Form(default=""),
 ):
     if channel == "":
         return {"code": -1, "message": "channel cannot be empty"}
@@ -71,7 +74,10 @@ async def send_wecom(request: Request, req: PostRequest):
         case "/wecom-webhook":
             sender = WecomWebhook(message)
         case _:
-            return {"code": 2, "message": f"channel {request.url.path[1:]} not supported"}
+            return {
+                "code": 2,
+                "message": f"channel {request.url.path[1:]} not supported",
+            }
     rs, msg = sender.send()
     if not rs:
         raise WecomException(msg)
@@ -123,6 +129,14 @@ def serve(channel: str, title: str = "", body: str = "", key: str = ""):
     for err in errors.items():
         err_msg += f"{err[0]} return: {err[1]}."
     return {"code": 1, "message": err_msg}
+
+
+@app.post("/github/star/{channel}")
+async def github_star(channel: str, req: Request):
+    body = await req.body()
+    webhook = GithubStarWebhook(json.loads(body))
+    title, body = webhook.parse()
+    return serve(channel, title, body)
 
 
 @app.exception_handler(ParamException)
