@@ -5,6 +5,8 @@
 Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道，使用 Serverless 部署，几乎零成本运行。
 
 > ## 更新
+> - v1.2.2
+>   - 支持接收 GitHub star webhook，提醒获得新的 star [教程](docs/example/GitHubStar.md)
 > - v1.2.1
 >   - 支持企业微信通知传入 Markdown 格式的文本。
 > - v1.2.0
@@ -64,6 +66,4 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 # 示例应用
 
 - [使用 Heimdallr 接收群晖DSM推送](docs/example/DSM.md)
-
-# 微信交流群
-![](http://img.ameow.xyz/202210260036800.png)
+- [使用 Heimdallr 接收 GitHub star webhook](docs/example/GitHubStar.md)
