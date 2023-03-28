@@ -33,8 +33,8 @@ class PostRequest(BaseModel):
 async def github_star(channel: str, req: Request):
     body = await req.body()
     webhook = GithubStarWebhook(json.loads(body))
-    title, body = webhook.parse()
-    return serve(channel, title, body)
+    title, body, jump_url = webhook.parse()
+    return serve(channel, title, body, jump_url)
 
 
 @app.get("/{channel}")
@@ -92,7 +92,7 @@ async def send_wecom(request: Request, req: PostRequest):
     return {"code": 0, "message": "success"}
 
 
-def serve(channel: str, title: str = "", body: str = "", key: str = ""):
+def serve(channel: str, title: str = "", body: str = "", key: str = "", jump_url: str = ""):
     env = get_env()
     if env.key != "" and key != env.key:
         return {"code": -1, "message": "key not authorized"}
@@ -101,7 +101,7 @@ def serve(channel: str, title: str = "", body: str = "", key: str = ""):
     for chan in channels:
         match chan:
             case "bark":
-                message = BarkMessage(title, body)
+                message = BarkMessage(title, body, jump_url)
                 sender = Bark(message)
             case "wecom-webhook":
                 message = WecomMessage(title, body)

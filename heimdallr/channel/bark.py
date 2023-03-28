@@ -10,10 +10,11 @@ from heimdallr.exception import ParamException
 
 
 class BarkMessage(Message):
-    def __init__(self, title: str, body: str, category: str = "", param: str = ""):
+    def __init__(self, title: str, body: str, category: str = "", param: str = "", jump_url: str = ""):
         super().__init__(title, body)
         self.category = category
         self.param = param
+        self.jump_url = jump_url
 
 
 class Bark(Channel):
@@ -39,6 +40,8 @@ class Bark(Channel):
             raise ParamException("Message body cannot be empty.")
         else:
             msg_string += f"/{quote_plus(self.message.body)}"
+        if self.message.jump_url != "":
+            msg_string += f"?url={quote_plus(self.message.jump_url)}"
         return msg_string
 
     def send(self):
