@@ -29,6 +29,14 @@ class PostRequest(BaseModel):
     msg_type: str = "text"
 
 
+@app.post("/github/star/{channel}")
+async def github_star(channel: str, req: Request):
+    body = await req.body()
+    webhook = GithubStarWebhook(json.loads(body))
+    title, body = webhook.parse()
+    return serve(channel, title, body)
+
+
 @app.get("/{channel}")
 @app.get("/{channel}/{title}/{body}")
 @app.post("/{channel}/{title}/{body}")
@@ -129,14 +137,6 @@ def serve(channel: str, title: str = "", body: str = "", key: str = ""):
     for err in errors.items():
         err_msg += f"{err[0]} return: {err[1]}."
     return {"code": 1, "message": err_msg}
-
-
-@app.post("/github/star/{channel}")
-async def github_star(channel: str, req: Request):
-    body = await req.body()
-    webhook = GithubStarWebhook(json.loads(body))
-    title, body = webhook.parse()
-    return serve(channel, title, body)
 
 
 @app.exception_handler(ParamException)
