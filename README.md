@@ -68,5 +68,5 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 # 示例应用
 
 - [使用 Heimdallr 接收群晖DSM推送](docs/example/DSM.md)
-- [使用 Heimdallr 接受威联通推送](docs/example/QNAP.md)
+- [使用 Heimdallr 接收威联通推送](docs/example/QNAP.md)
 - [使用 Heimdallr 接收 GitHub star webhook](docs/example/GitHubStar.md)
