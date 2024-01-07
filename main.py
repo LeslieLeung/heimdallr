@@ -6,12 +6,24 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from env import get_env, is_debug
-from heimdallr.channel import (Bark, BarkMessage, Chanify, ChanifyMessage,
-                               Email, EmailMessage, PushDeer, PushDeerMessage,
-                               Pushover, PushoverMessage, WecomApp,
-                               WecomMessage, WecomWebhook)
+from heimdallr.channel import (
+    Bark,
+    BarkMessage,
+    Chanify,
+    ChanifyMessage,
+    Email,
+    EmailMessage,
+    PushDeer,
+    PushDeerMessage,
+    Pushover,
+    PushoverMessage,
+    WecomApp,
+    WecomMessage,
+    WecomWebhook,
+)
 from heimdallr.exception import ParamException, WecomException
 from heimdallr.webhook.github_star import GithubStarWebhook
+from heimdallr.response import success, Response
 
 app = FastAPI()
 
@@ -92,7 +104,9 @@ async def send_wecom(request: Request, req: PostRequest):
     return {"code": 0, "message": "success"}
 
 
-def serve(channel: str, title: str = "", body: str = "", key: str = "", jump_url: str = ""):
+def serve(
+    channel: str, title: str = "", body: str = "", key: str = "", jump_url: str = ""
+):
     env = get_env()
     if env.key != "" and key != env.key:
         return {"code": -1, "message": "key not authorized"}
@@ -132,11 +146,11 @@ def serve(channel: str, title: str = "", body: str = "", key: str = "", jump_url
             errors[sender.get_name()] = msg
 
     if len(errors) == 0:
-        return {"code": 0, "message": "success"}
+        return success()
     err_msg = ""
     for err in errors.items():
         err_msg += f"{err[0]} return: {err[1]}."
-    return {"code": 1, "message": err_msg}
+    return Response(1, err_msg).render()
 
 
 @app.exception_handler(ParamException)
