@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "heimdallr"
+version = "v1.2.4"
+description = ""
+authors = ["Leslie Leung <lesily9@gmail.com>"]
+license = "GPL-3.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.108.0"
+uvicorn = "^0.25.0"
+requests = "^2.31.0"
+python-multipart = "^0.0.6"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.6.0"
+black = "^23.12.1"
+isort = "^5.13.2"
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
