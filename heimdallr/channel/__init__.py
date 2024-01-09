@@ -1,4 +1,5 @@
 from heimdallr.channel.bark import Bark, BarkMessage
+from heimdallr.channel.base import Channel, Message
 from heimdallr.channel.chanify import Chanify, ChanifyMessage
 from heimdallr.channel.email import Email, EmailMessage
 from heimdallr.channel.pushdeer import PushDeer, PushDeerMessage

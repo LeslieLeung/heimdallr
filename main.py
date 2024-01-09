@@ -11,8 +11,10 @@ from heimdallr.channel import (
     BarkMessage,
     Chanify,
     ChanifyMessage,
+    Channel,
     Email,
     EmailMessage,
+    Message,
     PushDeer,
     PushDeerMessage,
     Pushover,
@@ -22,8 +24,8 @@ from heimdallr.channel import (
     WecomWebhook,
 )
 from heimdallr.exception import ParamException, WecomException
+from heimdallr.response import Response, success
 from heimdallr.webhook.github_star import GithubStarWebhook
-from heimdallr.response import success, Response
 
 app = FastAPI()
 
@@ -88,6 +90,7 @@ async def echo(channel: str, request: Request):
 @app.post("/wecom-webhook")
 async def send_wecom(request: Request, req: PostRequest):
     message = WecomMessage(req.title, req.body, req.msg_type)
+    sender: Channel
     match request.url.path:
         case "/wecom-app":
             sender = WecomApp(message)
@@ -113,6 +116,8 @@ def serve(
     channels = channel.split("+")
     senders = []
     for chan in channels:
+        message: Message
+        sender: Channel
         match chan:
             case "bark":
                 message = BarkMessage(title, body, jump_url)

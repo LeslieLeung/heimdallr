@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Tuple
 
 from heimdallr.webhook.base import WebhookBase
 
@@ -7,7 +7,7 @@ class GithubStarWebhook(WebhookBase):
     def __init__(self, message: Dict):
         super().__init__(message)
 
-    def parse(self) -> (str, str, str):
+    def parse(self) -> Tuple[str, str, str]:
         action = self.message["action"]
         repo_name = self.message["repository"]["full_name"]
         from_user = self.message["sender"]["login"]

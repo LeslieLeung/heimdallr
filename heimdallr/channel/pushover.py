@@ -1,7 +1,5 @@
-# -*- coding:utf-8 -*-
-
 import json
-from urllib.parse import urlencode
+from urllib.parse import quote_plus
 
 import requests
 
@@ -32,7 +30,7 @@ class Pushover(Channel):
             raise ParamException("pushover token or user not set")
 
     def compose_message(self) -> str:
-        return urlencode(f"{self.message.title}\n{self.message.body}")
+        return quote_plus(f"{self.message.title}\n{self.message.body}")
 
     def send(self):
         url = f"{self.base_url}?token={self.token}&user={self.user}&message={self.compose_message()}"

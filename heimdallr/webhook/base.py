@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Tuple
 
 
 class WebhookBase:
@@ -7,9 +7,9 @@ class WebhookBase:
     def __init__(self, message: Any):
         self.message = message
 
-    def parse(self) -> (str, str, str):
+    def parse(self) -> Tuple[str, str, str]:
         """
         Parse the message to be sent.
-        return: (title, body)
+        :return: title, content, url
         """
-        pass
+        return "", "", ""

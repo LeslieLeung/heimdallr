@@ -1,3 +1,5 @@
+from typing import Any, Dict
+
 
 class Response:
     code: int
@@ -7,10 +9,10 @@ class Response:
         self.code = code
         self.message = message
 
-    def render(self):
+    def render(self) -> Dict[str, Any]:
         return {"code": self.code, "message": self.message}
 
 
-def success():
+def success() -> Dict[str, Any]:
     response = Response()
     return response.render()

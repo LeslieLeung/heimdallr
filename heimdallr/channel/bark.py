@@ -1,4 +1,3 @@
-import json
 import logging
 from urllib.parse import quote_plus
 
@@ -10,7 +9,14 @@ from heimdallr.exception import ParamException
 
 
 class BarkMessage(Message):
-    def __init__(self, title: str, body: str, category: str = "", param: str = "", jump_url: str = ""):
+    def __init__(
+        self,
+        title: str,
+        body: str,
+        category: str = "",
+        param: str = "",
+        jump_url: str = "",
+    ):
         super().__init__(title, body)
         self.category = category
         self.param = param
@@ -18,12 +24,12 @@ class BarkMessage(Message):
 
 
 class Bark(Channel):
-    def __init__(self, message: BarkMessage):
+    def __init__(self, message: BarkMessage) -> None:
         super().__init__(message, name="bark")
         self.base_url = ""
         self.key = ""
         self.get_credential()
-        self.message = message
+        self.message: BarkMessage = message
 
     def get_credential(self):
         env = get_env()
@@ -52,7 +58,7 @@ class Bark(Channel):
         logging.info(f"Bark requested: {url}")
         rs = requests.get(url)
         logging.info(f"Bark response: {rs.text}")
-        rs = json.loads(rs.text)
-        if rs["code"] == 200:
-            return True, rs["message"]
-        return False, rs["message"]
+        rs_json = rs.json()
+        if rs_json["code"] == 200:
+            return True, rs_json["message"]
+        return False, rs_json["message"]
