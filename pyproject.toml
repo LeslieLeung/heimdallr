@@ -18,6 +18,7 @@ python-multipart = "^0.0.6"
 pre-commit = "^3.6.0"
 black = "^23.12.1"
 isort = "^5.13.2"
+autoflake = "^2.2.1"
 
 [tool.isort]
 profile = "black"
