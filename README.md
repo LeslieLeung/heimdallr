@@ -1,34 +1,10 @@
 <h1>Heimdallr</h1>
 
+> 🔧该项目目前正在重构，部署方式、API 等均不稳定，随时可能改变。若要使用稳定版本，请查看 [legacy 分支](https://github.com/LeslieLeung/heimdallr/tree/legacy) 。
+
 # 简介
 
 Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道，使用 Serverless 部署，几乎零成本运行。
-
-> ## 更新
-> - v1.2.4
->   - 增加 [威联通使用教程](docs/example/QNAP.md)
-> - v1.2.2
->   - 支持接收 GitHub star webhook，提醒获得新的 star [教程](docs/example/GitHubStar.md)
-> - v1.2.1
->   - 支持企业微信通知传入 Markdown 格式的文本。
-> - v1.2.0
->   - 新增一个 echo api，会把 POST 进来的内容原样返回。（预告：将来会用于接入 webhook。）
-> - v1.1.0
->   - 支持通过 json 传入配置，详见 [环境变量](docs/Env.md/#json)
-> - v1.0.1
->   - 支持 Email 通知
-> - v1.0.0
->   - 项目正式更名为 Heimdallr，其为北欧神话中彩虹桥的守护神，当诸神黄昏到来，海姆达尔将吹响号角，以便提醒众神
->   - 支持 Chanify 通知
-> - v0.1.5
->   - 修复 PushDeer 支持
-> - v0.1.4
->   - 新增 debug 模式，详见 [环境变量](docs/Env.md) 
-> - v0.1.3
->   - 支持同时推送到多个渠道，见 [接口文档](docs/Api.md/#multi-channel)
-> - v0.1.2
->   - 支持 `POST` 等更多接口，详见 [接口文档](docs/Api.md)
->   - 新增 [在线版接口文档](https://service-epwdrzxg-1255787947.gz.apigw.tencentcs.com/release/docs)
 
 # 特性
 
@@ -45,11 +21,13 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - [PushDeer](http://pushdeer.com)
 - [Chanify](https://github.com/chanify/chanify)
 - [Pushover](https://pushover.net/api) [未测试]
+- Chanify
+- Email
 
 ### 可能会支持的推送方式
 - [ ] 钉钉
-- [x] Chanify
-- [x] Email
+- [ ] Discord
+- [ ] Telegram
 - [ ] ...
 
 > 如果有需要的通知方式，请提交 [issue](https://github.com/LeslieLeung/heimdallr/issues/new?assignees=LeslieLeung&labels=enhancement&template=feature_request.md&title=)
@@ -57,9 +35,18 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 
 # 部署方式
 
+## Serverless
 - [腾讯云Serverless](docs/deploy/TencentcloudServerless.md)
 - [阿里云Serverless](docs/deploy/AliyunServerless.md)
-- [Docker](docs/deploy/Docker.md) （支持 `arm64`、`amd64`架构）
+
+## Docker
+见 [Docker](docs/deploy/Docker.md) （支持 `arm64`、`amd64`架构）
+
+## 第三方服务
+
+### Zeabur
+
+[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/E7FFAQ?referralCode=LeslieLeung)
 
 # 接口文档
 
@@ -70,3 +57,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - [使用 Heimdallr 接收群晖DSM推送](docs/example/DSM.md)
 - [使用 Heimdallr 接收威联通推送](docs/example/QNAP.md)
 - [使用 Heimdallr 接收 GitHub star webhook](docs/example/GitHubStar.md)
+
+# 更新日志
+
+见 [更新日志](docs/Changelog.md)
