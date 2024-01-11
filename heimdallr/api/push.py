@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Form, Request
 from pydantic import BaseModel
 
-from heimdallr.api.api import serve
+from heimdallr.api.base import serve
 from heimdallr.channel import Channel, WecomApp, WecomMessage, WecomWebhook
 from heimdallr.exception import WecomException
 

@@ -2,7 +2,7 @@ import json
 
 from fastapi import APIRouter, Request
 
-from heimdallr.api.api import serve
+from heimdallr.api.base import serve
 from heimdallr.webhook.github_star import GithubStarWebhook
 
 webhook_router = APIRouter()
