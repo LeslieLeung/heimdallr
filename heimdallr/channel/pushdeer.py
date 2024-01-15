@@ -1,42 +1,41 @@
-import json
 import logging
 from urllib.parse import quote
 
 import requests
 
-from env import get_env
 from heimdallr.channel.base import Channel, Message
-from heimdallr.exception import ParamException
+from heimdallr.config.config import get_config_str
+from heimdallr.config.definition import SUFFIX_PUSHDEER_TOKEN
+from heimdallr.exception.param_exception import ParamException
 
 
 class PushDeerMessage(Message):
     def __init__(self, title: str, body: str):
         super().__init__(title, body)
 
+    def render_message(self) -> str:
+        return quote(f"{self.title}\n{self.body}")
+
 
 class PushDeer(Channel):
-    def __init__(self, message: PushDeerMessage):
-        super().__init__(message, name="pushdeer")
-        self.base_url = "https://api2.pushdeer.com/message/push?"
-        self.pushkey = ""
-        self.get_credential()
-        self.message = message
+    base_url = "https://api2.pushdeer.com/message/push?"
+    push_key = ""
 
-    def get_credential(self):
-        env = get_env()
-        self.pushkey = env.pushdeer_token
-        if self.pushkey == "":
-            raise ParamException("pushdeer pushkey not set")
+    def __init__(self, name: str):
+        super().__init__(name)
+        self._build_channel()
 
-    def compose_message(self) -> str:
-        return quote(f"{self.message.title}\n{self.message.body}")
+    def _build_channel(self):
+        self.push_key = get_config_str(
+            self.get_config_name(), SUFFIX_PUSHDEER_TOKEN, ""
+        )
+        if self.push_key == "":
+            raise ParamException("PushDeer token cannot be empty.")
 
-    def send(self):
-        url = f"{self.base_url}pushkey={self.pushkey}&text={self.compose_message()}"
+    def send(self, message: Message):
+        url = f"{self.base_url}pushkey={self.push_key}&text={message.render_message()}"
         logging.info(f"PushDeer requested: {url}")
-        rs = requests.post(url)
-        logging.info(f"PushDeer response: {rs.text}")
-        rs = json.loads(rs.text)
+        rs = requests.post(url).json()
         if rs["code"] == 0:
             return True, rs["content"]
         return False, rs["error"]

@@ -12,6 +12,7 @@ fastapi = "^0.108.0"
 uvicorn = "^0.25.0"
 requests = "^2.31.0"
 python-multipart = "^0.0.6"
+environs = "^10.3.0"
 
 
 [tool.poetry.group.dev.dependencies]

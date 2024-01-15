@@ -1,10 +1,18 @@
-from typing import Tuple
+from typing import Any, Tuple
 
 
 class Message:
-    def __init__(self, title: str, body: str):
+    title: str
+    body: str
+
+    def __init__(self, title: str, body: str) -> None:
         self.title = title
         self.body = body
+
+    def render_message(self) -> Any:
+        """
+        Render the message to the format that the channel can understand.
+        """
 
 
 class Channel:
@@ -12,17 +20,17 @@ class Channel:
     Base class for all channels.
     """
 
-    def __init__(self, message: Message, name: str) -> None:
+    name: str
+
+    def __init__(self, name: str) -> None:
         self.name = name
-        self.message = message
 
-    def compose_message(self) -> str:
+    def _build_channel(self) -> None:
         """
-        Compose the message to be sent.
+        Get the credential of the channel.
         """
-        return ""
 
-    def send(self) -> Tuple[bool, str]:
+    def send(self, message: Message) -> Tuple[bool, str]:
         """
         Send a message to the channel.
         """
@@ -34,8 +42,8 @@ class Channel:
         """
         return self.name
 
-    def get_credential(self) -> None:
+    def get_config_name(self) -> str:
         """
-        Get the credential of the channel.
+        Get the name of the channel in config.
         """
-        pass
+        return str.upper(self.name)

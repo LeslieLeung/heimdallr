@@ -1,14 +1,20 @@
 import logging
+from typing import Tuple
 from urllib.parse import quote_plus
 
 import requests
 
-from env import get_env
 from heimdallr.channel.base import Channel, Message
+from heimdallr.config.config import get_config_str
+from heimdallr.config.definition import SUFFIX_BARK_KEY, SUFFIX_BARK_URL
 from heimdallr.exception import ParamException
 
 
 class BarkMessage(Message):
+    category: str
+    param: str
+    jump_url: str
+
     def __init__(
         self,
         title: str,
@@ -22,39 +28,40 @@ class BarkMessage(Message):
         self.param = param
         self.jump_url = jump_url
 
-
-class Bark(Channel):
-    def __init__(self, message: BarkMessage) -> None:
-        super().__init__(message, name="bark")
-        self.base_url = ""
-        self.key = ""
-        self.get_credential()
-        self.message: BarkMessage = message
-
-    def get_credential(self):
-        env = get_env()
-        self.base_url = env.bark_url
-        self.key = env.bark_key
-        if self.base_url == "" or self.key == "":
-            raise ParamException("bark url or key not set")
-
-    def compose_message(self) -> str:
+    def render_message(self) -> str:
         msg_string = ""
-        if self.message.title != "":
-            msg_string += f"/{quote_plus(self.message.title)}"
-        if self.message.body == "":
+        if self.title != "":
+            msg_string += f"/{quote_plus(self.title)}"
+        if self.body == "":
             raise ParamException("Message body cannot be empty.")
         else:
-            msg_string += f"/{quote_plus(self.message.body)}"
-        if self.message.jump_url != "":
-            msg_string += f"?url={quote_plus(self.message.jump_url)}"
+            msg_string += f"/{quote_plus(self.body)}"
+        if self.jump_url != "":
+            msg_string += f"?url={quote_plus(self.jump_url)}"
         return msg_string
 
-    def send(self):
+
+class Bark(Channel):
+    base_url: str = "https://api.day.app"
+    key: str = ""
+
+    def __init__(self, name: str) -> None:
+        super().__init__(name)
+        self._build_channel()
+
+    def _build_channel(self) -> None:
+        self.base_url = get_config_str(
+            self.get_config_name(), SUFFIX_BARK_URL, self.base_url
+        )
+        self.key = get_config_str(self.get_config_name(), SUFFIX_BARK_KEY, "")
+        if self.key == "":
+            raise ParamException("Bark key cannot be empty.")
+
+    def send(self, message: Message) -> Tuple[bool, str]:
         """
         Send a message to bark server.
         """
-        url = f"{self.base_url}/{self.key}{self.compose_message()}"
+        url = f"{self.base_url}/{self.key}{message.render_message()}"
         logging.info(f"Bark requested: {url}")
         rs = requests.get(url)
         logging.info(f"Bark response: {rs.text}")

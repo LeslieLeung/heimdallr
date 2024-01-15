@@ -3,16 +3,12 @@ import logging
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
-from env import is_debug
 from heimdallr.api.api import router
 from heimdallr.exception import ParamException, WecomException
 
 app = FastAPI()
 
-if is_debug():
-    logging.basicConfig(level=logging.INFO)
-else:
-    logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.INFO)
 
 app.include_router(router)
 
