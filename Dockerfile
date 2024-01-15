@@ -13,6 +13,6 @@ RUN poetry install --no-dev
 
 USER appuser
 COPY heimdallr ./heimdallr
-COPY env.py main.py ./
+COPY main.py ./
 
 CMD python -m uvicorn main:app --host 0.0.0.0 --port $PORT
