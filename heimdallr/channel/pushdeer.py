@@ -35,8 +35,8 @@ class PushDeer(Channel):
 
     def send(self, message: Message):
         url = f"{self.base_url}pushkey={self.push_key}&text={message.render_message()}"
-        logger.info(f"PushDeer requested: {url}")
         rs = requests.post(url).json()
         if rs["code"] == 0:
             return True, rs["content"]
+        logger.error(f"PushDeer error: {rs['error']}")
         return False, rs["error"]

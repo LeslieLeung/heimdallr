@@ -37,8 +37,9 @@ class Chanify(Channel):
 
     def send(self, message: Message):
         url = f"{self.base_url}/{self.token}/{message.render_message()}"
-        logger.info(f"Chanify requested: {url}")
         rs = requests.get(url).json()
+        logger.debug(f"Chanify response: {rs}")
         if "request-uid" in rs:
             return True, "success"
+        logger.error(f"Chanify error: {rs['msg']}")
         return False, rs["msg"]

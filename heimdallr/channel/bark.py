@@ -60,10 +60,10 @@ class Bark(Channel):
         Send a message to bark server.
         """
         url = f"{self.base_url}/{self.key}{message.render_message()}"
-        logger.info(f"Bark requested: {url}")
         rs = requests.get(url)
-        logger.info(f"Bark response: {rs.text}")
+        logger.debug(f"Bark response: {rs.text}")
         rs_json = rs.json()
         if rs_json["code"] == 200:
             return True, rs_json["message"]
+        logger.error(f"Bark error: {rs_json['message']}")
         return False, rs_json["message"]

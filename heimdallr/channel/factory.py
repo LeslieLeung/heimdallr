@@ -14,6 +14,7 @@ from heimdallr.channel.wecom import (
 )
 from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_TYPE
+from heimdallr.exception import ParamException
 
 logger = logging.getLogger(__name__)
 
@@ -58,7 +59,7 @@ def build_channel(name: str) -> Channel:
     elif channel_type == CHANNEL_EMAIL:
         return Email(name)
     else:
-        raise Exception(f"Channel {name} type {channel_type} not supported.")
+        raise ParamException(f"Channel {name} type {channel_type} not supported.")
 
 
 def build_message(name: str, title: str, body: str, **kwargs) -> Message:
@@ -82,4 +83,4 @@ def build_message(name: str, title: str, body: str, **kwargs) -> Message:
     elif channel_type == CHANNEL_EMAIL:
         return EmailMessage(title, body, **kwargs)
     else:
-        raise Exception(f"Channel type {channel_type} not supported.")
+        raise ParamException(f"Channel type {channel_type} not supported.")

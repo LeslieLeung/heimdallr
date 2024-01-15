@@ -76,7 +76,7 @@ class Email(Channel):
                 self.smtp_object.starttls()
             self.smtp_object.login(self.user, self.password)
             self.smtp_object.sendmail(self.user, self.to, message.render_message())
-            logger.info(f"Email sent to {self.to}")
+            logger.debug(f"Email sent to {self.to}")
         except smtplib.SMTPException as e:
             logger.error(f"Email send failed: {e}")
             return False, f"SMTPException: {e}"

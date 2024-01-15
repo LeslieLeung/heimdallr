@@ -89,9 +89,10 @@ class WecomWebhook(Channel):
             data=message.render_message(),
             headers={"Content-Type": "application/json"},
         ).json()
-        logger.info(f"WecomWebhook response: {rs}")
+        logger.debug(f"WecomWebhook response: {rs}")
         if rs["errcode"] == 0:
             return True, rs["errmsg"]
+        logger.error(f"WecomWebhook error: {rs['errmsg']}")
         return False, rs["errmsg"]
 
 
@@ -117,7 +118,6 @@ class WecomApp(Channel):
             raise WecomException("corp id or secret not set")
         auth_url = f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={self.corp_id}&corpsecret={self.secret}"
         rs = requests.get(auth_url, timeout=5).json()
-        logger.info(f"WecomApp auth response: {rs}")
         if rs["errcode"] == 0:
             self.access_token = rs["access_token"]
         else:
@@ -129,13 +129,13 @@ class WecomApp(Channel):
         message.agent_id = self.agent_id
         msg = message.render_message()
         url = f"{self.base_url}{self.access_token}"
-        logger.info(f"WecomApp requested: {url}, with message: {msg}")
         rs = requests.post(
             url,
             data=msg,
             headers={"Content-Type": "application/json"},
         ).json()
-        logger.info(f"WecomApp response: {rs}")
+        logger.debug(f"WecomApp response: {rs}")
         if rs["errcode"] == 0:
             return True, rs["errmsg"]
+        logger.error(f"WecomApp error: {rs['errmsg']}")
         return False, rs["errmsg"]

@@ -1,3 +1,4 @@
+import logging
 from typing import Any
 from urllib.parse import quote_plus
 
@@ -7,6 +8,8 @@ from heimdallr.channel.base import Channel, Message
 from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_PUSHOVER_TOKEN, SUFFIX_PUSHOVER_USER
 from heimdallr.exception import ParamException
+
+logger = logging.getLogger(__name__)
 
 
 class PushoverMessage(Message):
@@ -34,6 +37,8 @@ class Pushover(Channel):
     def send(self, message: Message):
         url = f"{self.base_url}?token={self.token}&user={self.user}&message={message.render_message()}"
         rs = requests.post(url).json()
+        logger.debug(f"Pushover response: {rs}")
         if rs["status"] == 1:
             return True, rs["request"]
+        logger.error(f"Pushover error: {rs['errors']}")
         return False, rs["errors"]
