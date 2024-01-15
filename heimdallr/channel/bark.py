@@ -20,6 +20,7 @@ class BarkMessage(Message):
         category: str = "",
         param: str = "",
         jump_url: str = "",
+        **kwargs,
     ):
         super().__init__(title, body)
         self.category = category

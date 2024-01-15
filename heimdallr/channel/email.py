@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 
 class EmailMessage(Message):
-    def __init__(self, title: str, body: str):
+    def __init__(self, title: str, body: str, **kwargs):
         super().__init__(title, body)
         self.sender: str
         self.user: str

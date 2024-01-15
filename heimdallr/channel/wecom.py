@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 class WecomWebhookMessage(Message):
-    def __init__(self, title: str, body: str, msg_type: str = "text"):
+    def __init__(self, title: str, body: str, msg_type: str = "text", **kwargs):
         super().__init__(title, body)
         self.msg_type: str = msg_type
 
@@ -40,7 +40,7 @@ class WecomWebhookMessage(Message):
 
 
 class WecomAppMessage(Message):
-    def __init__(self, title: str, body: str, msg_type: str = "text"):
+    def __init__(self, title: str, body: str, msg_type: str = "text", **kwargs):
         super().__init__(title, body)
         self.msg_type = msg_type
         self.agent_id: int
