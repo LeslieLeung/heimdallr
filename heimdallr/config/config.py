@@ -22,6 +22,12 @@ def get_config_list(name: str, suffix: str, default: List[str] = []) -> List[str
     return env.list(name + "_" + suffix, default)
 
 
+def get_config_int(name: str, suffix: str, default: int = 0) -> int:
+    if suffix == "":
+        return env.int(name, default)
+    return env.int(name + "_" + suffix, default)
+
+
 def log_env_vars():
     for key, value in os.environ.items():
         logger.debug(f"{key}: {value}")
