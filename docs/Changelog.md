@@ -1,4 +1,8 @@
 # 更新日志
+## v2.0.0-rc
+大规模重构
+- 完全兼容 Bark 的路由
+- 支持多通知渠道和分组配置
 ## v1.2.4
 - 增加 [威联通使用教程](docs/example/QNAP.md)
 ## v1.2.2
@@ -21,5 +25,5 @@
 ## v0.1.3
 - 支持同时推送到多个渠道，见 [接口文档](docs/Api.md/#multi-channel)
 ## v0.1.2
-   - 支持 `POST` 等更多接口，详见 [接口文档](docs/Api.md)
-   - 新增 [在线版接口文档](https://service-epwdrzxg-1255787947.gz.apigw.tencentcs.com/release/docs)
+- 支持 `POST` 等更多接口，详见 [接口文档](docs/Api.md)
+- 新增 [在线版接口文档](https://service-epwdrzxg-1255787947.gz.apigw.tencentcs.com/release/docs)
