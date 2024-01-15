@@ -116,7 +116,8 @@ class WecomApp(Channel):
         if self.corp_id == "" or self.secret == "":
             raise WecomException("corp id or secret not set")
         auth_url = f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={self.corp_id}&corpsecret={self.secret}"
-        rs = requests.get(auth_url).json()
+        rs = requests.get(auth_url, timeout=5).json()
+        logger.info(f"WecomApp auth response: {rs}")
         if rs["errcode"] == 0:
             self.access_token = rs["access_token"]
         else:
