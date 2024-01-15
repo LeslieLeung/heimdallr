@@ -15,4 +15,4 @@ USER appuser
 COPY heimdallr ./heimdallr
 COPY main.py ./
 
-CMD python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+CMD python -m uvicorn main:app --host 0.0.0.0 --port "$PORT"
