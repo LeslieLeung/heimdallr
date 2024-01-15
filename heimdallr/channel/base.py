@@ -2,9 +2,6 @@ from typing import Any, Tuple
 
 
 class Message:
-    title: str
-    body: str
-
     def __init__(self, title: str, body: str) -> None:
         self.title = title
         self.body = body
@@ -19,8 +16,6 @@ class Channel:
     """
     Base class for all channels.
     """
-
-    name: str
 
     def __init__(self, name: str) -> None:
         self.name = name

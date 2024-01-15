@@ -9,12 +9,10 @@ from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_BARK_KEY, SUFFIX_BARK_URL
 from heimdallr.exception import ParamException
 
+logger = logging.getLogger(__name__)
+
 
 class BarkMessage(Message):
-    category: str
-    param: str
-    jump_url: str
-
     def __init__(
         self,
         title: str,
@@ -42,11 +40,10 @@ class BarkMessage(Message):
 
 
 class Bark(Channel):
-    base_url: str = "https://api.day.app"
-    key: str = ""
-
     def __init__(self, name: str) -> None:
         super().__init__(name)
+        self.base_url: str = "https://api.day.app"
+        self.key: str
         self._build_channel()
 
     def _build_channel(self) -> None:
@@ -62,9 +59,9 @@ class Bark(Channel):
         Send a message to bark server.
         """
         url = f"{self.base_url}/{self.key}{message.render_message()}"
-        logging.info(f"Bark requested: {url}")
+        logger.info(f"Bark requested: {url}")
         rs = requests.get(url)
-        logging.info(f"Bark response: {rs.text}")
+        logger.info(f"Bark response: {rs.text}")
         rs_json = rs.json()
         if rs_json["code"] == 200:
             return True, rs_json["message"]

@@ -1,6 +1,10 @@
+import logging
+
 from heimdallr.channel.factory import build_message
 from heimdallr.response import Response, success
 from heimdallr.shared.config import Config
+
+logger = logging.getLogger(__name__)
 
 
 def serve(key: str, title: str = "", body: str = "", **kwargs):
@@ -8,8 +12,10 @@ def serve(key: str, title: str = "", body: str = "", **kwargs):
     group = config.get_group(key)
     if group is None:
         return Response(code=-1, message="key not authorized").render()
+    logger.info(f"Group: {group.name}, token: {group.token}")
     errors = {}
     for chan in group.channels:
+        logger.info(f"Channel: {chan.get_name()}")
         message = build_message(chan.get_name(), title, body, **kwargs)
         rs, msg = chan.send(message)
         if not rs:

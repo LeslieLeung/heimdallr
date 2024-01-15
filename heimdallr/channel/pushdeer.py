@@ -8,6 +8,8 @@ from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_PUSHDEER_TOKEN
 from heimdallr.exception.param_exception import ParamException
 
+logger = logging.getLogger(__name__)
+
 
 class PushDeerMessage(Message):
     def __init__(self, title: str, body: str):
@@ -18,11 +20,10 @@ class PushDeerMessage(Message):
 
 
 class PushDeer(Channel):
-    base_url = "https://api2.pushdeer.com/message/push?"
-    push_key = ""
-
     def __init__(self, name: str):
         super().__init__(name)
+        self.base_url = "https://api2.pushdeer.com/message/push?"
+        self.push_key: str
         self._build_channel()
 
     def _build_channel(self):
@@ -34,7 +35,7 @@ class PushDeer(Channel):
 
     def send(self, message: Message):
         url = f"{self.base_url}pushkey={self.push_key}&text={message.render_message()}"
-        logging.info(f"PushDeer requested: {url}")
+        logger.info(f"PushDeer requested: {url}")
         rs = requests.post(url).json()
         if rs["code"] == 0:
             return True, rs["content"]

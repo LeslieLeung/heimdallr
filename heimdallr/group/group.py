@@ -1,3 +1,4 @@
+import logging
 from typing import List
 
 from heimdallr.channel.base import Channel
@@ -7,16 +8,17 @@ from heimdallr.config.definition import *
 
 
 class Group:
-    token: str
-    channels: List[Channel] = []
-
     def __init__(self, name: str) -> None:
-        self._build_group(name)
+        self.name = name
+        self.token: str
+        self.channels: List[Channel] = []
+        self._build_group()
 
-    def _build_group(self, name: str) -> None:
+    def _build_group(self) -> None:
         # get enabled channels
-        group_name = str.upper(name)
+        group_name = str.upper(self.name)
         enabled_channels = get_config_list(group_name, SUFFIX_ENABLED_CHANNELS, [])
+        logging.info(f"Group: {group_name}, enabled channels: {enabled_channels}")
         self.token = get_config_str(group_name, SUFFIX_TOKEN, "")
 
         for channel_name in enabled_channels:

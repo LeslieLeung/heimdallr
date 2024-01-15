@@ -9,6 +9,8 @@ from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_CHANIFY_ENDPOINT, SUFFIX_CHANIFY_TOKEN
 from heimdallr.exception import ParamException
 
+logger = logging.getLogger(__name__)
+
 
 class ChanifyMessage(Message):
     def __init__(self, title: str, body: str):
@@ -19,11 +21,10 @@ class ChanifyMessage(Message):
 
 
 class Chanify(Channel):
-    base_url: str = "https://api.chanify.net/v1/sender"
-    token: str
-
     def __init__(self, name: str):
         super().__init__(name)
+        self.base_url: str = "https://api.chanify.net/v1/sender"
+        self.token: str
         self._build_channel()
 
     def _build_channel(self) -> None:
@@ -36,7 +37,7 @@ class Chanify(Channel):
 
     def send(self, message: Message):
         url = f"{self.base_url}/{self.token}/{message.render_message()}"
-        logging.info(f"Chanify requested: {url}")
+        logger.info(f"Chanify requested: {url}")
         rs = requests.get(url).json()
         if "request-uid" in rs:
             return True, "success"

@@ -1,4 +1,3 @@
-import logging
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -18,12 +17,11 @@ from heimdallr.exception import ParamException, SMTPException
 
 
 class EmailMessage(Message):
-    sender: str
-    user: str
-    to: str
-
     def __init__(self, title: str, body: str):
         super().__init__(title, body)
+        self.sender: str
+        self.user: str
+        self.to: str
 
     def render_message(self) -> Any:
         message = MIMEMultipart()
@@ -31,22 +29,20 @@ class EmailMessage(Message):
         message["To"] = self.to
         message["Subject"] = self.title
         message.attach(MIMEText(self.body, "plain", "utf-8"))
-        logging.info(f"Email message body: {message.as_string()}")
         return message.as_string()
 
 
 class Email(Channel):
-    host: str = ""
-    port: int = 25
-    user: str = ""
-    password: str = ""
-    sender: str = "Heimdallr"
-    to: str = ""
-    starttls: bool = False
-    smtp_object: smtplib.SMTP
-
     def __init__(self, name: str):
         super().__init__(name)
+        self.host: str = ""
+        self.port: int = 25
+        self.user: str = ""
+        self.password: str = ""
+        self.sender: str = "Heimdallr"
+        self.to: str = ""
+        self.starttls: bool = False
+        self.smtp_object: smtplib.SMTP
         self._build_channel()
 
     def _build_channel(self):
@@ -83,6 +79,4 @@ class Email(Channel):
             self.smtp_object.sendmail(self.user, self.to, message.render_message())
         except smtplib.SMTPException as e:
             return False, f"SMTPException: {e}"
-        finally:
-            self.smtp_object.quit()
         return True, "success"

@@ -18,12 +18,11 @@ class PushoverMessage(Message):
 
 
 class Pushover(Channel):
-    base_url: str = "https://api.pushover.net/1/messages.json"
-    token: str
-    user: str
-
     def __init__(self, name: str) -> None:
         super().__init__(name)
+        self.base_url = "https://api.pushover.net/1/messages.json"
+        self.token: str
+        self.user: str
         self._build_channel()
 
     def _build_channel(self) -> None:

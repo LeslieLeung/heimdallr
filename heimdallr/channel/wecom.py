@@ -14,13 +14,13 @@ from heimdallr.config.definition import (
 )
 from heimdallr.exception import WecomException
 
+logger = logging.getLogger(__name__)
+
 
 class WecomWebhookMessage(Message):
-    msg_type: str
-
     def __init__(self, title: str, body: str, msg_type: str = "text"):
         super().__init__(title, body)
-        self.msg_type = msg_type
+        self.msg_type: str = msg_type
 
     def render_message(self) -> Any:
         match self.msg_type:
@@ -40,12 +40,10 @@ class WecomWebhookMessage(Message):
 
 
 class WecomAppMessage(Message):
-    msg_type: str
-    agent_id: int
-
     def __init__(self, title: str, body: str, msg_type: str = "text"):
         super().__init__(title, body)
         self.msg_type = msg_type
+        self.agent_id: int
 
     def render_message(self) -> Any:
         match self.msg_type:
@@ -71,11 +69,10 @@ class WecomAppMessage(Message):
 
 
 class WecomWebhook(Channel):
-    base_url: str = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key="
-    key: str = ""
-
     def __init__(self, name: str):
         super().__init__(name)
+        self.base_url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key="
+        self.key: str = ""
         self._build_channel()
 
     def _build_channel(self) -> None:
@@ -92,21 +89,22 @@ class WecomWebhook(Channel):
             data=message.render_message(),
             headers={"Content-Type": "application/json"},
         ).json()
-        logging.info(f"WecomWebhook response: {rs}")
+        logger.info(f"WecomWebhook response: {rs}")
         if rs["errcode"] == 0:
             return True, rs["errmsg"]
         return False, rs["errmsg"]
 
 
 class WecomApp(Channel):
-    base_url: str = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token="
-    corp_id: str
-    secret: str
-    access_token: str
-    agent_id: int
-
     def __init__(self, name: str):
         super().__init__(name)
+        self.base_url: str = (
+            "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token="
+        )
+        self.corp_id: str
+        self.secret: str
+        self.access_token: str
+        self.agent_id: int
         self._build_channel()
 
     def _build_channel(self) -> None:
@@ -130,13 +128,13 @@ class WecomApp(Channel):
         message.agent_id = self.agent_id
         msg = message.render_message()
         url = f"{self.base_url}{self.access_token}"
-        logging.info(f"WecomApp requested: {url}, with message: {msg}")
+        logger.info(f"WecomApp requested: {url}, with message: {msg}")
         rs = requests.post(
             url,
             data=msg,
             headers={"Content-Type": "application/json"},
         ).json()
-        logging.info(f"WecomApp response: {rs}")
+        logger.info(f"WecomApp response: {rs}")
         if rs["errcode"] == 0:
             return True, rs["errmsg"]
         return False, rs["errmsg"]
