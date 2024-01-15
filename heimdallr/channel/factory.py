@@ -1,3 +1,5 @@
+import logging
+
 from heimdallr.channel.bark import Bark, BarkMessage
 from heimdallr.channel.base import Channel, Message
 from heimdallr.channel.chanify import Chanify, ChanifyMessage
@@ -12,6 +14,8 @@ from heimdallr.channel.wecom import (
 )
 from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_TYPE
+
+logger = logging.getLogger(__name__)
 
 # supported channels
 CHANNEL_BARK = "bark"
@@ -36,6 +40,8 @@ def build_channel(name: str) -> Channel:
     Build a channel instance by name.
     """
     channel_type = _get_channel_type_by_name(name)
+    logger.debug(f"Building channel {name}, type {channel_type}")
+
     # build channel instance
     if channel_type == CHANNEL_BARK:
         return Bark(name)

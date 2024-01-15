@@ -1,3 +1,4 @@
+import logging
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -13,7 +14,9 @@ from heimdallr.config.definition import (
     SUFFIX_EMAIL_TO,
     SUFFIX_EMAIL_USER,
 )
-from heimdallr.exception import ParamException, SMTPException
+from heimdallr.exception import ParamException
+
+logger = logging.getLogger(__name__)
 
 
 class EmailMessage(Message):
@@ -42,7 +45,6 @@ class Email(Channel):
         self.sender: str = "Heimdallr"
         self.to: str = ""
         self.starttls: bool = False
-        self.smtp_object: smtplib.SMTP
         self._build_channel()
 
     def _build_channel(self):
@@ -61,13 +63,6 @@ class Email(Channel):
         )
         if self.host == "" or self.user == "" or self.password == "" or self.to == "":
             raise ParamException("email host, user, password or to not set")
-        try:
-            self.smtp_object = smtplib.SMTP(self.host, self.port)
-            if self.starttls:
-                self.smtp_object.starttls()
-            self.smtp_object.login(self.user, self.password)
-        except smtplib.SMTPException as e:
-            raise SMTPException(f"SMTPException: {e}")
 
     def send(self, message: Message):
         if not isinstance(message, EmailMessage):
@@ -76,7 +71,15 @@ class Email(Channel):
         message.user = self.user
         message.to = self.to
         try:
+            self.smtp_object = smtplib.SMTP(self.host, self.port)
+            if self.starttls:
+                self.smtp_object.starttls()
+            self.smtp_object.login(self.user, self.password)
             self.smtp_object.sendmail(self.user, self.to, message.render_message())
+            logger.info(f"Email sent to {self.to}")
         except smtplib.SMTPException as e:
+            logger.error(f"Email send failed: {e}")
             return False, f"SMTPException: {e}"
+        finally:
+            self.smtp_object.quit()
         return True, "success"
