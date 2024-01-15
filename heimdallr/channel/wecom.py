@@ -7,6 +7,7 @@ import requests
 from heimdallr.channel.base import Channel, Message
 from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import (
+    SUFFIX_WECOM_AGENT_ID,
     SUFFIX_WECOM_CORP_ID,
     SUFFIX_WECOM_KEY,
     SUFFIX_WECOM_SECRET,
@@ -40,7 +41,7 @@ class WecomWebhookMessage(Message):
 
 class WecomAppMessage(Message):
     msg_type: str
-    agent_id: str
+    agent_id: int
 
     def __init__(self, title: str, body: str, msg_type: str = "text"):
         super().__init__(title, body)
@@ -99,18 +100,20 @@ class WecomWebhook(Channel):
 
 class WecomApp(Channel):
     base_url: str = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token="
-    corp_id: str = ""
-    secret: str = ""
-    access_token: str = ""
-    agent_id: str = ""
+    corp_id: str
+    secret: str
+    access_token: str
+    agent_id: int
 
     def __init__(self, name: str):
         super().__init__(name)
+        self._build_channel()
 
     def _build_channel(self) -> None:
         channel_name = str.upper(self.name)
         self.corp_id = get_config_str(channel_name, SUFFIX_WECOM_CORP_ID, "")
         self.secret = get_config_str(channel_name, SUFFIX_WECOM_SECRET, "")
+        self.agent_id = int(get_config_str(channel_name, SUFFIX_WECOM_AGENT_ID, ""))
 
         if self.corp_id == "" or self.secret == "":
             raise WecomException("corp id or secret not set")

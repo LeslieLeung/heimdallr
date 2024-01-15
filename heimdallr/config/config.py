@@ -3,7 +3,7 @@ from typing import List
 from environs import Env
 
 env = Env()
-env.read_env()
+env.read_env(recurse=False)
 
 
 def get_config_str(name: str, suffix: str, default: str = "") -> str:
