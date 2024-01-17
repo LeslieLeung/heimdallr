@@ -14,7 +14,7 @@ from heimdallr.config.definition import (
     SUFFIX_EMAIL_TO,
     SUFFIX_EMAIL_USER,
 )
-from heimdallr.exception.param import ParamException
+from heimdallr.exception import ParamException
 
 logger = logging.getLogger(__name__)
 

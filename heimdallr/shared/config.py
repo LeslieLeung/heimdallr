@@ -2,7 +2,7 @@ from typing import Dict
 
 from heimdallr.config.config import get_config_list
 from heimdallr.config.definition import ENABLED_GROUPS
-from heimdallr.exception.auth import AuthException
+from heimdallr.exception import AuthException
 from heimdallr.group.group import Group
 
 

@@ -3,7 +3,7 @@ import logging
 from typing import Dict
 
 from heimdallr.channel.factory import build_message
-from heimdallr.exception.auth import AuthException
+from heimdallr.exception import AuthException
 from heimdallr.response import Response, success
 from heimdallr.shared.config import config
 

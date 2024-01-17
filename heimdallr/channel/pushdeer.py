@@ -6,7 +6,7 @@ import requests
 from heimdallr.channel.base import Channel, Message
 from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_PUSHDEER_TOKEN
-from heimdallr.exception.param import ParamException
+from heimdallr.exception import ParamException
 
 logger = logging.getLogger(__name__)
 
@@ -27,9 +27,7 @@ class PushDeer(Channel):
         self._build_channel()
 
     def _build_channel(self):
-        self.push_key = get_config_str(
-            self.get_config_name(), SUFFIX_PUSHDEER_TOKEN, ""
-        )
+        self.push_key = get_config_str(self.get_config_name(), SUFFIX_PUSHDEER_TOKEN, "")
         if self.push_key == "":
             raise ParamException("PushDeer token cannot be empty.")
 

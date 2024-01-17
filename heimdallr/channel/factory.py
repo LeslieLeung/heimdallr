@@ -14,7 +14,7 @@ from heimdallr.channel.wecom import (
 )
 from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_TYPE
-from heimdallr.exception.param import ParamException
+from heimdallr.exception import ParamException
 
 logger = logging.getLogger(__name__)
 
