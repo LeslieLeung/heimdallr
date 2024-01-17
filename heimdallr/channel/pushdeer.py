@@ -6,7 +6,7 @@ import requests
 from heimdallr.channel.base import Channel, Message
 from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_PUSHDEER_TOKEN
-from heimdallr.exception.param_exception import ParamException
+from heimdallr.exception.param import ParamException
 
 logger = logging.getLogger(__name__)
 
@@ -20,8 +20,8 @@ class PushDeerMessage(Message):
 
 
 class PushDeer(Channel):
-    def __init__(self, name: str):
-        super().__init__(name)
+    def __init__(self, name: str, type: str):
+        super().__init__(name, type)
         self.base_url = "https://api2.pushdeer.com/message/push?"
         self.push_key: str
         self._build_channel()

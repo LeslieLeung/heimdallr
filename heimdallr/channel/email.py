@@ -14,7 +14,7 @@ from heimdallr.config.definition import (
     SUFFIX_EMAIL_TO,
     SUFFIX_EMAIL_USER,
 )
-from heimdallr.exception import ParamException
+from heimdallr.exception.param import ParamException
 
 logger = logging.getLogger(__name__)
 
@@ -36,8 +36,8 @@ class EmailMessage(Message):
 
 
 class Email(Channel):
-    def __init__(self, name: str):
-        super().__init__(name)
+    def __init__(self, name: str, type: str):
+        super().__init__(name, type)
         self.host: str = ""
         self.port: int = 25
         self.user: str = ""
@@ -51,16 +51,10 @@ class Email(Channel):
         self.host = get_config_str(self.get_config_name(), SUFFIX_EMAIL_HOST, "")
         self.port = int(get_config_str(self.get_config_name(), SUFFIX_EMAIL_PORT, "25"))
         self.user = get_config_str(self.get_config_name(), SUFFIX_EMAIL_USER, "")
-        self.password = get_config_str(
-            self.get_config_name(), SUFFIX_EMAIL_PASSWORD, ""
-        )
-        self.sender = get_config_str(
-            self.get_config_name(), SUFFIX_EMAIL_SENDER, "Heimdallr"
-        )
+        self.password = get_config_str(self.get_config_name(), SUFFIX_EMAIL_PASSWORD, "")
+        self.sender = get_config_str(self.get_config_name(), SUFFIX_EMAIL_SENDER, "Heimdallr")
         self.to = get_config_str(self.get_config_name(), SUFFIX_EMAIL_TO, "")
-        self.starttls = (
-            get_config_str(self.get_config_name(), "starttls", "False") == "True"
-        )
+        self.starttls = get_config_str(self.get_config_name(), "starttls", "False") == "True"
         if self.host == "" or self.user == "" or self.password == "" or self.to == "":
             raise ParamException("email host, user, password or to not set")
 

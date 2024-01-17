@@ -1,4 +1,4 @@
-name: build-arm-image
+name: build-image
 
 on:
   push:

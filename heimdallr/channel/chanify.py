@@ -7,7 +7,7 @@ import requests
 from heimdallr.channel.base import Channel, Message
 from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_CHANIFY_ENDPOINT, SUFFIX_CHANIFY_TOKEN
-from heimdallr.exception import ParamException
+from heimdallr.exception.param import ParamException
 
 logger = logging.getLogger(__name__)
 
@@ -21,16 +21,14 @@ class ChanifyMessage(Message):
 
 
 class Chanify(Channel):
-    def __init__(self, name: str):
-        super().__init__(name)
+    def __init__(self, name: str, type: str):
+        super().__init__(name, type)
         self.base_url: str = "https://api.chanify.net/v1/sender"
         self.token: str
         self._build_channel()
 
     def _build_channel(self) -> None:
-        self.base_url = get_config_str(
-            self.get_config_name(), SUFFIX_CHANIFY_ENDPOINT, self.base_url
-        )
+        self.base_url = get_config_str(self.get_config_name(), SUFFIX_CHANIFY_ENDPOINT, self.base_url)
         self.token = get_config_str(self.get_config_name(), SUFFIX_CHANIFY_TOKEN, "")
         if self.token == "":
             raise ParamException("chanify token not set")

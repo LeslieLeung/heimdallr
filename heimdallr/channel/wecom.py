@@ -12,7 +12,7 @@ from heimdallr.config.definition import (
     SUFFIX_WECOM_KEY,
     SUFFIX_WECOM_SECRET,
 )
-from heimdallr.exception import WecomException
+from heimdallr.exception.wecom import WecomException
 
 logger = logging.getLogger(__name__)
 
@@ -69,8 +69,8 @@ class WecomAppMessage(Message):
 
 
 class WecomWebhook(Channel):
-    def __init__(self, name: str):
-        super().__init__(name)
+    def __init__(self, name: str, type: str):
+        super().__init__(name, type)
         self.base_url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key="
         self.key: str = ""
         self._build_channel()
@@ -97,8 +97,8 @@ class WecomWebhook(Channel):
 
 
 class WecomApp(Channel):
-    def __init__(self, name: str):
-        super().__init__(name)
+    def __init__(self, name: str, type: str):
+        super().__init__(name, type)
         self.base_url: str = (
             "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token="
         )

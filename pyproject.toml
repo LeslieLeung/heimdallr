@@ -13,6 +13,7 @@ uvicorn = "^0.25.0"
 requests = "^2.31.0"
 python-multipart = "^0.0.6"
 environs = "^10.3.0"
+asyncio = "^3.4.3"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -23,6 +24,7 @@ autoflake = "^2.2.1"
 
 [tool.isort]
 profile = "black"
+
 
 [build-system]
 requires = ["poetry-core"]

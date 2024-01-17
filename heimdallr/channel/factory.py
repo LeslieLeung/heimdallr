@@ -14,7 +14,7 @@ from heimdallr.channel.wecom import (
 )
 from heimdallr.config.config import get_config_str
 from heimdallr.config.definition import SUFFIX_TYPE
-from heimdallr.exception import ParamException
+from heimdallr.exception.param import ParamException
 
 logger = logging.getLogger(__name__)
 
@@ -45,19 +45,19 @@ def build_channel(name: str) -> Channel:
 
     # build channel instance
     if channel_type == CHANNEL_BARK:
-        return Bark(name)
+        return Bark(name, channel_type)
     elif channel_type == CHANNEL_WECOM_WEBHOOK:
-        return WecomWebhook(name)
+        return WecomWebhook(name, channel_type)
     elif channel_type == CHANNEL_WECOM_APP:
-        return WecomApp(name)
+        return WecomApp(name, channel_type)
     elif channel_type == CHANNEL_PUSHOVER:
-        return Pushover(name)
+        return Pushover(name, channel_type)
     elif channel_type == CHANNEL_PUSHDEER:
-        return PushDeer(name)
+        return PushDeer(name, channel_type)
     elif channel_type == CHANNEL_CHANIFY:
-        return Chanify(name)
+        return Chanify(name, channel_type)
     elif channel_type == CHANNEL_EMAIL:
-        return Email(name)
+        return Email(name, channel_type)
     else:
         raise ParamException(f"Channel {name} type {channel_type} not supported.")
 

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-from heimdallr.api.base import serve
+from heimdallr.api.base import serve_channels_async
 
 push_router = APIRouter()
 
@@ -12,7 +12,7 @@ push_router = APIRouter()
 @push_router.post("/{key}/{title}/{body}")
 async def send_push(key: str, title: str = "", body: str = ""):
     # TODO get extra param from query
-    return serve(key, title, body)
+    return await serve_channels_async(key, title, body)
 
 
 class PostRequest(BaseModel):
@@ -25,4 +25,6 @@ class PostRequest(BaseModel):
 @push_router.post("/push")
 async def send_push_by_json(request: PostRequest):
     # TODO get extra param
-    return serve(request.key, request.title, request.body, msg_type=request.msg_type)
+    return await serve_channels_async(
+        request.key, request.title, request.body, msg_type=request.msg_type
+    )

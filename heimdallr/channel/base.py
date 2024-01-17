@@ -17,8 +17,9 @@ class Channel:
     Base class for all channels.
     """
 
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str, type: str) -> None:
         self.name = name
+        self.type = type
 
     def _build_channel(self) -> None:
         """
@@ -36,6 +37,12 @@ class Channel:
         Get the name of the channel.
         """
         return self.name
+
+    def get_type(self) -> str:
+        """
+        Get the type of the channel.
+        """
+        return self.type
 
     def get_config_name(self) -> str:
         """
