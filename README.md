@@ -24,10 +24,10 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - [Chanify](https://github.com/chanify/chanify) [未测试]
 - [Pushover](https://pushover.net/api) [未测试]
 - Email
+- [Discord(webhook)](https://discord.com/developers/docs/resources/webhook#execute-webhook)
 
 ### 可能会支持的推送方式
 - [ ] 钉钉
-- [ ] Discord
 - [ ] Telegram
 - [ ] ...
 
