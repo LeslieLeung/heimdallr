@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: leslieleung/heimdallr
       - name: Set up QEMU
