@@ -7,7 +7,7 @@ from environs import Env
 logger = logging.getLogger(__name__)
 
 env = Env()
-env.read_env(recurse=False)
+env.read_env()
 
 
 def get_config_str(name: str, suffix: str, default: str = "") -> str:

@@ -3,6 +3,7 @@ import logging
 from heimdallr.channel.bark import Bark, BarkMessage
 from heimdallr.channel.base import Channel, Message
 from heimdallr.channel.chanify import Chanify, ChanifyMessage
+from heimdallr.channel.discord import DiscordWebhook, DiscordWebhookMessage
 from heimdallr.channel.email import Email, EmailMessage
 from heimdallr.channel.pushdeer import PushDeer, PushDeerMessage
 from heimdallr.channel.pushover import Pushover, PushoverMessage
@@ -26,6 +27,7 @@ CHANNEL_PUSHOVER = "pushover"
 CHANNEL_PUSHDEER = "pushdeer"
 CHANNEL_CHANIFY = "chanify"
 CHANNEL_EMAIL = "email"
+CAHNNEL_DISCORD_WEBHOOK = "discord_webhook"
 
 
 def _get_channel_type_by_name(name: str) -> str:
@@ -58,6 +60,8 @@ def build_channel(name: str) -> Channel:
         return Chanify(name, channel_type)
     elif channel_type == CHANNEL_EMAIL:
         return Email(name, channel_type)
+    elif channel_type == CAHNNEL_DISCORD_WEBHOOK:
+        return DiscordWebhook(name, channel_type)
     else:
         raise ParamException(f"Channel {name} type {channel_type} not supported.")
 
@@ -82,5 +86,7 @@ def build_message(name: str, title: str, body: str, **kwargs) -> Message:
         return ChanifyMessage(title, body, **kwargs)
     elif channel_type == CHANNEL_EMAIL:
         return EmailMessage(title, body, **kwargs)
+    elif channel_type == CAHNNEL_DISCORD_WEBHOOK:
+        return DiscordWebhookMessage(title, body, **kwargs)
     else:
         raise ParamException(f"Channel type {channel_type} not supported.")
