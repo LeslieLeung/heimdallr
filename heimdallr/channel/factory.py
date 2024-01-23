@@ -36,8 +36,7 @@ def _get_channel_type_by_name(name: str) -> str:
     """
     Get the channel type by name.
     """
-    channel_name = str.upper(name)
-    return get_config_str(channel_name, SUFFIX_TYPE, "")
+    return get_config_str(name, SUFFIX_TYPE, "")
 
 
 def build_channel(name: str) -> Channel:

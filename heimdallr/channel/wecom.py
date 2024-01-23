@@ -107,10 +107,9 @@ class WecomApp(Channel):
         self._build_channel()
 
     def _build_channel(self) -> None:
-        channel_name = str.upper(self.name)
-        self.corp_id = get_config_str(channel_name, SUFFIX_WECOM_CORP_ID, "")
-        self.secret = get_config_str(channel_name, SUFFIX_WECOM_SECRET, "")
-        self.agent_id = int(get_config_str(channel_name, SUFFIX_WECOM_AGENT_ID, ""))
+        self.corp_id = get_config_str(self.get_name(), SUFFIX_WECOM_CORP_ID, "")
+        self.secret = get_config_str(self.get_name(), SUFFIX_WECOM_SECRET, "")
+        self.agent_id = int(get_config_str(self.get_name(), SUFFIX_WECOM_AGENT_ID, ""))
 
         if self.corp_id == "" or self.secret == "":
             raise WecomException("corp id or secret not set")
