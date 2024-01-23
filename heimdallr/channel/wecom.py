@@ -114,16 +114,18 @@ class WecomApp(Channel):
 
         if self.corp_id == "" or self.secret == "":
             raise WecomException("corp id or secret not set")
+
+    def send(self, message: Message):
+        if not isinstance(message, WecomAppMessage):
+            raise WecomException("Invalid message type")
+        # get access token
         auth_url = f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={self.corp_id}&corpsecret={self.secret}"
         rs = requests.get(auth_url, timeout=5).json()
         if rs["errcode"] == 0:
             self.access_token = rs["access_token"]
         else:
             raise WecomException(f"Failed to get access token: {rs['errmsg']}")
-
-    def send(self, message: Message):
-        if not isinstance(message, WecomAppMessage):
-            raise WecomException("Invalid message type")
+        # patch up message
         message.agent_id = self.agent_id
         msg = message.render_message()
         url = f"{self.base_url}{self.access_token}"
