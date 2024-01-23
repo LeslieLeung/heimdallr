@@ -76,7 +76,7 @@ class WecomWebhook(Channel):
         self._build_channel()
 
     def _build_channel(self) -> None:
-        self.key = get_config_str(self.get_config_name(), SUFFIX_WECOM_KEY, "")
+        self.key = get_config_str(self.get_name(), SUFFIX_WECOM_KEY, "")
         if self.key == "":
             raise WecomException("WecomWebhook key not set")
 

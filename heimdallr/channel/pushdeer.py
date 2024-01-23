@@ -27,7 +27,7 @@ class PushDeer(Channel):
         self._build_channel()
 
     def _build_channel(self):
-        self.push_key = get_config_str(self.get_config_name(), SUFFIX_PUSHDEER_TOKEN, "")
+        self.push_key = get_config_str(self.get_name(), SUFFIX_PUSHDEER_TOKEN, "")
         if self.push_key == "":
             raise ParamException("PushDeer token cannot be empty.")
 

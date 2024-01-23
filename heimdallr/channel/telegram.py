@@ -31,8 +31,8 @@ class Telegram(Channel):
         self._build_channel()
 
     def _build_channel(self) -> None:
-        self.token = get_config_str(self.get_config_name(), SUFFIX_TELEGRAM_TOKEN, "")
-        self.chat_id = get_config_str(self.get_config_name(), SUFFIX_TELEGRAM_CHAT_ID, "")
+        self.token = get_config_str(self.get_name(), SUFFIX_TELEGRAM_TOKEN, "")
+        self.chat_id = get_config_str(self.get_name(), SUFFIX_TELEGRAM_CHAT_ID, "")
         if not self.token or not self.chat_id:
             raise ParamException("Telegram token or chat id is empty.")
 

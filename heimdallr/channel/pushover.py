@@ -29,8 +29,8 @@ class Pushover(Channel):
         self._build_channel()
 
     def _build_channel(self) -> None:
-        self.token = get_config_str(self.get_config_name(), SUFFIX_PUSHOVER_TOKEN, "")
-        self.user = get_config_str(self.get_config_name(), SUFFIX_PUSHOVER_USER, "")
+        self.token = get_config_str(self.get_name(), SUFFIX_PUSHOVER_TOKEN, "")
+        self.user = get_config_str(self.get_name(), SUFFIX_PUSHOVER_USER, "")
         if self.token == "" or self.user == "":
             raise ParamException("pushover token or user not set")
 

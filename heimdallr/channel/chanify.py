@@ -28,8 +28,8 @@ class Chanify(Channel):
         self._build_channel()
 
     def _build_channel(self) -> None:
-        self.base_url = get_config_str(self.get_config_name(), SUFFIX_CHANIFY_ENDPOINT, self.base_url)
-        self.token = get_config_str(self.get_config_name(), SUFFIX_CHANIFY_TOKEN, "")
+        self.base_url = get_config_str(self.get_name(), SUFFIX_CHANIFY_ENDPOINT, self.base_url)
+        self.token = get_config_str(self.get_name(), SUFFIX_CHANIFY_TOKEN, "")
         if self.token == "":
             raise ParamException("chanify token not set")
 

@@ -39,6 +39,8 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 
 配置项见 [示例](.env.example)。
 
+具体配置，见 [配置文档](docs/Config.md)
+
 ## 第三方服务
 
 ### Zeabur

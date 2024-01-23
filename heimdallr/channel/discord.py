@@ -31,8 +31,8 @@ class DiscordWebhook(Channel):
         self._build_channel()
 
     def _build_channel(self) -> None:
-        self.webhook_id = get_config_str(self.get_config_name(), SUFFIX_DISCORD_WEBHOOK_ID, "")
-        self.webhook_token = get_config_str(self.get_config_name(), SUFFIX_DISCORD_WEBHOOK_TOKEN, "")
+        self.webhook_id = get_config_str(self.get_name(), SUFFIX_DISCORD_WEBHOOK_ID, "")
+        self.webhook_token = get_config_str(self.get_name(), SUFFIX_DISCORD_WEBHOOK_TOKEN, "")
         if not self.webhook_id or not self.webhook_token:
             raise ParamException("Discord webhook id or token is empty.")
 

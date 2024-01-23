@@ -48,13 +48,13 @@ class Email(Channel):
         self._build_channel()
 
     def _build_channel(self):
-        self.host = get_config_str(self.get_config_name(), SUFFIX_EMAIL_HOST, "")
-        self.port = int(get_config_str(self.get_config_name(), SUFFIX_EMAIL_PORT, "25"))
-        self.user = get_config_str(self.get_config_name(), SUFFIX_EMAIL_USER, "")
-        self.password = get_config_str(self.get_config_name(), SUFFIX_EMAIL_PASSWORD, "")
-        self.sender = get_config_str(self.get_config_name(), SUFFIX_EMAIL_SENDER, "Heimdallr")
-        self.to = get_config_str(self.get_config_name(), SUFFIX_EMAIL_TO, "")
-        self.starttls = get_config_str(self.get_config_name(), "starttls", "False") == "True"
+        self.host = get_config_str(self.get_name(), SUFFIX_EMAIL_HOST, "")
+        self.port = int(get_config_str(self.get_name(), SUFFIX_EMAIL_PORT, "25"))
+        self.user = get_config_str(self.get_name(), SUFFIX_EMAIL_USER, "")
+        self.password = get_config_str(self.get_name(), SUFFIX_EMAIL_PASSWORD, "")
+        self.sender = get_config_str(self.get_name(), SUFFIX_EMAIL_SENDER, "Heimdallr")
+        self.to = get_config_str(self.get_name(), SUFFIX_EMAIL_TO, "")
+        self.starttls = get_config_str(self.get_name(), "starttls", "False") == "True"
         if self.host == "" or self.user == "" or self.password == "" or self.to == "":
             raise ParamException("email host, user, password or to not set")
 

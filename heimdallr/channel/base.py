@@ -43,9 +43,3 @@ class Channel:
         Get the type of the channel.
         """
         return self.type
-
-    def get_config_name(self) -> str:
-        """
-        Get the name of the channel in config.
-        """
-        return str.upper(self.name)
