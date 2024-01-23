@@ -1,5 +1,5 @@
 import logging
-from typing import Tuple
+from typing import Dict, Tuple
 
 import requests
 
@@ -14,9 +14,12 @@ logger = logging.getLogger(__name__)
 class TelegramMessage(Message):
     def __init__(self, title: str, body: str, **kwargs):
         super().__init__(title, body)
+        self.msg_type = kwargs.get("msg_type", "text")
 
-    def render_message(self) -> str:
-        return f"{self.title}\n{self.body}"
+    def render_message(self) -> Dict:
+        if self.msg_type == "markdown":
+            return {"parse_mode": "MarkdownV2", "text": f"{self.title}\n{self.body}"}
+        return {"text": f"{self.title}\n{self.body}"}
 
 
 class Telegram(Channel):
@@ -36,7 +39,9 @@ class Telegram(Channel):
     def send(self, message: Message) -> Tuple[bool, str]:
         if not isinstance(message, TelegramMessage):
             raise ParamException("Telegram only supports TelegramMessage.")
-        msg = {"chat_id": self.chat_id, "text": message.render_message()}
+        msg = message.render_message()
+        # add chat id
+        msg["chat_id"] = self.chat_id
         url = f"{self.base_url}{self.token}/sendMessage"
         rs = requests.post(url, json=msg)
         if rs.status_code != 200:

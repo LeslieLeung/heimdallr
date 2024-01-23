@@ -32,7 +32,7 @@ class WecomWebhookMessage(Message):
             case "markdown":
                 msg = {
                     "msgtype": "markdown",
-                    "markdown": {"content": f"### {self.title}\n> {self.body}"},
+                    "markdown": {"content": f"{self.title}\n{self.body}"},
                 }
             case _:
                 raise WecomException("Unsupported message type")

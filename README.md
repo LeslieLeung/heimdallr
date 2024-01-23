@@ -58,6 +58,31 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 
 见 [接口文档](https://heimdallr.zeabur.app/docs) 。
 
+## Markdown 支持
+
+在一些支持 Markdown 的服务上，格式化的文本可以以 Markdown 格式呈现。在请求时，通过 query 参数或 json 传入 `msg_type = markdown` 即可。
+
+示例：
+
+```bash
+# GET
+curl 'http://<HOST>/<TOKEN>/*Hello*/__World__?msg_type=markdown'
+# POST
+curl -X POST 'http://<HOST>/push' --data-raw '{
+    "key": "<TOKEN>",
+    "title": "*Hello*",
+    "body": "__World__",
+    "msg_type": "markdown"
+}'
+```
+
+> 注意，支持 Markdown 的服务中，并非所有服务都采用相同的语法。在不支持 Markdown 的服务，内容将以纯文本展示。
+>
+> 当前支持 Markdown 的服务及其支持的语法如下：
+> - [企业微信](https://developer.work.weixin.qq.com/document/path/90236#%E6%94%AF%E6%8C%81%E7%9A%84markdown%E8%AF%AD%E6%B3%95)
+> - [Discord](https://support.discord.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline)
+> - [Telegram](https://core.telegram.org/bots/api#markdownv2-style)
+
 # 示例应用
 
 - [使用 Heimdallr 接收群晖DSM推送](docs/example/DSM.md)
