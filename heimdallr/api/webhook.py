@@ -13,4 +13,4 @@ async def github_star(key: str, req: Request):
     body = await req.body()
     webhook = GithubStarWebhook(json.loads(body))
     title, msg_body, jump_url = webhook.parse()
-    return serve_channels_async(key, title, msg_body, jump_url=jump_url)
+    return await serve_channels_async(key, title, msg_body, jump_url=jump_url)
