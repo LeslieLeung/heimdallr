@@ -24,18 +24,16 @@ class WecomWebhookMessage(Message):
 
     def render_message(self) -> Any:
         match self.msg_type:
-            case "text":
-                msg = {
-                    "msgtype": "text",
-                    "text": {"content": f"{self.title}\n{self.body}"},
-                }
             case "markdown":
                 msg = {
                     "msgtype": "markdown",
                     "markdown": {"content": f"{self.title}\n{self.body}"},
                 }
             case _:
-                raise WecomException("Unsupported message type")
+                msg = {
+                    "msgtype": "text",
+                    "text": {"content": f"{self.title}\n{self.body}"},
+                }
         return json.dumps(msg)
 
 
@@ -47,14 +45,6 @@ class WecomAppMessage(Message):
 
     def render_message(self) -> Any:
         match self.msg_type:
-            case "text":
-                msg = {
-                    "touser": "@all",
-                    "msgtype": "text",
-                    "agentid": self.agent_id,
-                    "text": {"content": f"{self.title}\n{self.body}"},
-                    "safe": 0,
-                }
             case "markdown":
                 msg = {
                     "touser": "@all",
@@ -64,7 +54,13 @@ class WecomAppMessage(Message):
                     "safe": 0,
                 }
             case _:
-                raise WecomException("Unsupported message type")
+                msg = {
+                    "touser": "@all",
+                    "msgtype": "text",
+                    "agentid": self.agent_id,
+                    "text": {"content": f"{self.title}\n{self.body}"},
+                    "safe": 0,
+                }
         return json.dumps(msg)
 
 
