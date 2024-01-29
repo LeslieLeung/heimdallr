@@ -18,7 +18,7 @@ asyncio = "^3.4.3"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.6.0"
-black = "^23.12.1"
+black = "^24.0.0"
 isort = "^5.13.2"
 autoflake = "^2.2.1"
 memray = "^1.11.0"
