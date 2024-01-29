@@ -26,6 +26,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - Email
 - [Discord(webhook)](https://discord.com/developers/docs/resources/webhook#execute-webhook)
 - [Telegram Bot](https://core.telegram.org/bots/api#sendmessage)
+- [ntfy](https://docs.ntfy.sh/)
 
 ### 可能会支持的推送方式
 - [ ] 钉钉

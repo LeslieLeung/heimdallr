@@ -1,4 +1,7 @@
 # 更新日志
+## v2.0.1
+- 通知渠道新增 ntfy
+- 新增 `/push/form` 接口，支持 form-data
 ## v2.0.0-rc4
 - 全面支持 Markdown
 ## v2.0.0-rc3

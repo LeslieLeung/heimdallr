@@ -73,6 +73,7 @@ channel_3_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 | SMTP（邮件）     | email                                 |
 | Discord          | discord_webhook                       |
 | Telegram         | telegram                              |
+| ntfy             | ntfy                                  |
 
 
 #### 渠道配置后缀
@@ -100,6 +101,8 @@ channel_3_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 | `DISCORD_WEBHOOK_TOKEN` | Discord  | Discord 的 Webhook Token                                                                                                                                                             |
 | `TELEGRAM_TOKEN`        | Telegram | Telegram 的 Token，见 [这里](https://github.com/pppscn/SmsForwarder/wiki/2.%E5%8F%91%E9%80%81%E9%80%9A%E9%81%93#tele%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91) |
 | `TELEGRAM_CHAT_ID`      | Telegram | Telegram 的 Chat ID，见 [这里](https://github.com/pppscn/SmsForwarder/issues/319)                                                                                                    |
+| `NTFY_HOST`             | ntfy     | ntfy 的服务端地址                                                                                                                                                                    |
+| `NTFY_TOPIC`            | ntfy     | ntfy 的 topic，见 [这里](https://docs.ntfy.sh/)                                                                                                                                      |
 
 
 ## 腾讯云 Serverless 环境变量设置

@@ -1,9 +1,23 @@
-from fastapi import APIRouter
+import logging
+
+from fastapi import APIRouter, Form
 from pydantic import BaseModel
 
 from heimdallr.api.base import serve_channels_async
 
+logger = logging.getLogger(__name__)
+
 push_router = APIRouter()
+
+
+@push_router.post("/push/form")
+async def send_push_by_form(
+    key: str = Form(...),
+    title: str = Form(...),
+    body: str = Form(...),
+    msg_type: str = Form(default="text"),
+):
+    return await serve_channels_async(key, title, body, msg_type=msg_type)
 
 
 @push_router.get("/{key}/{body}")
