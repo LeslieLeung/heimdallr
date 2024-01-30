@@ -62,47 +62,50 @@ channel_3_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 
 #### 通知渠道类型
 
-| 渠道名称         | 渠道类型（上面的`<CHANNEL_NAME>_TYPE` |
-| ---------------- | ------------------------------------- |
-| Bark             | bark                                  |
-| 企业微信 Webhook | wecom_webhook                         |
-| 企业微信应用     | wecom_app                             |
-| Pushover         | pushover                              |
-| PushDeer         | pushdeer                              |
-| Chanify          | chanify                               |
-| SMTP（邮件）     | email                                 |
-| Discord          | discord_webhook                       |
-| Telegram         | telegram                              |
-| ntfy             | ntfy                                  |
+| 渠道名称          | 渠道类型（上面的`<CHANNEL_NAME>_TYPE` |
+| ----------------- | ------------------------------------- |
+| Bark              | bark                                  |
+| 企业微信 Webhook  | wecom_webhook                         |
+| 企业微信应用      | wecom_app                             |
+| Pushover          | pushover                              |
+| PushDeer          | pushdeer                              |
+| Chanify           | chanify                               |
+| SMTP（邮件）      | email                                 |
+| Discord           | discord_webhook                       |
+| Telegram          | telegram                              |
+| ntfy              | ntfy                                  |
+| 飞书/Lark Webhook | lark_webhook                          |
 
 
 #### 渠道配置后缀
-| 后缀名                  | 通知渠道 | 后缀说明                                                                                                                                                                             |
-| ----------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `BARK_URL`              | Bark     | Bark服务器地址，如`https://api.day.app`                                                                                                                                              |
-| `BARK_KEY`              | Bark     | Bark的推送 key，如 `qy7s8qnhjhphuNDHJNFxQE`                                                                                                                                          |
-| `WECOM_KEY`             | 企业微信 | 企业微信机器人的 key，见 [企业微信机器人webhook](https://developer.work.weixin.qq.com/document/path/91770)                                                                           |
-| `WECOM_CORP_ID`         | 企业微信 | 企业微信应用的 corp_id，见 [企业微信应用消息](https://developer.work.weixin.qq.com/document/path/90236)                                                                              |
-| `WECOM_AGENT_ID`        | 企业微信 | 企业微信应用的 agent_id                                                                                                                                                              |
-| `WECOM_SECRET`          | 企业微信 | 企业微信应用的 secret                                                                                                                                                                |
-| `PUSHOVER_TOKEN`        | Pushover | Pushover 的 token，见 [Pushover API](https://pushover.net/api)                                                                                                                       |
-| `PUSHOVER_USER`         | Pushover | Pushover 的 user                                                                                                                                                                     |
-| `PUSHDEER_TOKEN`        | PushDeer | PushDeer 的 token，见 [Pushdeer API](http://pushdeer.com)                                                                                                                            |
-| `CHANIFY_ENDPOINT`      | Chanify  | Chanify 的 endpoint，见 [Chanify](https://github.com/chanify/chanify#as-sender-client)，可不填，默认为 `https://api.chanify.net`                                                     |
-| `CHANIFY_TOKEN`         | Chanify  | Chanify 的 token                                                                                                                                                                     |
-| `EMAIL_HOST`            | Email    | Email 服务器地址，如 `smtp.gmail.com`                                                                                                                                                |
-| `EMAIL_PORT`            | Email    | Email 服务器端口，如 `465`                                                                                                                                                           |
-| `EMAIL_USER`            | Email    | Email 用户名                                                                                                                                                                         |
-| `EMAIL_PASSWORD`        | Email    | Email 密码                                                                                                                                                                           |
-| `EMAIL_SENDER`          | Email    | Email 发件人名称                                                                                                                                                                     |
-| `EMAIL_TO`              | Email    | Email 收件人                                                                                                                                                                         |
-| `EMAIL_STARTTLS`        | Email    | Email 是否使用 TLS                                                                                                                                                                   |
-| `DISCORD_WEBHOOK_ID`    | Discord  | Discord 的 Webhook ID，见 [Discord 文档](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)                                                                  |
-| `DISCORD_WEBHOOK_TOKEN` | Discord  | Discord 的 Webhook Token                                                                                                                                                             |
-| `TELEGRAM_TOKEN`        | Telegram | Telegram 的 Token，见 [这里](https://github.com/pppscn/SmsForwarder/wiki/2.%E5%8F%91%E9%80%81%E9%80%9A%E9%81%93#tele%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91) |
-| `TELEGRAM_CHAT_ID`      | Telegram | Telegram 的 Chat ID，见 [这里](https://github.com/pppscn/SmsForwarder/issues/319)                                                                                                    |
-| `NTFY_HOST`             | ntfy     | ntfy 的服务端地址                                                                                                                                                                    |
-| `NTFY_TOPIC`            | ntfy     | ntfy 的 topic，见 [这里](https://docs.ntfy.sh/)                                                                                                                                      |
+| 后缀名                  | 通知渠道  | 后缀说明                                                                                                                                                                             |
+| ----------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `BARK_URL`              | Bark      | Bark服务器地址，如`https://api.day.app`                                                                                                                                              |
+| `BARK_KEY`              | Bark      | Bark的推送 key，如 `qy7s8qnhjhphuNDHJNFxQE`                                                                                                                                          |
+| `WECOM_KEY`             | 企业微信  | 企业微信机器人的 key，见 [企业微信机器人webhook](https://developer.work.weixin.qq.com/document/path/91770)                                                                           |
+| `WECOM_CORP_ID`         | 企业微信  | 企业微信应用的 corp_id，见 [企业微信应用消息](https://developer.work.weixin.qq.com/document/path/90236)                                                                              |
+| `WECOM_AGENT_ID`        | 企业微信  | 企业微信应用的 agent_id                                                                                                                                                              |
+| `WECOM_SECRET`          | 企业微信  | 企业微信应用的 secret                                                                                                                                                                |
+| `PUSHOVER_TOKEN`        | Pushover  | Pushover 的 token，见 [Pushover API](https://pushover.net/api)                                                                                                                       |
+| `PUSHOVER_USER`         | Pushover  | Pushover 的 user                                                                                                                                                                     |
+| `PUSHDEER_TOKEN`        | PushDeer  | PushDeer 的 token，见 [Pushdeer API](http://pushdeer.com)                                                                                                                            |
+| `CHANIFY_ENDPOINT`      | Chanify   | Chanify 的 endpoint，见 [Chanify](https://github.com/chanify/chanify#as-sender-client)，可不填，默认为 `https://api.chanify.net`                                                     |
+| `CHANIFY_TOKEN`         | Chanify   | Chanify 的 token                                                                                                                                                                     |
+| `EMAIL_HOST`            | Email     | Email 服务器地址，如 `smtp.gmail.com`                                                                                                                                                |
+| `EMAIL_PORT`            | Email     | Email 服务器端口，如 `465`                                                                                                                                                           |
+| `EMAIL_USER`            | Email     | Email 用户名                                                                                                                                                                         |
+| `EMAIL_PASSWORD`        | Email     | Email 密码                                                                                                                                                                           |
+| `EMAIL_SENDER`          | Email     | Email 发件人名称                                                                                                                                                                     |
+| `EMAIL_TO`              | Email     | Email 收件人                                                                                                                                                                         |
+| `EMAIL_STARTTLS`        | Email     | Email 是否使用 TLS                                                                                                                                                                   |
+| `DISCORD_WEBHOOK_ID`    | Discord   | Discord 的 Webhook ID，见 [Discord 文档](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)                                                                  |
+| `DISCORD_WEBHOOK_TOKEN` | Discord   | Discord 的 Webhook Token                                                                                                                                                             |
+| `TELEGRAM_TOKEN`        | Telegram  | Telegram 的 Token，见 [这里](https://github.com/pppscn/SmsForwarder/wiki/2.%E5%8F%91%E9%80%81%E9%80%9A%E9%81%93#tele%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91) |
+| `TELEGRAM_CHAT_ID`      | Telegram  | Telegram 的 Chat ID，见 [这里](https://github.com/pppscn/SmsForwarder/issues/319)                                                                                                    |
+| `NTFY_HOST`             | ntfy      | ntfy 的服务端地址                                                                                                                                                                    |
+| `NTFY_TOPIC`            | ntfy      | ntfy 的 topic，见 [这里](https://docs.ntfy.sh/)                                                                                                                                      |
+| `LARK_HOST`             | 飞书/Lark | 飞书/Lark 的接口地址，默认可以留空。如果使用 Lark, 则为 https://open.larksuite.com/open-apis/bot/v2/hook/                                                                            |
+| `LARK_TOKEN`            | 飞书/Lark | 飞书/Lark 的 Token                                                                                                                                                                   |
 
 
 ## 腾讯云 Serverless 环境变量设置

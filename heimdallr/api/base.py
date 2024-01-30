@@ -10,28 +10,6 @@ from heimdallr.shared.config import config
 logger = logging.getLogger(__name__)
 
 
-def serve(key: str, title: str = "", body: str = "", **kwargs):
-    try:
-        group = config.get_group(key)
-    except AuthException as e:
-        return Response(code=-1, message=str(e)).render()
-    logger.info(f"group: {group.name}, token: {group.token}")
-    errors = {}
-    for chan in group.channels:
-        logger.info(f"channel: {chan.get_name()}, channel_type: {chan.get_type()}")
-        message = build_message(chan.get_name(), title, body, **kwargs)
-        rs, msg = chan.send(message)
-        if not rs:
-            errors[chan.get_name()] = msg
-
-    if len(errors) == 0:
-        return success()
-    err_msg = ""
-    for err in errors.items():
-        err_msg += f"{err[0]} return: {err[1]}."
-    return Response(code=1, message=err_msg).render()
-
-
 async def serve_channels_async(key: str, title: str = "", body: str = "", **kwargs):
     try:
         group = config.get_group(key)

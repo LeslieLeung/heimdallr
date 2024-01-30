@@ -27,10 +27,11 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - [Discord(webhook)](https://discord.com/developers/docs/resources/webhook#execute-webhook)
 - [Telegram Bot](https://core.telegram.org/bots/api#sendmessage)
 - [ntfy](https://docs.ntfy.sh/)
+- [飞书/Lark](https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot)
+
 
 ### 可能会支持的推送方式
 - [ ] 钉钉
-- [ ] 飞书/Lark
 - [ ] ...
 
 > 如果有需要的通知方式，请提交 [issue](https://github.com/LeslieLeung/heimdallr/issues/new?assignees=LeslieLeung&labels=enhancement&template=feature_request.md&title=)
