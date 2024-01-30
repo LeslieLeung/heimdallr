@@ -28,10 +28,10 @@ def get_config_int(name: str, suffix: str, default: int = 0) -> int:
     return env.int(name + "_" + suffix, default)
 
 
-def log_env_vars():
+def log_env_vars() -> None:
     for key, value in os.environ.items():
         logger.debug(f"{key}: {value}")
 
 
-def is_debug():
+def is_debug() -> bool:
     return env.bool("DEBUG", False)

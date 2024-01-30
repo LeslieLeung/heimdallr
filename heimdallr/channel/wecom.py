@@ -67,7 +67,7 @@ class WecomAppMessage(Message):
 class WecomWebhook(Channel):
     def __init__(self, name: str, type: str):
         super().__init__(name, type)
-        self.base_url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key="
+        self.base_url: str = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key="
         self.key: str = ""
         self._build_channel()
 

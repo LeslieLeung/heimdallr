@@ -1,4 +1,6 @@
 # 更新日志
+## v2.0.2
+- 通知渠道新增 飞书/Lark Webhook
 ## v2.0.1
 - 通知渠道新增 ntfy
 - 新增 `/push/form` 接口，支持 form-data

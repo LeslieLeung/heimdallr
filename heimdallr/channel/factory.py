@@ -5,6 +5,7 @@ from heimdallr.channel.base import Channel, Message
 from heimdallr.channel.chanify import Chanify, ChanifyMessage
 from heimdallr.channel.discord import DiscordWebhook, DiscordWebhookMessage
 from heimdallr.channel.email import Email, EmailMessage
+from heimdallr.channel.lark import LarkWebhook, LarkWebhookMessage
 from heimdallr.channel.ntfy import Ntfy, NtfyMessage
 from heimdallr.channel.pushdeer import PushDeer, PushDeerMessage
 from heimdallr.channel.pushover import Pushover, PushoverMessage
@@ -32,6 +33,7 @@ CHANNEL_EMAIL = "email"
 CHANNEL_DISCORD_WEBHOOK = "discord_webhook"
 CHANNEL_TELEGRAM = "telegram"
 CHANNEL_NTFY = "ntfy"
+CHANNEL_LARK_WEBHOOK = "lark_webhook"
 
 
 def _get_channel_type_by_name(name: str) -> str:
@@ -69,6 +71,8 @@ def build_channel(name: str) -> Channel:
         return Telegram(name, channel_type)
     elif channel_type == CHANNEL_NTFY:
         return Ntfy(name, channel_type)
+    elif channel_type == CHANNEL_LARK_WEBHOOK:
+        return LarkWebhook(name, channel_type)
     else:
         raise ParamException(f"Channel {name} type {channel_type} not supported.")
 
@@ -99,5 +103,7 @@ def build_message(name: str, title: str, body: str, **kwargs) -> Message:
         return TelegramMessage(title, body, **kwargs)
     elif channel_type == CHANNEL_NTFY:
         return NtfyMessage(title, body, **kwargs)
+    elif channel_type == CHANNEL_LARK_WEBHOOK:
+        return LarkWebhookMessage(title, body, **kwargs)
     else:
         raise ParamException(f"Channel type {channel_type} not supported.")
