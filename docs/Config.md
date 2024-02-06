@@ -75,6 +75,7 @@ channel_3_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 | Telegram          | telegram                              |
 | ntfy              | ntfy                                  |
 | 飞书/Lark Webhook | lark_webhook                          |
+| 钉钉自定义机器人  | dingtalk_webhook                      |
 
 
 #### 渠道配置后缀
@@ -106,6 +107,8 @@ channel_3_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 | `NTFY_TOPIC`            | ntfy      | ntfy 的 topic，见 [这里](https://docs.ntfy.sh/)                                                                                                                                      |
 | `LARK_HOST`             | 飞书/Lark | 飞书/Lark 的接口地址，默认可以留空。如果使用 Lark, 则为 https://open.larksuite.com/open-apis/bot/v2/hook/                                                                            |
 | `LARK_TOKEN`            | 飞书/Lark | 飞书/Lark 的 Token                                                                                                                                                                   |
+| `DINGTALK_TOKEN`        | 钉钉      | 钉钉的自定义机器人 Token，见 [这里](https://open.dingtalk.com/document/robots/custom-robot-access)。取其 `access_token` 部分。                                                       |
+| `DINGTALK_SAFE_WORDS`   | 钉钉      | 钉钉的关键词。                                                                                                                                                                       |
 
 
 ## 腾讯云 Serverless 环境变量设置
