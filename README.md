@@ -92,3 +92,6 @@ curl -X POST 'http://<HOST>/push' --data-raw '{
 # 更新日志
 
 见 [更新日志](docs/Changelog.md)
+
+# Stargazers over time
+[![Stargazers over time](https://starchart.cc/LeslieLeung/heimdallr.svg?variant=adaptive)](https://starchart.cc/LeslieLeung/heimdallr)
