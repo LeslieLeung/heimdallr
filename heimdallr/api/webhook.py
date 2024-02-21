@@ -1,9 +1,12 @@
 import json
+import logging
 
 from fastapi import APIRouter, Request
 
 from heimdallr.api.base import serve_channels_async
 from heimdallr.webhook.github_star import GithubStarWebhook
+
+logger = logging.getLogger(__name__)
 
 webhook_router = APIRouter(prefix="/webhook")
 
