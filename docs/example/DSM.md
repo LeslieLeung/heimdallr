@@ -5,7 +5,7 @@
 名称随意选择即可，测试网址填入在腾讯云 Serverless中获取的url，【测试网址】按照如下复制即可。如果使用 bark ，第一个地方填bark，若使用其他，填其他方式，具体见 [接口文档](/docs/Api.md) 。
 
 ```
-https://SERVERLESS_URL/bark?phone=123&title=hi&body=hello+world
+https://example.com/key?phone=123&title=hi&body=hello+world
 ```
 
 ![](http://img.ameow.xyz/202205290618022.png)

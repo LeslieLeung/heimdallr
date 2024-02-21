@@ -1,4 +1,8 @@
 # 更新日志
+## v2.0.4
+- 支持 [rsspush](https://github.com/easychen/rsspush) webhook 通知。
+## v2.0.3
+- 通知渠道新增钉钉
 ## v2.0.2
 - 通知渠道新增 飞书/Lark Webhook
 ## v2.0.1

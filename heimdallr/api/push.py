@@ -20,6 +20,8 @@ async def send_push_by_form(
     return await serve_channels_async(key, title, body, msg_type=msg_type)
 
 
+@push_router.get("/{key}")
+@push_router.post("/{key}")
 @push_router.get("/{key}/{body}")
 @push_router.post("/{key}/{body}")
 @push_router.get("/{key}/{title}/{body}")

@@ -88,6 +88,7 @@ curl -X POST 'http://<HOST>/push' --data-raw '{
 - [使用 Heimdallr 接收群晖DSM推送](docs/example/DSM.md)
 - [使用 Heimdallr 接收威联通推送](docs/example/QNAP.md)
 - [使用 Heimdallr 接收 GitHub star webhook](docs/example/GitHubStar.md)
+- [使用 Heimdallr 接收 RSS 推送](docs/example/Rsspush.md)
 
 # 更新日志
 

@@ -5,9 +5,9 @@
 SMS 服务提供商选择 【custom】，别名随意选择即可。【URL 模板】填入以下信息。剩余两项随意填写即可。
 
 ```
-https://SERVERLESS_URL/CHANNELS?phone=@@PhoneNumber@@&title=Notification+From+QNAP&body=@@Text@@
+https://example.com/key?phone=@@PhoneNumber@@&title=Notification+From+QNAP&body=@@Text@@
 ```
-`SERVERLESS_URL` 为你的服务地址，`CHANNELS` 为你的通知渠道，如果使用 bark ，第一个地方填bark，若使用其他，填其他方式，具体见 [接口文档](/docs/Api.md) 。
+`example.com` 替换为你的服务地址，`key` 为你的通知渠道的 `token`。
 
 
 ![](http://img.ameow.xyz/202311010122299.png)
