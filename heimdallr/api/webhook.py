@@ -14,3 +14,13 @@ async def github_star(key: str, req: Request):
     webhook = GithubStarWebhook(json.loads(body))
     title, msg_body, jump_url = webhook.parse()
     return await serve_channels_async(key, title, msg_body, jump_url=jump_url)
+
+
+@webhook_router.post("/rsspush/{key}")
+async def rsspush(key: str, req: Request):
+    form = await req.form()
+    task_title = form.get("task_title")
+    title = form.get("title")
+    desp = form.get("desp")
+    jump_url = form.get("link")
+    return await serve_channels_async(key, f"{task_title}", f"{title}\n{desp}", jump_url=jump_url)
