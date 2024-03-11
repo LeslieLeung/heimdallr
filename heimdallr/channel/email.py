@@ -45,6 +45,7 @@ class Email(Channel):
         self.sender: str = "Heimdallr"
         self.to: str = ""
         self.starttls: bool = False
+        self.smtp_object: smtplib.SMTP
         self._build_channel()
 
     def _build_channel(self):
