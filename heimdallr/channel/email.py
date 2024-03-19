@@ -1,8 +1,9 @@
 import logging
 import smtplib
+from contextlib import closing
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import Any
+from typing import Any, Union
 
 from heimdallr.channel.base import Channel, Message
 from heimdallr.config.config import get_config_str
@@ -45,7 +46,7 @@ class Email(Channel):
         self.sender: str = "Heimdallr"
         self.to: str = ""
         self.starttls: bool = False
-        self.smtp_object: smtplib.SMTP
+        self.smtp_object: Union[smtplib.SMTP, None] = None
         self._build_channel()
 
     def _build_channel(self):
@@ -66,15 +67,16 @@ class Email(Channel):
         message.user = self.user
         message.to = self.to
         try:
-            self.smtp_object = smtplib.SMTP(self.host, self.port)
-            if self.starttls:
-                self.smtp_object.starttls()
-            self.smtp_object.login(self.user, self.password)
-            self.smtp_object.sendmail(self.user, self.to, message.render_message())
-            logger.debug(f"Email sent to {self.to}")
+            with closing(smtplib.SMTP(self.host, self.port)) as smtp_object:
+                if self.starttls:
+                    smtp_object.starttls()
+                smtp_object.login(self.user, self.password)
+                smtp_object.sendmail(self.user, self.to, message.render_message())
+                logger.debug(f"Email sent to {self.to}")
         except smtplib.SMTPException as e:
             logger.error(f"Email send failed: {e}")
             return False, f"SMTPException: {e}"
-        finally:
-            self.smtp_object.quit()
+        except Exception as e:
+            logger.error(f"Email send failed: {e}")
+            return False, f"Exception: {e}"
         return True, "success"
