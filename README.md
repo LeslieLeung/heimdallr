@@ -10,6 +10,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 
 - 等同于免费、开源、可自建的 [新版Server酱](https://sct.ftqq.com/)，没有任何限制，痛快推送
 - 支持各种常见的推送渠道，如Bark、企业微信等
+- 支持 [Apprise](https://github.com/caronc/apprise)，从此再也不缺通知渠道（完全列表见[链接](https://github.com/caronc/apprise#supported-notifications)）
 - 完全兼容 Bark 的路由，任意支持 Bark 的地方，都可以使用 Heimdallr 同时发送到更多渠道
 - 支持多通知渠道和分组配置
 - 支持 Serverless 部署，几乎零成本运行
@@ -29,6 +30,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - [ntfy](https://docs.ntfy.sh/)
 - [飞书/Lark](https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot)
 - [钉钉自定义机器人](https://open.dingtalk.com/document/robots/custom-robot-access)
+- [Apprise](https://github.com/caronc/apprise)
 
 > 如果有需要的通知方式，请提交 [issue](https://github.com/LeslieLeung/heimdallr/issues/new?assignees=LeslieLeung&labels=enhancement&template=feature_request.md&title=)
 

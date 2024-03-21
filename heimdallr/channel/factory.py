@@ -1,5 +1,6 @@
 import logging
 
+from heimdallr.channel.apprise import Apprise, AppriseMessage
 from heimdallr.channel.bark import Bark, BarkMessage
 from heimdallr.channel.base import Channel, Message
 from heimdallr.channel.chanify import Chanify, ChanifyMessage
@@ -36,6 +37,7 @@ CHANNEL_TELEGRAM = "telegram"
 CHANNEL_NTFY = "ntfy"
 CHANNEL_LARK_WEBHOOK = "lark_webhook"
 CHANNEL_DINGTALK_WEBHOOK = "dingtalk_webhook"
+CHANNEL_APPRISE = "apprise"
 
 
 def _get_channel_type_by_name(name: str) -> str:
@@ -77,6 +79,8 @@ def build_channel(name: str) -> Channel:
         return LarkWebhook(name, channel_type)
     elif channel_type == CHANNEL_DINGTALK_WEBHOOK:
         return DingTalk(name, channel_type)
+    elif channel_type == CHANNEL_APPRISE:
+        return Apprise(name, channel_type)
     else:
         raise ParamException(f"Channel {name} type {channel_type} not supported.")
 
@@ -111,5 +115,7 @@ def build_message(name: str, title: str, body: str, **kwargs) -> Message:
         return LarkWebhookMessage(title, body, **kwargs)
     elif channel_type == CHANNEL_DINGTALK_WEBHOOK:
         return DingTalkMessage(title, body, **kwargs)
+    elif channel_type == CHANNEL_APPRISE:
+        return AppriseMessage(title, body, **kwargs)
     else:
         raise ParamException(f"Channel type {channel_type} not supported.")
