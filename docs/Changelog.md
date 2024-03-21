@@ -1,4 +1,8 @@
 # 更新日志
+## v2.0.7
+- 接入 [Apprise](https://github.com/caronc/apprise)，从此再也不缺通知渠道。
+## v2.0.5-2.0.6
+- 修复了 SMTP 发送失败没有捕获异常的问题，并增加了错误提示
 ## v2.0.4
 - 支持 [rsspush](https://github.com/easychen/rsspush) webhook 通知。
 ## v2.0.3
