@@ -16,6 +16,7 @@ environs = "^11.0.0"
 asyncio = "^3.4.3"
 types-requests = "^2.31.0.20240125"
 apprise = "^1.7.4"
+filetype = "^1.2.0"
 
 
 [tool.poetry.group.dev.dependencies]

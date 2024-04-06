@@ -12,6 +12,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - 支持各种常见的推送渠道，如Bark、企业微信等
 - 支持 [Apprise](https://github.com/caronc/apprise)，从此再也不缺通知渠道（完全列表见[链接](https://github.com/caronc/apprise#supported-notifications)）
 - 完全兼容 Bark 的路由，任意支持 Bark 的地方，都可以使用 Heimdallr 同时发送到更多渠道
+- 支持发送图片（仅 Apprise）
 - 支持多通知渠道和分组配置
 - 支持 Serverless 部署，几乎零成本运行
 - 解决因为群晖DSM奇怪的 webhook 设置方式而无法接入一些推送渠道的问题
