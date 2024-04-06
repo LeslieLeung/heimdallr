@@ -1,4 +1,6 @@
 # 更新日志
+## v2.0.8
+- 支持发送图片附件（仅 Apprise 通道）
 ## v2.0.7
 - 接入 [Apprise](https://github.com/caronc/apprise)，从此再也不缺通知渠道。
 ## v2.0.5-2.0.6

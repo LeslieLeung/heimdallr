@@ -1,7 +1,7 @@
 import logging
 
-from fastapi import APIRouter, Form
-from pydantic import BaseModel
+from fastapi import APIRouter, Form, Query
+from pydantic import BaseModel, Field
 
 from heimdallr.api.base import serve_channels_async
 
@@ -16,8 +16,30 @@ async def send_push_by_form(
     title: str = Form(...),
     body: str = Form(...),
     msg_type: str = Form(default="text"),
+    attach: str = Form(default="", description="base64 string, only support image"),
 ):
-    return await serve_channels_async(key, title, body, msg_type=msg_type)
+    print("send push by form")
+    return await serve_channels_async(key, title, body, msg_type=msg_type, attach=attach)
+
+
+class PostRequest(BaseModel):
+    key: str = ""
+    title: str = ""
+    body: str = ""
+    msg_type: str = "text"
+    attach: str = Field("", description="base64 string, only support image")
+
+
+@push_router.post("/push")
+async def send_push_by_json(request: PostRequest):
+    print("send push by json")
+    return await serve_channels_async(
+        request.key,
+        request.title,
+        request.body,
+        msg_type=request.msg_type,
+        attach=request.attach,
+    )
 
 
 @push_router.get("/{key}")
@@ -26,17 +48,12 @@ async def send_push_by_form(
 @push_router.post("/{key}/{body}")
 @push_router.get("/{key}/{title}/{body}")
 @push_router.post("/{key}/{title}/{body}")
-async def send_push(key: str, title: str = "", body: str = "", msg_type: str = ""):
-    return await serve_channels_async(key, title, body, msg_type=msg_type)
-
-
-class PostRequest(BaseModel):
-    key: str = ""
-    title: str = ""
-    body: str = ""
-    msg_type: str = "text"
-
-
-@push_router.post("/push")
-async def send_push_by_json(request: PostRequest):
-    return await serve_channels_async(request.key, request.title, request.body, msg_type=request.msg_type)
+async def send_push(
+    key: str,
+    title: str = "",
+    body: str = "",
+    msg_type: str = "",
+    attach: str = Query("", description="base64 string, only support image"),
+):
+    print("send push")
+    return await serve_channels_async(key, title, body, msg_type=msg_type, attach=attach)
