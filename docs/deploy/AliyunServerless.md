@@ -66,7 +66,7 @@ docker push ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION
 ["-e", "BARK_URL=https://api.day.app"]
 ```
 
-详细的环境变量列表，见 [环境变量](../Env.md) 。
+详细的环境变量列表，见 [环境变量](/docs/Config.md) 。
 
 如有多个环境变量请逐一添加。选择程序类型为【处理 HTTP 请求】，内存选择【128 MB】，点击创建即可。
 
