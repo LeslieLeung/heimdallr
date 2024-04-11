@@ -54,7 +54,7 @@ docker push ccr.ccs.tencentyun.com/YOUR_NAMESPACE/YOUR_REPO_NAME:VERSION
 
 ![](http://img.ameow.xyz/202205290552175.png)
 
-点击展开高级配置，内存选择【64MB】，然后根据 [环境变量配置](../Env.md) 进行配置。
+点击展开高级配置，内存选择【64MB】，然后根据 [环境变量配置](/docs/Config.md) 进行配置。
 
 ![](http://img.ameow.xyz/202205290554815.png)
 
