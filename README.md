@@ -16,6 +16,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - 支持多通知渠道和分组配置
 - 支持 Serverless 部署，几乎零成本运行
 - 解决因为群晖DSM奇怪的 webhook 设置方式而无法接入一些推送渠道的问题
+- 提供[配置生成器](https://heimdallr-configurator.vercel.app/)
 
 ## 目前支持的通知方式
 
@@ -41,6 +42,8 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 配置项见 [示例](.env.example)。
 
 具体配置，见 [配置文档](docs/Config.md)
+
+可以使用 [配置生成器](https://heimdallr-configurator.vercel.app/) 生成需要的配置。
 
 ## 第三方服务
 
