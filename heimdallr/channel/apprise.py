@@ -1,6 +1,6 @@
 import base64
 import os
-from typing import Tuple
+from typing import Tuple, Union
 
 import apprise
 import filetype
@@ -16,11 +16,11 @@ class AppriseMessage(Message):
         self,
         title: str,
         body: str,
-        attach: str,
+        attach: Union[str, None] = None,
         **kwargs,
     ):
         super().__init__(title, body)
-        self.attach: str = attach
+        self.attach: Union[str, None] = attach
 
     def render_message(self) -> str:
         return self.body
