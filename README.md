@@ -14,6 +14,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - 支持各种常见的推送渠道，如Bark、企业微信等
 - 支持 [Apprise](https://github.com/caronc/apprise)，从此再也不缺通知渠道（完全列表见[链接](https://github.com/caronc/apprise#supported-notifications)）
 - 完全兼容 Bark 的路由，任意支持 Bark 的地方，都可以使用 Heimdallr 同时发送到更多渠道
+- 提供兼容 [message-pusher](https://github.com/songquanpeng/message-pusher) 的路由。
 - 支持发送图片（仅 Apprise）
 - 支持多通知渠道和分组配置
 - 支持 Serverless 部署，几乎零成本运行
@@ -42,7 +43,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 
 # 部署方式
 
-配置项见 [示例](.env.example)。
+配置项见 [示例](.env.example)。也可以使用[配置生成器](https://heimdallr-configurator.vercel.app/)。
 
 具体配置，见 [配置文档](docs/Config.md)
 
@@ -66,6 +67,18 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 # 接口文档
 
 见 [接口文档](https://heimdallr.zeabur.app/docs) 。
+
+## 兼容接口
+
+Heimdallr 提供与 Bark 完全兼容的接口以及与 message-pusher 兼容的接口。
+
+### Bark 兼容接口
+
+只需要把 Bark 的服务链接换成 Heimdallr 的服务链接即可。
+
+### message-pusher 兼容接口
+
+message-pusher 的接口形如 `https://<domain>/push/<username>`，替换成 `https://<domain>/competable/message-pusher/push` 即可，token 填 Heimdallr 分组的 token。
 
 ## Markdown 支持
 
