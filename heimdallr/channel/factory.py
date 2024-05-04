@@ -10,6 +10,7 @@ from heimdallr.channel.email import Email, EmailMessage
 from heimdallr.channel.lark import LarkWebhook, LarkWebhookMessage
 from heimdallr.channel.ntfy import Ntfy, NtfyMessage
 from heimdallr.channel.pushdeer import PushDeer, PushDeerMessage
+from heimdallr.channel.pushme import Pushme, PushmeMessage
 from heimdallr.channel.pushover import Pushover, PushoverMessage
 from heimdallr.channel.telegram import Telegram, TelegramMessage
 from heimdallr.channel.wecom import (
@@ -38,6 +39,7 @@ CHANNEL_NTFY = "ntfy"
 CHANNEL_LARK_WEBHOOK = "lark_webhook"
 CHANNEL_DINGTALK_WEBHOOK = "dingtalk_webhook"
 CHANNEL_APPRISE = "apprise"
+CHANNEL_PUSHME = "pushme"
 
 
 def _get_channel_type_by_name(name: str) -> str:
@@ -81,6 +83,8 @@ def build_channel(name: str) -> Channel:
         return DingTalk(name, channel_type)
     elif channel_type == CHANNEL_APPRISE:
         return Apprise(name, channel_type)
+    elif channel_type == CHANNEL_PUSHME:
+        return Pushme(name, channel_type)
     else:
         raise ParamException(f"Channel {name} type {channel_type} not supported.")
 
@@ -117,5 +121,7 @@ def build_message(name: str, title: str, body: str, **kwargs) -> Message:
         return DingTalkMessage(title, body, **kwargs)
     elif channel_type == CHANNEL_APPRISE:
         return AppriseMessage(title, body, **kwargs)
+    elif channel_type == CHANNEL_PUSHME:
+        return PushmeMessage(title, body, **kwargs)
     else:
         raise ParamException(f"Channel type {channel_type} not supported.")

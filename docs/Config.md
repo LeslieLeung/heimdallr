@@ -111,6 +111,8 @@ channel_3_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 | `DINGTALK_TOKEN`        | 钉钉      | 钉钉的自定义机器人 Token，见 [这里](https://open.dingtalk.com/document/robots/custom-robot-access)。取其 `access_token` 部分。                                                       |
 | `DINGTALK_SAFE_WORDS`   | 钉钉      | 钉钉的关键词。                                                                                                                                                                       |
 | `APPRISE_URL`           | Apprise   | Apprise 的协议 URL，见 [这里](https://github.com/caronc/apprise#supported-notifications)                                                                                             |
+| `PUSHME_URL`            | PushMe    | PushMe 的服务端地址                                                                                                                                                                  |
+| `PUSHME_PUSH_KEY`       | PushMe    |
 
 
 ## 腾讯云 Serverless 环境变量设置

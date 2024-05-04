@@ -69,7 +69,6 @@ class Apprise(Channel):
             return attach
         os.makedirs("tmp", exist_ok=True)
         file_path = os.path.join("tmp", "attach")
-        # decode base64 string
         bf = base64.b64decode(attach)
 
         ext = filetype.guess_extension(bf)
@@ -78,7 +77,6 @@ class Apprise(Channel):
             file_path = f"{file_path}.{ext}"
 
         with open(file_path, "wb") as f:
-            # decode base64 string
             f.write(bf)
         return file_path
 
