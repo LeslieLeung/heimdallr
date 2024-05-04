@@ -18,7 +18,6 @@ async def send_push_by_form(
     msg_type: str = Form(default="text"),
     attach: str = Form(default="", description="base64 string, only support image"),
 ):
-    print("send push by form")
     return await serve_channels_async(key, title, body, msg_type=msg_type, attach=attach)
 
 
@@ -32,7 +31,6 @@ class PostRequest(BaseModel):
 
 @push_router.post("/push")
 async def send_push_by_json(request: PostRequest):
-    print("send push by json")
     return await serve_channels_async(
         request.key,
         request.title,
@@ -55,5 +53,4 @@ async def send_push(
     msg_type: str = "",
     attach: str = Query("", description="base64 string, only support image"),
 ):
-    print("send push")
     return await serve_channels_async(key, title, body, msg_type=msg_type, attach=attach)
