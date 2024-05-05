@@ -1,8 +1,10 @@
 import asyncio
+import inspect
 import logging
 from typing import Dict
 
 from heimdallr.channel.factory import build_message
+from heimdallr.config.config import is_debug
 from heimdallr.exception import AuthException
 from heimdallr.response import Response, success
 from heimdallr.shared.config import config
@@ -11,6 +13,9 @@ logger = logging.getLogger(__name__)
 
 
 async def serve_channels_async(key: str, title: str = "", body: str = "", **kwargs):
+    # log the caller of this function
+    if is_debug():
+        logger.debug(f"Serving caller: {inspect.stack()[1].function}")
     try:
         group = config.get_group(key)
     except AuthException as e:
