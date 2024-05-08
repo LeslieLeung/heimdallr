@@ -1,4 +1,5 @@
 import logging
+import os
 
 import uvicorn
 from fastapi import FastAPI
@@ -13,6 +14,8 @@ if is_debug():
     log_env_vars()
 else:
     logging.basicConfig(level=logging.INFO)
+
+logging.info(f"Heimdallr version {os.getenv('HEIMDALLR_VERSION')}, commit id {os.getenv('COMMIT_ID')}")
 
 app = FastAPI()
 

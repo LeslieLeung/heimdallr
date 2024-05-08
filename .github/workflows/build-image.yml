@@ -33,3 +33,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           file: Dockerfile
+          build-args: |
+            HEIMDALLR_VERSION=${{ steps.meta.outputs.tags }}
+            COMMIT_ID=${{ github.sha }}

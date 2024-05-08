@@ -108,6 +108,7 @@ channel_3_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 | `NTFY_TOPIC`            | ntfy      | ntfy 的 topic，见 [这里](https://docs.ntfy.sh/)                                                                                                                                      |
 | `LARK_HOST`             | 飞书/Lark | 飞书/Lark 的接口地址，默认可以留空。如果使用 Lark, 则为 https://open.larksuite.com/open-apis/bot/v2/hook/                                                                            |
 | `LARK_TOKEN`            | 飞书/Lark | 飞书/Lark 的 Token                                                                                                                                                                   |
+| `LARK_SECRET`           | 飞书/Lark | 飞书/Lark 的签名密钥                                                                                                                                                                 |
 | `DINGTALK_TOKEN`        | 钉钉      | 钉钉的自定义机器人 Token，见 [这里](https://open.dingtalk.com/document/robots/custom-robot-access)。取其 `access_token` 部分。                                                       |
 | `DINGTALK_SAFE_WORDS`   | 钉钉      | 钉钉的关键词。                                                                                                                                                                       |
 | `APPRISE_URL`           | Apprise   | Apprise 的协议 URL，见 [这里](https://github.com/caronc/apprise#supported-notifications)                                                                                             |
