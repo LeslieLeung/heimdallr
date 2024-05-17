@@ -28,6 +28,12 @@ def get_config_int(name: str, suffix: str, default: int = 0) -> int:
     return env.int(name + "_" + suffix, default)
 
 
+def has_key(name: str, suffix: str) -> bool:
+    if suffix == "":
+        return name in os.environ
+    return name + "_" + suffix in os.environ
+
+
 def log_env_vars() -> None:
     for key, value in os.environ.items():
         logger.debug(f"{key}: {value}")
