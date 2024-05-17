@@ -23,7 +23,7 @@
 
 见以下最小例子，其定义了一个名为 `group_1` 的分组，并具有一个对应的 `token`，启用了 `channel_1`, `channel_2`, `channel_3` 三个通知渠道。其中 `channel_1` 为 `bark` 类型，有 `BARK_URL` 和 `BARK_KEY` 两项配置；`channel_2`, `channel_3` 均为企业微信 Webhook。
 
-> [!INFO]
+> [!TIP]
 > 自 `2.0.12` 版本起，组中可以嵌套组。在 `ENABLED_CHANNELS` 中填入组名即可。
 
 ```
@@ -31,8 +31,12 @@ ENABLED_GROUPS=group_1
 
 # Define groups
 # group_1
-group_1_ENABLED_CHANNELS=channel_1,channel_2,channel_3
+group_1_ENABLED_CHANNELS=channel_1,channel_2,channel_3,group_2
 group_1_TOKEN=<YOUR_TOKEN>
+
+# group_2
+group_2_ENABLED_CHANNELS=channel_4
+# token can be ignored if no used directly
 
 # Define channels
 # channel_1(bark)
@@ -47,15 +51,19 @@ channel_2_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 # channel_3(wecom_app)
 channel_3_TYPE=wecom_webhook
 channel_3_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
+
+# channel_4(wecom_app)
+channel_4_TYPE=wecom_webhook
+channel_4_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 ```
 
 ### 通知分组
 
-| 变量名                        | 说明                                                                                      |
-| ----------------------------- | ----------------------------------------------------------------------------------------- |
-| ENABLED_GROUPS                | （必填）启用的分组，区分大小写，多个分组逗号隔开                                          |
-| <GROUP_NAME>_ENABLED_CHANNELS | （必填）分组使用的通知渠道，区分大小写，多个渠道逗号隔开                                  |
-| <GROUP_NAME>_TOKEN            | （必填）分组的 Token，对应请求时使用的 {key} 。建议使用随机生成的字母和数字，不可以带 `/` |
+| 变量名                        | 说明                                                                                                                                    |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| ENABLED_GROUPS                | （必填）启用的分组，区分大小写，多个分组逗号隔开                                                                                        |
+| <GROUP_NAME>_ENABLED_CHANNELS | （必填）分组使用的通知渠道，区分大小写，多个渠道逗号隔开                                                                                |
+| <GROUP_NAME>_TOKEN            | （选填）分组的 Token，对应请求时使用的 {key} 。建议使用随机生成的字母和数字，不可以带 `/`。如果该分组不直接使用，只作为嵌套，可以不填。 |
 
 ### 通知渠道
 
