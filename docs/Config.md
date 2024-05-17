@@ -23,6 +23,9 @@
 
 见以下最小例子，其定义了一个名为 `group_1` 的分组，并具有一个对应的 `token`，启用了 `channel_1`, `channel_2`, `channel_3` 三个通知渠道。其中 `channel_1` 为 `bark` 类型，有 `BARK_URL` 和 `BARK_KEY` 两项配置；`channel_2`, `channel_3` 均为企业微信 Webhook。
 
+> [!INFO]
+> 自 `2.0.12` 版本起，组中可以嵌套组。在 `ENABLED_CHANNELS` 中填入组名即可。
+
 ```
 ENABLED_GROUPS=group_1
 
