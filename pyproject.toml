@@ -9,7 +9,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = "^0.111.0"
-uvicorn = "^0.29.0"
+uvicorn = "^0.30.0"
 requests = "^2.32.0"
 python-multipart = "^0.0.9"
 environs = "^11.0.0"
