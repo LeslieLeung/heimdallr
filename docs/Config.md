@@ -121,7 +121,8 @@ channel_4_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 | `LARK_TOKEN`            | 飞书/Lark | 飞书/Lark 的 Token                                                                                                                                                                   |
 | `LARK_SECRET`           | 飞书/Lark | 飞书/Lark 的签名密钥                                                                                                                                                                 |
 | `DINGTALK_TOKEN`        | 钉钉      | 钉钉的自定义机器人 Token，见 [这里](https://open.dingtalk.com/document/robots/custom-robot-access)。取其 `access_token` 部分。                                                       |
-| `DINGTALK_SAFE_WORDS`   | 钉钉      | 钉钉的关键词。                                                                                                                                                                       |
+| `DINGTALK_SAFE_WORDS`   | 钉钉      | 钉钉的自定义关键词，见 [这里](https://open.dingtalk.com/document/orgapp/customize-robot-security-settings)。                                                                         |
+| `DINGTALK_SECRET`       | 钉钉      | 钉钉的 secret，通过加签方式保护机器人。与关键词只能二选一，推荐使用签名，见 [这里](https://open.dingtalk.com/document/orgapp/customize-robot-security-settings)。                    |
 | `APPRISE_URL`           | Apprise   | Apprise 的协议 URL，见 [这里](https://github.com/caronc/apprise#supported-notifications)                                                                                             |
 | `PUSHME_URL`            | PushMe    | PushMe 的服务端地址                                                                                                                                                                  |
 | `PUSHME_PUSH_KEY`       | PushMe    |
