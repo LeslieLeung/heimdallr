@@ -49,6 +49,10 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 
 ## 第三方服务
 
+### Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fleslieleung%2Fheimdallr&project-name=heimdallr&repository-name=heimdallr)
+
 ### Zeabur
 
 [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/E7FFAQ?referralCode=LeslieLeung)
