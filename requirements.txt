@@ -119,9 +119,9 @@ environs==11.0.0 ; python_version >= "3.11" and python_version < "4.0" \
 fastapi-cli==0.0.4; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:a2552f3a7ae64058cdbb530be6fa6dbfc975dc165e4fa66d224c3d396e25e809 \
     --hash=sha256:e2e9ffaffc1f7767f488d6da34b6f5a377751c996f397902eb6abb99a67bde32
-fastapi==0.111.0 ; python_version >= "3.11" and python_version < "4.0" \
-    --hash=sha256:97ecbf994be0bcbdadedf88c3150252bed7b2087075ac99735403b1b76cc8fc0 \
-    --hash=sha256:b9db9dd147c91cb8b769f7183535773d8741dd46f9dc6676cd82eab510228cd7
+fastapi==0.111.1; python_version >= "3.11" and python_version < "4.0" \
+    --hash=sha256:4f51cfa25d72f9fbc3280832e84b32494cf186f50158d364a8765aabf22587bf \
+    --hash=sha256:ddd1ac34cb1f76c2e2d7f8545a4bcb5463bce4834e81abf0b189e0c359ab2413
 filetype==1.2.0 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:66b56cd6474bf41d8c54660347d37afcc3f7d1970648de365c102ef77548aadb \
     --hash=sha256:7ce71b6880181241cf7ac8697a2f1eb6a8bd9b429f7ad6d27b8db9ba5f1c2d25
