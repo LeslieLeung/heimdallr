@@ -13,7 +13,14 @@ async def pushdeer_message_push(
     type: str = Body(default="text"),
 ):
     await serve_channels_async(pushkey, text, desp)
-    return {"result": [{"counts": 1, "logs": [], "success": "ok"}]}
+    return {
+        "code": 0,
+        "content": {
+            "result": [
+                '{"counts":1,"logs":[],"success":"ok"}',
+            ]
+        },
+    }
 
 
 @competable_router.get("/message-pusher/push")
