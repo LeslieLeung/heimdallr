@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Form, Query
+from fastapi import APIRouter, Body, Form, Query
 
 from heimdallr.api.base import serve_channels_async
 
@@ -7,10 +7,10 @@ competable_router = APIRouter(prefix="/competable")
 
 @competable_router.post("/pushdeer/message/push")
 async def pushdeer_message_push(
-    text: str = Form(...),
-    desp: str = Form(...),
-    pushkey: str = Form(...),
-    type: str = Form(default="text"),
+    text: str = Body(...),
+    desp: str = Body(...),
+    pushkey: str = Body(...),
+    type: str = Body(default="text"),
 ):
     await serve_channels_async(pushkey, text, desp)
     return {"result": [{"counts": 1, "logs": [], "success": "ok"}]}
