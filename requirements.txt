@@ -473,9 +473,9 @@ sniffio==1.3.1 ; python_version >= "3.11" and python_version < "4.0" \
 starlette==0.37.2 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:6fe59f29268538e5d0d182f2791a479a0c64638e6935d1c6989e63fb2699c6ee \
     --hash=sha256:9af890290133b79fc3db55474ade20f6220a364a0402e0b556e7cd5e1e093823
-typer==0.12.3 ; python_version >= "3.11" and python_version < "4.0" \
-    --hash=sha256:070d7ca53f785acbccba8e7d28b08dcd88f79f1fbda035ade0aecec71ca5c914 \
-    --hash=sha256:49e73131481d804288ef62598d97a1ceef3058905aa536a1134f90891ba35482
+typer==0.12.5; python_version >= "3.11" and python_version < "4.0" \
+    --hash=sha256:62fe4e471711b147e3365034133904df3e235698399bc4de2b36c8579298d52b \
+    --hash=sha256:f592f089bedcc8ec1b974125d64851029c3b1af145f04aca64d69410f0c9b722
 types-requests==2.31.0.20240311 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:47872893d65a38e282ee9f277a4ee50d1b28bd592040df7d1fdaffdf3779937d \
     --hash=sha256:b1c1b66abfb7fa79aae09097a811c4aa97130eb8831c60e47aee4ca344731ca5
