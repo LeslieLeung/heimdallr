@@ -15,13 +15,11 @@ async def pushdeer_message_push(request: Request):
         text = data.get("text")
         desp = data.get("desp")
         pushkey = data.get("pushkey")
-        type = data.get("type", "text")
     elif "application/x-www-form-urlencoded" in content_type:
         form_data = await request.form()
         text = form_data.get("text")
         desp = form_data.get("desp")
         pushkey = form_data.get("pushkey")
-        type = form_data.get("type", "text")
     else:
         return JSONResponse(status_code=415, content={"error": "Unsupported Media Type"})
 
