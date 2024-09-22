@@ -12,6 +12,7 @@ from heimdallr.config.definition import (
     SUFFIX_EMAIL_PASSWORD,
     SUFFIX_EMAIL_PORT,
     SUFFIX_EMAIL_SENDER,
+    SUFFIX_EMAIL_STARTTLS,
     SUFFIX_EMAIL_TO,
     SUFFIX_EMAIL_USER,
 )
@@ -56,7 +57,7 @@ class Email(Channel):
         self.password = get_config_str(self.get_name(), SUFFIX_EMAIL_PASSWORD, "")
         self.sender = get_config_str(self.get_name(), SUFFIX_EMAIL_SENDER, "Heimdallr")
         self.to = get_config_str(self.get_name(), SUFFIX_EMAIL_TO, "")
-        self.starttls = get_config_str(self.get_name(), "starttls", "False") == "True"
+        self.starttls = get_config_str(self.get_name(), SUFFIX_EMAIL_STARTTLS, "False") == "True"
         if self.host == "" or self.user == "" or self.password == "" or self.to == "":
             raise ParamException("email host, user, password or to not set")
 
