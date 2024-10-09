@@ -10,7 +10,7 @@ apprise==1.9.0 ; python_version >= "3.11" and python_version < "4.0" \
 certifi==2024.8.30 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:922820b53db7a7257ffbda3f597266d435245903d80737e34f8a45ff3e3230d8 \
     --hash=sha256:bec941d2aa8195e248a60b31ff9f0558284cf01a52591ceda73ea9afffd69fd9
-charset-normalizer==3.3.2 ; python_version >= "3.11" and python_version < "4.0" \
+charset-normalizer==3.4.0 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:06435b539f889b1f6f4ac1758871aae42dc3a8c0e24ac9e60c2384973ad73027 \
     --hash=sha256:06a81e93cd441c56a9b65d8e1d043daeb97a3d0856d177d5c90ba85acb3db087 \
     --hash=sha256:0a55554a2fa0d408816b3b5cedf0045f4b8e1a6065aec45849de2d6f3f8e9786 \
