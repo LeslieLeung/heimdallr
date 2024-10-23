@@ -134,7 +134,7 @@ oauthlib==3.2.2 ; python_version >= "3.11" and python_version < "4.0" \
 packaging==24.1 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002 \
     --hash=sha256:5b8f2217dbdbd2f7f384c41c628544e6d52f2d0f53c6d0c3ea61aa5d1d7ff124
-pydantic-core==2.23.4 ; python_version >= "3.11" and python_version < "4.0" \
+pydantic-core==2.25.0 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:0a7df63886be5e270da67e0966cf4afbae86069501d35c8c1b3b6c168f42cb36 \
     --hash=sha256:0cb3da3fd1b6a5d0279a01877713dbda118a2a4fc6f0d821a57da2e464793f05 \
     --hash=sha256:0dbd8dbed2085ed23b5c04afa29d8fd2771674223135dc9bc937f3c09284d071 \
