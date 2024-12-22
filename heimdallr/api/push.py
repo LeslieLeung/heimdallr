@@ -1,4 +1,5 @@
 import logging
+from urllib.parse import unquote_plus
 
 from fastapi import APIRouter, Form, Query
 from pydantic import BaseModel, Field
@@ -53,4 +54,6 @@ async def send_push(
     msg_type: str = "",
     attach: str = Query("", description="base64 string, only support image"),
 ):
+    title = unquote_plus(title)
+    body = unquote_plus(body)
     return await serve_channels_async(key, title, body, msg_type=msg_type, attach=attach)
