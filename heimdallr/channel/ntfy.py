@@ -18,9 +18,9 @@ class NtfyMessage(Message):
 
     def render_message(
         self,
-    ) -> Tuple[Dict, str]:
-        headers: Dict = {"Title": self.title}
-        content = self.body
+    ) -> Tuple[Dict, bytes]:
+        headers: Dict = {"Title": self.title.encode(encoding="utf-8")}
+        content = self.body.encode(encoding="utf-8")
         if self.msg_type == "markdown":
             headers["Content-Type"] = "text/markdown"
 
