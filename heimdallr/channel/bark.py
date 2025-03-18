@@ -6,7 +6,11 @@ import requests
 
 from heimdallr.channel.base import Channel, Message
 from heimdallr.config.config import get_config_str
-from heimdallr.config.definition import SUFFIX_BARK_KEY, SUFFIX_BARK_URL
+from heimdallr.config.definition import (
+    SUFFIX_BARK_KEY,
+    SUFFIX_BARK_PARAMS,
+    SUFFIX_BARK_URL,
+)
 from heimdallr.exception import ParamException
 
 logger = logging.getLogger(__name__)
@@ -50,6 +54,7 @@ class Bark(Channel):
     def _build_channel(self) -> None:
         self.base_url = get_config_str(self.get_name(), SUFFIX_BARK_URL, self.base_url)
         self.key = get_config_str(self.get_name(), SUFFIX_BARK_KEY, "")
+        self.params = get_config_str(self.get_name(), SUFFIX_BARK_PARAMS, "")
         if self.key == "":
             raise ParamException("Bark key cannot be empty.")
 
@@ -58,6 +63,8 @@ class Bark(Channel):
         Send a message to bark server.
         """
         url = f"{self.base_url}/{self.key}{message.render_message()}"
+        if self.params != "":
+            url += f"?{self.params}"
         rs = requests.get(url)
         logger.debug(f"Bark response: {rs.text}")
         rs_json = rs.json()
