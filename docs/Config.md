@@ -95,6 +95,7 @@ channel_4_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 | ----------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `BARK_URL`              | Bark      | Bark服务器地址，如`https://api.day.app`                                                                                                                                              |
 | `BARK_KEY`              | Bark      | Bark的推送 key，如 `qy7s8qnhjhphuNDHJNFxQE`                                                                                                                                          |
+| `BARK_PARAMS`           | Bark      | Bark的推送参数，仅 `?` 后参数，如 `level=timeSensitive`                                                                                                                              |
 | `WECOM_KEY`             | 企业微信  | 企业微信机器人的 key，见 [企业微信机器人webhook](https://developer.work.weixin.qq.com/document/path/91770)                                                                           |
 | `WECOM_CORP_ID`         | 企业微信  | 企业微信应用的 corp_id，见 [企业微信应用消息](https://developer.work.weixin.qq.com/document/path/90236)                                                                              |
 | `WECOM_AGENT_ID`        | 企业微信  | 企业微信应用的 agent_id                                                                                                                                                              |

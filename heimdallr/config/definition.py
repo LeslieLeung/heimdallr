@@ -9,6 +9,7 @@ SUFFIX_TYPE = "TYPE"
 # bark
 SUFFIX_BARK_URL = "BARK_URL"
 SUFFIX_BARK_KEY = "BARK_KEY"
+SUFFIX_BARK_PARAMS = "BARK_PARAMS"
 # Wecom webhook key，see https://developer.work.weixin.qq.com/document/path/91770
 SUFFIX_WECOM_KEY = "WECOM_WEBHOOK_KEY"
 # Wecom corpid and secret，see https://developer.work.weixin.qq.com/document/path/91039
