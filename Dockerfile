@@ -1,4 +1,4 @@
-FROM python:3.13.1-slim
+FROM python:3.13.2-slim
 WORKDIR /app
 
 RUN adduser --disabled-password --gecos '' appuser
