@@ -112,9 +112,9 @@ colorama==0.4.6 ; python_version >= "3.11" and python_version < "4.0" and platfo
 environs==14.1.1 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:03db7ee2d50ec697b68814cd175a3a05a7c7954804e4e419ca8b570dc5a835cf \
     --hash=sha256:45bc56f1d53bbc59d8dd69bba97377dd88ec28b8229d81cedbd455b21789445b
-fastapi==0.115.11 ; python_version >= "3.11" and python_version < "4.0" \
-    --hash=sha256:32e1541b7b74602e4ef4a0260ecaf3aadf9d4f19590bba3e1bf2ac4666aa2c64 \
-    --hash=sha256:cc81f03f688678b92600a65a5e618b93592c65005db37157147204d8924bf94f
+fastapi==0.115.12; python_version >= "3.11" and python_version < "4.0" \
+    --hash=sha256:1e2c2a2646905f9e83d32f04a3f86aff4a286669c6c950ca95b5fd68c2602681 \
+    --hash=sha256:e94613d6c05e27be7ffebdd6ea5f388112e5e430c8f7d6494a9d1d88d43e814d
 filetype==1.2.0 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:66b56cd6474bf41d8c54660347d37afcc3f7d1970648de365c102ef77548aadb \
     --hash=sha256:7ce71b6880181241cf7ac8697a2f1eb6a8bd9b429f7ad6d27b8db9ba5f1c2d25
