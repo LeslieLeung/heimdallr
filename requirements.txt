@@ -315,9 +315,9 @@ starlette==0.46.1 ; python_version >= "3.11" and python_version < "4.0" \
 types-requests==2.32.0.20250306 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:0962352694ec5b2f95fda877ee60a159abdf84a0fc6fdace599f20acb41a03d1 \
     --hash=sha256:25f2cbb5c8710b2022f8bbee7b2b66f319ef14aeea2f35d80f18c9dbf3b60a0b
-typing-extensions==4.12.2 ; python_version >= "3.11" and python_version < "4.0" \
-    --hash=sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d \
-    --hash=sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8
+typing-extensions==4.13.1; python_version >= "3.11" and python_version < "4.0" \
+    --hash=sha256:4b6cf02909eb5495cfbc3f6e8fd49217e6cc7944e145cdda8caa3734777f9e69 \
+    --hash=sha256:98795af00fb9640edec5b8e31fc647597b4691f099ad75f469a2616be1a76dff
 urllib3==2.3.0 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:1cee9ad369867bfdbbb48b7dd50374c0967a0bb7710050facf0dd6911440e3df \
     --hash=sha256:f8c5449b3cf0861679ce7e0503c7b44b5ec981bec0d1d3795a07f1ba96f0204d
