@@ -7,7 +7,7 @@ RUN pip install poetry && poetry config virtualenvs.create false
 
 # dependencies
 COPY pyproject.toml poetry.lock ./
-RUN poetry install
+RUN poetry install --without dev
 
 USER appuser
 COPY heimdallr ./heimdallr
