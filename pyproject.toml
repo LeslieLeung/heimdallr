@@ -21,8 +21,8 @@ filetype = "^1.2.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.0.0"
-black = "^24.0.0"
-isort = "^5.13.2"
+black = "^25.0.0"
+isort = "^6.0.0"
 autoflake = "^2.2.1"
 memray = "^1.11.0"
 
