@@ -270,13 +270,13 @@ files = [
 
 [[package]]
 name = "environs"
-version = "14.1.1"
+version = "14.2.0"
 description = "simplified environment variable parsing"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "environs-14.1.1-py3-none-any.whl", hash = "sha256:45bc56f1d53bbc59d8dd69bba97377dd88ec28b8229d81cedbd455b21789445b"},
-    {file = "environs-14.1.1.tar.gz", hash = "sha256:03db7ee2d50ec697b68814cd175a3a05a7c7954804e4e419ca8b570dc5a835cf"},
+    {file = "environs-14.2.0-py3-none-any.whl", hash = "sha256:22669a58d53c5b86a25d0231c4a41a6ebeb82d3942b8fbd9cf645890c92a1843"},
+    {file = "environs-14.2.0.tar.gz", hash = "sha256:2b6c78a77dfefb57ca30d43a232270ecc82adabf67ab318e018084b9a3529e9b"},
 ]
 
 [package.dependencies]
