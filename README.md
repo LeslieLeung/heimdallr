@@ -37,6 +37,7 @@ Heimdallr 是一个非常轻量的通知网关，可以聚合各种推送渠道�
 - [钉钉自定义机器人](https://open.dingtalk.com/document/robots/custom-robot-access)
 - [Apprise](https://github.com/caronc/apprise)
 - [PushMe](https://push.i-i.me/)
+- [Quote0/MindReset](https://dot.mindreset.tech/docs/server/text_api)
 
 > 如果有需要的通知方式，请提交 [issue](https://github.com/LeslieLeung/heimdallr/issues/new?assignees=LeslieLeung&labels=enhancement&template=feature_request.md&title=)
 
