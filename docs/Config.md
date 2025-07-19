@@ -88,6 +88,7 @@ channel_4_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 | ntfy              | ntfy                                  |
 | 飞书/Lark Webhook | lark_webhook                          |
 | 钉钉自定义机器人  | dingtalk_webhook                      |
+| Quote0/MindReset  | quote0                                |
 
 
 #### 渠道配置后缀
@@ -126,7 +127,10 @@ channel_4_WECOM_WEBHOOK_KEY=<YOUR_WECOM_WEBHOOK_KEY>
 | `DINGTALK_SECRET`       | 钉钉      | 钉钉的 secret，通过加签方式保护机器人。与关键词只能二选一，推荐使用签名，见 [这里](https://open.dingtalk.com/document/orgapp/customize-robot-security-settings)。                    |
 | `APPRISE_URL`           | Apprise   | Apprise 的协议 URL，见 [这里](https://github.com/caronc/apprise#supported-notifications)                                                                                             |
 | `PUSHME_URL`            | PushMe    | PushMe 的服务端地址                                                                                                                                                                  |
-| `PUSHME_PUSH_KEY`       | PushMe    |
+| `PUSHME_PUSH_KEY`       | PushMe    | PushMe 的推送密钥                                                                                                                                                                    |
+| `QUOTE0_DEVICE_ID`      | Quote0    | Quote0 (MindReset) 的设备ID，见 [Quote0 API](https://dot.mindreset.tech/docs/server/text_api)                                                                                        |
+| `QUOTE0_API_KEY`        | Quote0    | Quote0 (MindReset) 的API密钥                                                                                                                                                         |
+| `QUOTE0_BASE_URL`       | Quote0    | Quote0 (MindReset) 的服务端地址，默认 https://dot.mindreset.tech
 
 
 ## 腾讯云 Serverless 环境变量设置
