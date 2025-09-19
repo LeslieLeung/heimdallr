@@ -68,8 +68,9 @@ class Email(Channel):
         message.user = self.user
         message.to = self.to
         try:
-            with closing(smtplib.SMTP(self.host, self.port)) as smtp_object:
-                if self.starttls:
+            stmp_cls = smtplib.SMTP_SSL if self.port == 465 else smtplib.SMTP
+            with closing(smtp_cls(self.host, self.port)) as smtp_object:
+                if self.starttls and self.port != 465:
                     smtp_object.starttls()
                 smtp_object.login(self.user, self.password)
                 smtp_object.sendmail(self.user, self.to, message.render_message())
