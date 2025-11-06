@@ -7,8 +7,8 @@ export interface UseVersionReturn {
   isCheckingUpdate: boolean;
   updateInfo: VersionInfo | null;
   error: string | null;
-  checkForUpdates: () => Promise<void>;
-  forceCheckUpdates: () => Promise<void>;
+  checkForUpdates: () => Promise<VersionInfo>;
+  forceCheckUpdates: () => Promise<VersionInfo>;
   clearError: () => void;
 }
 

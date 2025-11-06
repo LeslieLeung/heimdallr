@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import { useTranslation } from "react-i18next"
 import { useVersion } from "../hooks/useVersion"
 import {
@@ -64,7 +64,7 @@ type Theme = (typeof THEMES)[keyof typeof THEMES]
 
 export function SettingsPage() {
   const { t } = useTranslation()
-  const { theme, setTheme, isDark } = useTheme()
+  const { theme, setTheme } = useTheme()
   const { language, setLanguage, availableLanguages } = useLanguage()
   const { currentVersion, isCheckingUpdate, updateInfo, forceCheckUpdates } = useVersion()
   const [exportSuccess, setExportSuccess] = useState(false)

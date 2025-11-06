@@ -35,6 +35,12 @@ RUN pnpm install --frozen-lockfile
 # Copy source code
 COPY . .
 
+# Build arguments for version info
+ARG HEIMDALLR_VERSION
+ENV VITE_APP_VERSION=$HEIMDALLR_VERSION
+ARG COMMIT_ID
+ENV VITE_COMMIT_ID=$COMMIT_ID
+
 # Build the application
 RUN pnpm build
 

@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { channelService } from '../../services/channelService';
 import { ROUTES } from '../../utils/constants';
 import { getErrorMessage } from '../../utils/helpers';
-import type { Channel, ChannelType } from '../../types/channel';
+import type { Channel } from '../../types/channel';
 import { CHANNEL_TYPES } from '../../types/channel';
 
 import { Button } from '../../components/ui/button';

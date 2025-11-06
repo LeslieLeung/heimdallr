@@ -23,9 +23,9 @@ import { ChannelTypeSelector } from '../../components/channels/ChannelTypeSelect
 import { ChannelConfigForm } from '../../components/channels/ChannelConfigForm';
 import { TestChannelModal } from '../../components/channels/TestChannelModal';
 
-const createFormSchema = (t: (key: string) => string) => z.object({
-  name: z.string().min(1, t('validation.required')).max(100, t('validation.maxLength', { max: 100 })),
-  channel_type: z.string().min(1, t('channels.selectChannelType')),
+const createFormSchema = z.object({
+  name: z.string().min(1, '渠道名称不能为空').max(100, '渠道名称不能超过100个字符'),
+  channel_type: z.string().min(1, '请选择渠道类型'),
   is_active: z.boolean(),
   config: z.record(z.string(), z.unknown()),
 });
@@ -38,11 +38,10 @@ export function CreateChannelPage() {
   
   const queryClient = useQueryClient();
 
-  const formSchema = createFormSchema(t);
-  type FormData = z.infer<typeof formSchema>;
+  type FormData = z.infer<typeof createFormSchema>;
 
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(createFormSchema),
     defaultValues: {
       name: '',
       channel_type: '',

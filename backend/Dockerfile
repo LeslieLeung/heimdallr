@@ -35,15 +35,30 @@ CMD ["sh", "-c", "poetry install && python main.py"]
 # Production stage
 FROM base AS prod
 COPY pyproject.toml poetry.lock ./
+
+# Set up virtualenv with proper permissions
+ENV VIRTUAL_ENV=/app/.venv
+RUN python -m venv $VIRTUAL_ENV && chown -R appuser:appuser $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 RUN poetry install --without dev
 
-USER appuser
+# Create data directory for SQLite and ensure proper ownership
+RUN mkdir -p /app/data && chown -R appuser:appuser /app
+
+# Copy application code
 COPY heimdallr ./heimdallr
 COPY main.py ./
+
+# Switch to appuser for running the application
+USER appuser
 
 ARG HEIMDALLR_VERSION
 ENV HEIMDALLR_VERSION=$HEIMDALLR_VERSION
 ARG COMMIT_ID
 ENV COMMIT_ID=$COMMIT_ID
+
+# Expose port
+EXPOSE 9000
 
 CMD ["python", "main.py"]

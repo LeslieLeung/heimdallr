@@ -1,4 +1,4 @@
-import { Channel } from './channel';
+import type { Channel } from './channel';
 
 export interface Group {
   id: number;

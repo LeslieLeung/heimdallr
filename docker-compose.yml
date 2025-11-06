@@ -1,0 +1,74 @@
+# Heimdallr V3 - Production Deployment with Docker Compose
+# This is a simplified production deployment using pre-built images from Docker Hub
+
+services:
+  # Backend FastAPI service
+  backend:
+    image: leslieleung/heimdallr-backend:latest
+    container_name: heimdallr-backend
+    environment:
+      - DEBUG=false
+      - PORT=9000
+      - WORKERS=${WORKERS:-2}
+      # Use SQLite by default for simple deployments
+      - DATABASE_DSN=${DATABASE_DSN:-sqlite:////app/data/heimdallr.db}
+      # IMPORTANT: Change this in production!
+      - SECRET_KEY=${SECRET_KEY:-CHANGE_THIS_SECRET_KEY_IN_PRODUCTION}
+      - DOMAIN=${DOMAIN:-localhost}
+    volumes:
+      # Persist SQLite database
+      - ./data/heimdallr:/app/data
+    ports:
+      - "${BACKEND_PORT:-9000}:9000"
+    restart: unless-stopped
+    networks:
+      - heimdallr-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend Nginx service
+  frontend:
+    image: leslieleung/heimdallr-frontend:latest
+    container_name: heimdallr-frontend
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - heimdallr-network
+    environment:
+      - BACKEND_URL=http://backend:9000
+
+networks:
+  heimdallr-network:
+    driver: bridge
+
+# Optional: Use external MySQL database
+# To use MySQL instead of SQLite:
+# 1. Uncomment the mysql service below
+# 2. Set DATABASE_DSN environment variable for backend:
+#    DATABASE_DSN=mysql+pymysql://heimdallr:heimdallr_password@mysql:3306/heimdallr
+#
+# services:
+#   mysql:
+#     image: mysql:8.0
+#     container_name: heimdallr-mysql
+#     environment:
+#       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-heimdallr_root_password}
+#       MYSQL_DATABASE: ${MYSQL_DATABASE:-heimdallr}
+#       MYSQL_USER: ${MYSQL_USER:-heimdallr}
+#       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-heimdallr_password}
+#     volumes:
+#       - ./data/mysql:/var/lib/mysql
+#     command: --default-authentication-plugin=mysql_native_password
+#     healthcheck:
+#       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+#       timeout: 20s
+#       retries: 10
+#     restart: unless-stopped
+#     networks:
+#       - heimdallr-network

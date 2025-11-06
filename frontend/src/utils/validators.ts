@@ -8,7 +8,7 @@ export const loginSchema = z.object({
 
 export const registerSchema = z.object({
   username: z.string().min(1, '用户名不能为空').max(50, '用户名不能超过50个字符'),
-  email: z.string().email('邮箱格式不正确').optional().or(z.literal('')),
+  email: z.string(),
   password: z.string().min(6, '密码至少6位'),
   confirmPassword: z.string().min(1, '请确认密码'),
 }).refine((data) => data.password === data.confirmPassword, {
@@ -17,9 +17,9 @@ export const registerSchema = z.object({
 });
 
 export const userUpdateSchema = z.object({
-  email: z.string().email('邮箱格式不正确').optional().or(z.literal('')),
-  password: z.string().min(6, '密码至少6位').optional().or(z.literal('')),
-  confirmPassword: z.string().optional(),
+  email: z.string(),
+  password: z.string(),
+  confirmPassword: z.string(),
 }).refine((data) => {
   if (data.password && data.confirmPassword) {
     return data.password === data.confirmPassword;
@@ -34,21 +34,21 @@ export const userUpdateSchema = z.object({
 export const channelCreateSchema = z.object({
   name: z.string().min(1, '渠道名称不能为空').max(100, '渠道名称不能超过100个字符'),
   channel_type: z.string().min(1, '请选择渠道类型'),
-  config: z.record(z.unknown()).default({}),
-  is_active: z.boolean().default(true),
+  config: z.record(z.string(), z.unknown()),
+  is_active: z.boolean(),
 });
 
 export const channelUpdateSchema = z.object({
   name: z.string().min(1, '渠道名称不能为空').max(100, '渠道名称不能超过100个字符').optional(),
   channel_type: z.string().min(1, '请选择渠道类型').optional(),
-  config: z.record(z.unknown()).optional(),
+  config: z.record(z.string(), z.unknown()).optional(),
   is_active: z.boolean().optional(),
 });
 
 // 分组验证
 export const groupCreateSchema = z.object({
   name: z.string().min(1, '分组名称不能为空').max(100, '分组名称不能超过100个字符'),
-  description: z.string().max(500, '描述不能超过500个字符').default(''),
+  description: z.string().max(500, '描述不能超过500个字符'),
 });
 
 export const groupUpdateSchema = z.object({
