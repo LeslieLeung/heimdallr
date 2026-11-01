@@ -53,13 +53,13 @@ requests-oauthlib = "*"
 
 [[package]]
 name = "autoflake"
-version = "2.3.1"
+version = "2.4.0"
 description = "Removes unused imports and unused variables"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.10"
 files = [
-    {file = "autoflake-2.3.1-py3-none-any.whl", hash = "sha256:3ae7495db9084b7b32818b4140e6dc4fc280b712fb414f5b8fe57b0a8e85a840"},
-    {file = "autoflake-2.3.1.tar.gz", hash = "sha256:c98b75dc5b0a86459c4f01a1d32ac7eb4338ec4317a4469515ff1e687ecd909e"},
+    {file = "autoflake-2.4.0-py3-none-any.whl", hash = "sha256:85df69176550d5e070bdf4a12a1bcdad062998ed458b20a605630e74b758c7ce"},
+    {file = "autoflake-2.4.0.tar.gz", hash = "sha256:ef7c496d9bce9d2cef049f24e482d1d3090c37fbd44e5e85dfb00db3c78ee16c"},
 ]
 
 [package.dependencies]
